@@ -155,3 +155,66 @@ Unicode codepoint edit; unscored dictionary neighbours never receive invented
 probabilities. `selected_label_confidence` is reported separately when Unicode
 filtering selects a lower-ranked label. These scores do not establish recognition
 accuracy. With no lexicon, the raw model output is retained.
+
+## Two-pass context-aware word and line decoding
+
+`DecoderPipeline.decode_word_or_line(batch, doc_type=...)` and `run` first
+recognize the complete line, then perform two context passes. The standalone
+`decode_word_or_line(batch, models, ...)` helper provides the same operation.
+
+Pass 1 locks every nonempty word with original confidence at least 0.85,
+including proper nouns absent from the lexicon. With B4 gating disabled, words
+are retained as policy anchors. Pass 2 changes only ambiguous B4 words. It uses
+the immediately adjacent Pass 1 anchors; a corrected word does not become a new
+anchor during that call. Rejected or empty word slots preserve their position
+and never permit a context link across the gap.
+
+For each of the first three original model paths that occurs in the lexicon
+and is within one NFC codepoint edit, the score is exactly:
+
+```text
+d_edit(raw, candidate)
+  - eta_lex * log(P_candidate + 1e-12)
+  - beta_left * log(P(candidate | left_anchor) + 1e-6)
+  - beta_right * log(P(right_anchor | candidate) + 1e-6)
+  - beta_doc * log(P(candidate | doc_type) + 1e-6)
+```
+
+The original path probability is preserved; the three candidates are not
+renormalized. `logaddexp` evaluates the model term without word-probability
+underflow. Missing neighbors, context sources or document type disable the
+corresponding weights. An observed zero probability uses the stated epsilon.
+An isolated word therefore has exactly zero left/right contributions.
+
+Supply offline context tables from development data. Bigram keys are
+`(previous_word, next_word)` and domain rows are indexed by document type:
+
+```python
+from decoder import ContextProbabilityModel, DecoderPipeline
+
+def decode_with_context(feature_batch, prototypes, lexicon,
+                        bigram_counts, domain_counts, doc_type=None):
+    context = ContextProbabilityModel.from_counts(
+        bigrams=bigram_counts, domains=domain_counts, split="development")
+    pipeline = DecoderPipeline(prototypes, lexicon=lexicon,
+                               config=manager.config, context_model=context)
+    return pipeline.decode_word_or_line(feature_batch, doc_type=doc_type)
+```
+
+You can also pass already-normalized tables directly to
+`ContextProbabilityModel(bigrams=..., domains=...)`. Rows are validated and
+copied into immutable tables. No external model or corpus is downloaded.
+Context tables are separate from the size-limited prototype NPZ artifact.
+For precomputed word paths, `TwoPassContextDecoder.decode_word_or_line` accepts
+one sequence of `WordPath` objects or one sequence per word of a line.
+
+Configure `decoder.eta_lex`, `beta_left`, `beta_right`, and `beta_doc` through
+`get_config(..., overrides=...)`. The beta defaults are 0.10; `eta_lex=None`
+reuses the existing `eta` value. Zero disables the corresponding term.
+
+Each returned word exposes `needs_review` and `is_context_anchor`, and the result
+metadata lists `review_word_ids`. Missing confidence, unavailable model scores,
+or no eligible lexicon path preserves the raw text and requests human review.
+The word's confidence stays the original mean-max recognition confidence after
+correction. Candidate scores, score components, anchor neighbors and effective
+weights are available in `word.metadata["context_decision"]` for inspection.

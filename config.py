@@ -378,8 +378,11 @@ class DecoderSettings:
     subtracting the maximum log weight. They are not calibrated correctness
     probabilities. Persist class labels, descriptor schema and config hash.
 
-    High-confidence raw predictions bypass correction. Otherwise score at most
-    the top three word paths with d_edit - eta*log(P_candidate). Distances and
+    High-confidence raw predictions become immutable first-pass anchors.
+    B4 then scores at most three low-confidence model paths using edit distance,
+    model probability, immediate anchored left/right bigrams and document domain.
+    eta_lex=None reuses eta; unavailable context sources have effective weight0.
+    Distances and
     the length prefilter use lexicon_edit_unit consistently. Unseen lexicon
     words have no fabricated probability; no eligible candidate retains raw
     output. Ties are resolved deterministically by score, distance, then text.
@@ -397,6 +400,10 @@ class DecoderSettings:
     tau_oov: float = 0.85
     d_edit_max: int = 1
     eta: float = 0.10
+    eta_lex: float | None = None
+    beta_left: float = 0.10
+    beta_right: float = 0.10
+    beta_doc: float = 0.10
     log_probability_floor: float = 1e-300
     lexicon_edit_unit: str = "codepoint"
 
@@ -415,6 +422,10 @@ class DecoderSettings:
         _real("decoder.tau_oov", self.tau_oov, 0, 1)
         _integer("decoder.d_edit_max", self.d_edit_max, 0)
         _real("decoder.eta", self.eta, 0)
+        if self.eta_lex is not None:
+            _real("decoder.eta_lex", self.eta_lex, 0)
+        for name in ("beta_left", "beta_right", "beta_doc"):
+            _real(f"decoder.{name}", getattr(self, name), 0)
         _real("decoder.log_probability_floor", self.log_probability_floor, 0, 1, strictly_positive=True)
         _choice("decoder.lexicon_edit_unit", self.lexicon_edit_unit, ("codepoint", "grapheme"))
 

@@ -59,6 +59,15 @@ interruption/concurrent replacement can cause a checksum mismatch, which fails
 closed. A pair of files cannot be replaced atomically as one transaction.
 Levenshtein gating uses NFC Unicode CODE POINTS, d<=1 and at most three scored
 model paths. Full UAX29 grapheme mode is explicitly unsupported here.
+
+decode_word_or_line runs two passes over original recognition paths. Pass 1
+freezes high-confidence OOV words (or all words when gating is disabled). B4
+Pass 2 scores ambiguous words using model likelihood, immediate frozen left
+and right bigrams, and an optional document-domain prior. It implements the
+additive 1e-12/1e-6 probability floors exactly, with logaddexp for word scores.
+ContextProbabilityModel accepts validated offline probability tables or fits
+them from development counts. Missing context sources disable their terms.
+No eligible one-edit model path means unchanged output with needs_review=True.
 """
 
 from __future__ import annotations
@@ -95,7 +104,7 @@ except ModuleNotFoundError as exc:
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.addHandler(logging.NullHandler())
-PIPELINE_VERSION = "1.1.0"
+PIPELINE_VERSION = "1.2.0"
 MODEL_FORMAT_VERSION = 1
 DEFAULT_MAX_MODEL_BYTES = 256 * 1024 * 1024
 MASTER_FEATURE_DIMENSION = 46
@@ -194,6 +203,10 @@ class _Settings:
     tau_oov: float = .85
     d_edit_max: int = 1
     eta: float = .10
+    eta_lex: float | None = None
+    beta_left: float = .10
+    beta_right: float = .10
+    beta_doc: float = .10
     log_probability_floor: float = 1e-300
     lexicon_edit_unit: str = "codepoint"
     standardization_floor: float = 1e-8
@@ -214,6 +227,10 @@ class _Settings:
         _number("tau_oov", self.tau_oov, 0, 1)
         _number("d_edit_max", self.d_edit_max, 0, 1, integer=True)
         _number("eta", self.eta)
+        if self.eta_lex is not None:
+            _number("eta_lex", self.eta_lex)
+        for name in ("beta_left", "beta_right", "beta_doc"):
+            _number(name, getattr(self, name))
         _number("log_probability_floor", self.log_probability_floor, 0, 1, positive=True)
         if self.lexicon_edit_unit != "codepoint":
             raise DecoderError("only codepoint lexicon edits are supported; full UAX29 segmentation is required for graphemes")
@@ -1464,6 +1481,171 @@ def _nfc_word(text: str) -> str:
     return unicodedata.normalize("NFC", text)
 
 
+def _context_word(value: Any) -> str:
+    """Validate one lexical token without silently changing its boundaries."""
+    normalized = _nfc_word(value)
+    if not normalized or any(char.isspace() for char in normalized):
+        raise DecoderError("context words must be nonempty strings without whitespace")
+    return normalized
+
+
+def _context_doc_type(value: Any) -> str:
+    if not isinstance(value, str):
+        raise TypeError("document type must be str")
+    normalized = unicodedata.normalize("NFC", value)
+    if not normalized.strip():
+        raise DecoderError("document type must be nonempty")
+    return normalized
+
+
+def _context_row(values: Mapping[Any, float], *, counts: bool) -> dict[Any, float]:
+    """Preserve partial probability mass; normalize complete count rows."""
+    if counts:
+        largest = max(values.values(), default=0.0)
+        if largest == 0.0:
+            return {}
+        scaled = {key: value / largest for key, value in values.items() if value > 0.0}
+        scaled_total = math.fsum(scaled.values())
+        return {key: value / scaled_total for key, value in scaled.items()}
+    try:
+        total = math.fsum(values.values())
+    except OverflowError as exc:
+        raise DecoderError("context row mass is not finite") from exc
+    if not math.isfinite(total):
+        raise DecoderError("context row mass is not finite")
+    # One ulp-scale allowance handles ordinary decimal probability tables.
+    if total > 1.0 + 1e-12:
+        raise DecoderError("conditional context probability row exceeds one")
+    return {key: value / total if total > 1.0 else value for key, value in values.items()}
+
+
+def _context_tables(
+    bigrams: Mapping[tuple[str, str], float] | None,
+    domains: Mapping[str, Mapping[str, float]] | None,
+    *,
+    counts: bool,
+) -> tuple[dict[tuple[str, str], float], dict[str, dict[str, float]]]:
+    """Validate before combining NFC-equivalent conditioning contexts."""
+    if bigrams is not None and not isinstance(bigrams, Mapping):
+        raise TypeError("bigrams must be a mapping or None")
+    if domains is not None and not isinstance(domains, Mapping):
+        raise TypeError("domains must be a mapping or None")
+    rows: dict[str, dict[str, float]] = {}
+    seen_pairs: set[tuple[str, str]] = set()
+    if bigrams is not None:
+        for key, raw in bigrams.items():
+            if not isinstance(key, tuple) or len(key) != 2:
+                raise DecoderError("bigram keys must be (previous_word, next_word) tuples")
+            previous, following = (_context_word(key[0]), _context_word(key[1]))
+            normalized_key = (previous, following)
+            if normalized_key in seen_pairs:
+                raise DecoderError("duplicate bigram after NFC normalization")
+            seen_pairs.add(normalized_key)
+            _number("context count" if counts else "context probability", raw,
+                    high=math.inf if counts else 1.0)
+            rows.setdefault(previous, {})[following] = float(raw)
+    prepared_bigrams = {
+        (previous, following): value
+        for previous, row in rows.items()
+        for following, value in _context_row(row, counts=counts).items()
+    }
+    prepared_domains: dict[str, dict[str, float]] = {}
+    if domains is not None:
+        for raw_doc_type, raw_row in domains.items():
+            doc_type = _context_doc_type(raw_doc_type)
+            if doc_type in prepared_domains:
+                raise DecoderError("duplicate document type after NFC normalization")
+            if not isinstance(raw_row, Mapping):
+                raise TypeError("each domain must map words to probabilities or counts")
+            row: dict[str, float] = {}
+            for raw_word, raw in raw_row.items():
+                word = _context_word(raw_word)
+                if word in row:
+                    raise DecoderError("duplicate domain word after NFC normalization")
+                _number("context count" if counts else "context probability", raw,
+                        high=math.inf if counts else 1.0)
+                row[word] = float(raw)
+            prepared_domains[doc_type] = _context_row(row, counts=counts)
+    return prepared_bigrams, prepared_domains
+
+
+@dataclass(frozen=True, slots=True, init=False)
+class ContextProbabilityModel:
+    """Offline conditional probabilities used only to rank ambiguous OCR words.
+
+    ``bigrams[(previous, next)]`` stores ``P(next | previous)``; each domain
+    maps words to ``P(word | doc_type)``. Entries must be finite probabilities
+    and each conditioning row may contain at most unit mass. Partial rows are
+    retained as supplied, so omitted events have probability zero. Constructor
+    tables are already probabilities; use :meth:`from_counts` for counts.
+
+    ``None`` means the corresponding evidence source is unavailable. An
+    explicitly empty mapping is available but assigns zero to every event.
+    This distinction lets callers disable unavailable score terms without
+    confusing missing evidence with an observed zero-probability event.
+    Tables are copied, NFC-normalized, and frozen recursively.
+    """
+
+    bigrams: Mapping[tuple[str, str], float]
+    domains: Mapping[str, Mapping[str, float]]
+    _has_bigrams: bool
+    _has_domains: bool
+
+    def __init__(
+        self,
+        bigrams: Mapping[tuple[str, str], float] | None = None,
+        domains: Mapping[str, Mapping[str, float]] | None = None,
+    ) -> None:
+        prepared_bigrams, prepared_domains = _context_tables(bigrams, domains, counts=False)
+        object.__setattr__(self, "bigrams", _immutable(prepared_bigrams))
+        object.__setattr__(self, "domains", _immutable(prepared_domains))
+        object.__setattr__(self, "_has_bigrams", bigrams is not None)
+        object.__setattr__(self, "_has_domains", domains is not None)
+
+    @property
+    def has_bigrams(self) -> bool:
+        return self._has_bigrams
+
+    @property
+    def has_domains(self) -> bool:
+        return self._has_domains
+
+    def bigram_probability(self, word: str, previous: str | None) -> float:
+        """Return ``P(word | previous)``; absent events and neighbours give zero."""
+        normalized_word = _context_word(word)
+        if previous is None:
+            return 0.0
+        return self.bigrams.get((_context_word(previous), normalized_word), 0.0)
+
+    def domain_probability(self, word: str, doc_type: str | None) -> float:
+        """Return ``P(word | doc_type)`` without inventing smoothing evidence."""
+        normalized_word = _context_word(word)
+        if doc_type is None:
+            return 0.0
+        row = self.domains.get(_context_doc_type(doc_type))
+        return 0.0 if row is None else row.get(normalized_word, 0.0)
+
+    @classmethod
+    def from_counts(
+        cls,
+        bigrams: Mapping[tuple[str, str], float] | None = None,
+        domains: Mapping[str, Mapping[str, float]] | None = None,
+        *,
+        split: str = "development",
+    ) -> ContextProbabilityModel:
+        """Normalize finite, nonnegative development counts per context row.
+
+        Zero counts are omitted; an all-zero row becomes empty. No test or
+        evaluation data is accepted under an explicit split label. This
+        provenance check cannot establish the origin of caller-supplied data.
+        """
+        if not isinstance(split, str) or split not in {"development", "dev", "calibration"}:
+            raise CalibrationError("context counts must come from a development/calibration split")
+        prepared_bigrams, prepared_domains = _context_tables(bigrams, domains, counts=True)
+        return cls(prepared_bigrams if bigrams is not None else None,
+                   prepared_domains if domains is not None else None)
+
+
 def _validate_confidence(value: float | None, name: str = "confidence") -> float | None:
     if value is None:
         return None
@@ -1712,6 +1894,210 @@ class LexiconGate:
 
 
 @dataclass(frozen=True, slots=True)
+class ContextCandidateScore:
+    text: str
+    edit_distance: int
+    score: float
+    path: WordPath
+    terms: Mapping[str, float]
+    metadata: Mapping[str, Any]
+
+
+@dataclass(frozen=True, slots=True)
+class ContextWordDecision:
+    index: int
+    raw_text: str
+    text: str
+    confidence: float | None
+    selected_path: WordPath | None
+    anchor: bool
+    needs_review: bool
+    reason: str
+    edit_distance: int | None
+    score: float | None
+    left_anchor: str | None
+    right_anchor: str | None
+    candidates: tuple[ContextCandidateScore, ...]
+    metadata: Mapping[str, Any]
+
+
+@dataclass(frozen=True, slots=True)
+class ContextDecodeResult:
+    words: tuple[ContextWordDecision, ...]
+    text: str
+    metadata: Mapping[str, Any]
+
+
+class TwoPassContextDecoder:
+    """Freeze recognition anchors, then collapse ambiguous model paths once.
+
+    Only B4 with enabled gating changes text. A confidence >= tau_oov is
+    protected even for an OOV word. Pass 2 uses immediate neighbours frozen in
+    Pass 1; newly corrected words never become anchors in this call. Unknown
+    confidence is retained and marked for review rather than guessed.
+
+    The candidate pool is the first at most three original model paths that
+    exactly occur in the lexicon and differ from raw by at most one NFC code
+    point. No dictionary-only path or candidate probability is fabricated.
+    Missing context sources disable their weights; an observed probability
+    of zero uses the specified epsilon. All input/output probabilities retain
+    their original normalization. This is a deterministic CPU computation.
+    """
+
+    def __init__(self, lexicon: Iterable[str] | None,
+                 context_model: ContextProbabilityModel | None = None, *,
+                 mode: str = "B4", enabled: bool = True, tau_oov: float = .85,
+                 d_edit_max: int = 1, top_paths: int = 3, eta_lex: float = .10,
+                 beta_left: float = .10, beta_right: float = .10, beta_doc: float = .10) -> None:
+        if not isinstance(mode, str) or mode.upper() not in ("B0", "B1", "B2", "B3", "B4"):
+            raise DecoderError("context decoding mode must be B0--B4")
+        if context_model is not None and not isinstance(context_model, ContextProbabilityModel):
+            raise TypeError("context_model must be ContextProbabilityModel or None")
+        for name, value in (("eta_lex", eta_lex), ("beta_left", beta_left),
+                            ("beta_right", beta_right), ("beta_doc", beta_doc)):
+            _number(name, value)
+        # Reuse strict lexicon, threshold, boolean and edit-radius validation.
+        self.gate = LexiconGate(lexicon, tau_oov=tau_oov, d_edit_max=d_edit_max,
+                                eta=eta_lex, top_paths=top_paths, enabled=enabled)
+        self.mode = mode.upper()
+        self.enabled = enabled and self.mode == "B4"
+        self.context_model = context_model
+        self.eta_lex = float(eta_lex)
+        self.beta_left, self.beta_right, self.beta_doc = map(float, (beta_left, beta_right, beta_doc))
+
+    @staticmethod
+    def _word_paths(source: Sequence[WordPath] | Sequence[Sequence[WordPath]]) -> tuple[tuple[WordPath, ...], ...]:
+        if isinstance(source, (str, bytes)) or not isinstance(source, Sequence):
+            raise TypeError("supply model WordPaths for one word, or a sequence of word-path sequences")
+        if not source:
+            return ()
+        single_word = isinstance(source[0], WordPath)
+        groups = (source,) if single_word else source
+        if len(groups) > 4096:
+            raise DecoderError("context decoding exceeds the 4096-word line budget")
+        result: list[tuple[WordPath, ...]] = []
+        for paths in groups:
+            if isinstance(paths, (str, bytes)) or not isinstance(paths, Sequence):
+                raise TypeError("every word requires a sequence of WordPaths")
+            if len(paths) > 128:
+                raise DecoderError("word exceeds the 128-path beam budget")
+            if any(not isinstance(path, WordPath) for path in paths):
+                raise TypeError("every model path must be WordPath")
+            if any(any(character.isspace() for character in path.text) for path in paths):
+                raise DecoderError("each context path must describe one word without whitespace")
+            result.append(tuple(paths))
+        return tuple(result)
+
+    def decode_word_or_line(self, word_paths: Sequence[WordPath] | Sequence[Sequence[WordPath]], *,
+                            doc_type: str | None = None) -> ContextDecodeResult:
+        groups = self._word_paths(word_paths)
+        if doc_type is not None:
+            if not isinstance(doc_type, str) or not doc_type.strip() or len(doc_type) > 256:
+                raise DecoderError("doc_type must be a nonempty string of at most 256 characters or None")
+            doc_type = unicodedata.normalize("NFC", doc_type)
+        # Pass 1 is computed for the entire line before any context decision.
+        anchors = tuple(bool(paths and paths[0].text and (not self.enabled or
+                        (paths[0].confidence is not None and paths[0].confidence >= self.gate.tau_oov)))
+                        for paths in groups)
+        anchor_texts = tuple(paths[0].text if anchor else None for paths, anchor in zip(groups, anchors))
+        decisions: list[ContextWordDecision] = []
+        for index, paths in enumerate(groups):
+            raw = paths[0] if paths else None
+            raw_text = raw.text if raw is not None else ""
+            confidence = None if raw is None else raw.confidence
+            left = anchor_texts[index-1] if index > 0 else None
+            right = anchor_texts[index+1] if index+1 < len(groups) else None
+            model = self.context_model
+            left_weight = self.beta_left if left is not None and model is not None and model.has_bigrams else 0.
+            right_weight = self.beta_right if right is not None and model is not None and model.has_bigrams else 0.
+            doc_weight = self.beta_doc if doc_type is not None and model is not None and model.has_domains else 0.
+            metadata: dict[str, Any] = {
+                "confidence_policy": "raw_mean_max_class_probability", "tau_oov": self.gate.tau_oov,
+                "pass_one_anchor": anchors[index], "anchor_context_is_frozen": True,
+                "doc_type": doc_type, "lexicon_available": self.gate.available,
+                "lexicon_size": len(self.gate.lexicon), "edit_unit": "codepoint",
+                "effective_weights": {"eta_lex": self.eta_lex, "beta_left": left_weight,
+                                      "beta_right": right_weight, "beta_doc": doc_weight},
+                "model_probability_epsilon": 1e-12, "context_probability_epsilon": 1e-6,
+                "considered_paths": 0, "eligible_paths": 0,
+                "no_generated_lexicon_neighbours": True,
+            }
+
+            def retain(reason: str, *, review: bool, anchor: bool = False) -> ContextWordDecision:
+                return ContextWordDecision(index, raw_text, raw_text, confidence, raw, anchor, review,
+                                           reason, 0 if raw_text else None, None, left, right, (), _immutable(metadata))
+
+            if not raw_text:
+                decisions.append(retain("empty_prediction" if raw is not None else "no_model_paths", review=True))
+                continue
+            if anchors[index]:
+                reason = "high_confidence_oov_shield" if self.enabled else "disabled"
+                decisions.append(retain(reason, review=False, anchor=True))
+                continue
+            if confidence is None:
+                decisions.append(retain("confidence_unavailable", review=True))
+                continue
+            if raw.log_probability is None:
+                decisions.append(retain("model_probability_unavailable", review=True))
+                continue
+            if not self.gate.available or not self.gate.lexicon:
+                decisions.append(retain("lexicon_unavailable" if not self.gate.available else "lexicon_empty", review=True))
+                continue
+            scored: list[tuple[np.longdouble, int, str, int, ContextCandidateScore]] = []
+            for path_index, path in enumerate(paths[:self.gate.top_paths]):
+                metadata["considered_paths"] += 1
+                if path.log_probability is None or path.text not in self.gate.lexicon:
+                    continue
+                if abs(len(raw_text)-len(path.text)) > self.gate.d_edit_max:
+                    continue
+                distance = _distance_at_most_one(raw_text, path.text, self.gate.d_edit_max)
+                if distance is None:
+                    continue
+                # logaddexp implements log(P_cand+1e-12) without first
+                # exponentiating a potentially underflowed word probability.
+                model_log = float(np.logaddexp(path.log_probability, math.log(1e-12)))
+                left_probability = (model.bigram_probability(path.text, left) if left_weight else None)
+                right_probability = (model.bigram_probability(right, path.text) if right_weight else None)
+                domain_probability = (model.domain_probability(path.text, doc_type) if doc_weight else None)
+                exact_terms = {
+                    "edit": np.longdouble(distance),
+                    "model": -np.longdouble(self.eta_lex)*model_log,
+                    "left": -np.longdouble(left_weight)*math.log(left_probability+1e-6) if left_weight else np.longdouble(0),
+                    "right": -np.longdouble(right_weight)*math.log(right_probability+1e-6) if right_weight else np.longdouble(0),
+                    "domain": -np.longdouble(doc_weight)*math.log(domain_probability+1e-6) if doc_weight else np.longdouble(0),
+                }
+                exact_score = sum(exact_terms.values(), np.longdouble(0))
+                terms = _immutable({name: _bounded_float(value) for name, value in exact_terms.items()})
+                candidate_metadata = _immutable({
+                    "original_path_index": path_index, "model_log_with_epsilon": model_log,
+                    "left_probability": left_probability, "right_probability": right_probability,
+                    "domain_probability": domain_probability,
+                    "score_saturated": bool(abs(exact_score) > np.finfo(np.float64).max),
+                })
+                candidate = ContextCandidateScore(path.text, distance, _bounded_float(exact_score),
+                                                   path, terms, candidate_metadata)
+                scored.append((exact_score, distance, path.text, path_index, candidate))
+            metadata["eligible_paths"] = len(scored)
+            if not scored:
+                decisions.append(retain("no_eligible_model_path", review=True))
+                continue
+            ordered = sorted(scored, key=lambda entry: entry[:4])
+            selected = ordered[0][4]
+            decisions.append(ContextWordDecision(
+                index, raw_text, selected.text, confidence, selected.path, False, False,
+                "eligible_path_selected" if selected.text != raw_text else "raw_path_selected",
+                selected.edit_distance, selected.score, left, right,
+                tuple(entry[4] for entry in ordered), _immutable(metadata)))
+        words = tuple(decisions)
+        metadata = _immutable({"mode": self.mode, "gating_enabled": self.enabled,
+                               "passes": 2, "doc_type": doc_type,
+                               "anchor_indices": tuple(index for index, anchor in enumerate(anchors) if anchor),
+                               "review_indices": tuple(word.index for word in words if word.needs_review),
+                               "pass_two_outputs_become_anchors": False})
+        return ContextDecodeResult(words, " ".join(word.text for word in words if word.text), metadata)
+
+
+@dataclass(frozen=True, slots=True)
 class DecodedWord:
     word_id: int
     raw_text: str
@@ -1722,6 +2108,8 @@ class DecodedWord:
     status: str
     scores: Mapping[str, ScoringResult]
     metadata: Mapping[str, Any]
+    needs_review: bool = False
+    is_context_anchor: bool = False
 
 
 @dataclass(frozen=True, slots=True)
@@ -1906,7 +2294,8 @@ class DecoderPipeline:
 
     def __init__(self, models: PrototypeBook | Mapping[str, PrototypeBook],
                  lexicon: Iterable[str] | None = None, config: Any = None, *,
-                 mode: str | None = None, options: DecoderOptions | None = None) -> None:
+                 mode: str | None = None, options: DecoderOptions | None = None,
+                 context_model: ContextProbabilityModel | None = None) -> None:
         self.config, self.mode, self.settings, self.flags, self.fallback_fields = _resolve(config, mode)
         self.options = DecoderOptions() if options is None else options
         if not isinstance(self.options, DecoderOptions):
@@ -1932,6 +2321,13 @@ class DecoderPipeline:
             lexicon, tau_oov=self.settings.tau_oov, d_edit_max=self.settings.d_edit_max,
             eta=self.settings.eta, top_paths=self.settings.lexicon_top_paths,
             enabled=self.flags.lexicon_gate, edit_unit=self.settings.lexicon_edit_unit)
+        self.context_decoder = TwoPassContextDecoder(
+            self.lexicon_gate.lexicon if self.lexicon_gate.available else None, context_model,
+            mode=self.mode, enabled=self.flags.lexicon_gate, tau_oov=self.settings.tau_oov,
+            d_edit_max=self.settings.d_edit_max, top_paths=self.settings.lexicon_top_paths,
+            eta_lex=self.settings.eta if self.settings.eta_lex is None else self.settings.eta_lex,
+            beta_left=self.settings.beta_left, beta_right=self.settings.beta_right,
+            beta_doc=self.settings.beta_doc)
 
     def _score(self, feature: FeatureResult, view: str, candidate_id: str,
                scores: dict[str, ScoringResult]) -> ScoringResult:
@@ -2125,7 +2521,7 @@ class DecoderPipeline:
                                             int(overlap[owner]), float(overlap[owner]) / (box[2]-box[0])))
         return tuple(bindings)
 
-    def run(self, batch: FeatureBatchResult, *,
+    def _recognize(self, batch: FeatureBatchResult, *,
             modifiers: Sequence[ModifierCandidate] | None = None) -> DecodeResult:
         if not isinstance(batch, FeatureBatchResult):
             raise TypeError("batch must be features.FeatureBatchResult")
@@ -2313,10 +2709,9 @@ class DecoderPipeline:
                 decoded_words.append(DecodedWord(word_id, "", "", None, (), None, "rejected",
                                                   MappingProxyType(scores), metadata))
                 continue
-            decision = self.lexicon_gate.apply(paths, confidence=paths[0].confidence)
-            decoded_words.append(DecodedWord(word_id, paths[0].text, decision.text,
-                                              decision.selected_path.confidence, paths, decision,
-                                              "decoded" if decision.text else "empty",
+            decoded_words.append(DecodedWord(word_id, paths[0].text, paths[0].text,
+                                              paths[0].confidence, paths, None,
+                                              "decoded" if paths[0].text else "empty",
                                               MappingProxyType(scores), metadata))
         words = tuple(decoded_words)
         metadata = _immutable({"pipeline_version": PIPELINE_VERSION, "mode": self.mode,
@@ -2329,10 +2724,69 @@ class DecoderPipeline:
                                "model_view_keys": {view: book.model_view_key for view, book in self.models.items()}})
         return DecodeResult(words, " ".join(word.text for word in words if word.text), metadata)
 
+    def decode_word_or_line(self, batch: FeatureBatchResult, *, doc_type: str | None = None,
+                            modifiers: Sequence[ModifierCandidate] | None = None) -> DecodeResult:
+        """Recognize all words, freeze raw anchors, then collapse context once.
+
+        Batch word order defines line reading order. An unresolved/empty word
+        keeps its position and never exposes an anchor across that gap.
+        Recognition confidence stays C(raw) even after context selects another
+        word path. Human review is exposed directly on every DecodedWord.
+        """
+        recognized = self._recognize(batch, modifiers=modifiers)
+        context = self.context_decoder.decode_word_or_line(
+            tuple(word.paths for word in recognized.words), doc_type=doc_type)
+        words: list[DecodedWord] = []
+        for word, decision in zip(recognized.words, context.words):
+            metadata = _plain(word.metadata)
+            metadata["context_decision"] = {
+                **_plain(decision.metadata), "reason": decision.reason,
+                "left_anchor": decision.left_anchor, "right_anchor": decision.right_anchor,
+                "score": decision.score, "edit_distance": decision.edit_distance,
+                "needs_review": decision.needs_review, "anchor": decision.anchor,
+                "candidate_scores": [{"text": item.text, "score": item.score,
+                                      "edit_distance": item.edit_distance,
+                                      "terms": _plain(item.terms), **_plain(item.metadata)}
+                                     for item in decision.candidates],
+            }
+            lexicon_decision = (LexiconDecision(
+                decision.raw_text, decision.text, decision.text != decision.raw_text,
+                decision.anchor, decision.reason, decision.edit_distance,
+                decision.score, decision.selected_path, _immutable(metadata["context_decision"]))
+                if decision.selected_path is not None else None)
+            words.append(replace(word, text=decision.text, confidence=decision.confidence,
+                                 lexicon_decision=lexicon_decision, metadata=_immutable(metadata),
+                                 needs_review=decision.needs_review, is_context_anchor=decision.anchor))
+        result_words = tuple(words)
+        metadata = _plain(recognized.metadata)
+        metadata["context_decode"] = _plain(context.metadata)
+        metadata["review_word_ids"] = [word.word_id for word in words if word.needs_review]
+        return DecodeResult(result_words, context.text, _immutable(metadata))
+
+    def run(self, batch: FeatureBatchResult, *, doc_type: str | None = None,
+            modifiers: Sequence[ModifierCandidate] | None = None) -> DecodeResult:
+        """Run the full recognizer and two-pass word/line decoder."""
+        return self.decode_word_or_line(batch, doc_type=doc_type, modifiers=modifiers)
+
     decode = run
 
 
+def decode_word_or_line(batch: FeatureBatchResult,
+                        models: PrototypeBook | Mapping[str, PrototypeBook],
+                        lexicon: Iterable[str] | None = None, config: Any = None, *,
+                        doc_type: str | None = None,
+                        context_model: ContextProbabilityModel | None = None,
+                        mode: str | None = None, options: DecoderOptions | None = None,
+                        modifiers: Sequence[ModifierCandidate] | None = None) -> DecodeResult:
+    """Convenience API; reuse DecoderPipeline for repeated offline queries."""
+    pipeline = DecoderPipeline(models, lexicon, config, mode=mode, options=options,
+                               context_model=context_model)
+    return pipeline.decode_word_or_line(batch, doc_type=doc_type, modifiers=modifiers)
+
+
 __all__ = [
+    "ContextProbabilityModel", "ContextCandidateScore", "ContextWordDecision", "ContextDecodeResult",
+    "TwoPassContextDecoder", "decode_word_or_line",
     "DevelopmentFolderSpec", "DevelopmentSetCalibrationManager", "PrototypeBundle",
     "MASTER_FEATURE_DIMENSION", "MAX_PROTOTYPE_ARCHIVE_BYTES", "make_master_feature_pipeline",
     "HorizontalZoneBinder", "ModifierCandidate", "ModifierBinding",
