@@ -48,61 +48,110 @@ python -m unittest discover -s tests -v
 The included tests exercise decoder contracts using synthetic inputs. Passing
 them confirms those contracts, not recognition accuracy on real handwriting.
 
-## Calibrate and decode
+## Strict 46-dimensional calibration and decoding
 
-Calibration accepts explicitly labelled `FeatureResult` objects. Build each
-whole-glyph feature with the same `FeaturePipeline`, preset and image-preparation
-policy as the candidate crops used for queries. Labels are actual Sinhala
-Unicode strings, for example `"ක"`; numerical dataset IDs need an explicit
-label map. Keep calibration/development and held-out evaluation data separate.
+`DevelopmentSetCalibrationManager` implements the explicit Master Specification
+profile: 16 slope angles, 12 topology descriptors, and nine hole-centroid pairs.
+It does not pad or truncate the earlier 36/51-value schemas. Use its
+`feature_pipeline` for queries and recalibrate for this schema.
+
+Prototype means and distances use development-fitted global standardization.
+`book.raw_means` exposes means in the original feature space. The strict manager
+uses unshrunk sample covariance plus `cov_reg_eps * I`; two samples suffice
+because regularization handles rank deficiency. A single sample or an unusable
+covariance has an explicit standardized Euclidean fallback. B0 always uses
+standardized Euclidean distance. Amplitudes and probabilities are calculated
+stably in probability-enabled presets; original baseline flags are respected.
+
+The 46-value feature profile explicitly enables both feature branches, with its
+own schema/configuration identity. The original whole-pipeline B0–B4 feature
+ablations remain available through the generic `FeaturePipeline` and
+`PrototypeCalibrationManager`; do not report a feature override as an unchanged
+ablation preset.
+
+Development folders need an explicit folder-to-Sinhala-Unicode label map.
+Numerical dataset IDs are never guessed. Keep development/calibration data and
+held-out evaluation data separate. This complete library example accepts your
+actual data and does not supply a fabricated pretrained model:
 
 ```python
-from collections.abc import Iterable
+from pathlib import Path
+from typing import Mapping
 
-from config import get_config
-from decoder import CalibrationSample, DecoderPipeline, PrototypeCalibrationManager
-from features import FeatureBatchResult, FeaturePipeline, FeatureResult
+from decoder import DecoderPipeline, DevelopmentSetCalibrationManager
+from preprocessing import PreprocessingPipeline
 from segmentation import SegmentationPipeline
 
-config = get_config("B4")
-features = FeaturePipeline(config)
+manager = DevelopmentSetCalibrationManager(cov_reg_eps=1e-4)
 
-def calibrate(labelled_features: Iterable[tuple[str, FeatureResult]]):
-    # Obtain these FeatureResults from your labelled, consistently prepared
-    # isolated glyph masks, e.g. features.extract(mask, view="whole_glyph").
-    samples = [CalibrationSample(label, feature, split="development")
-               for label, feature in labelled_features]
-    return PrototypeCalibrationManager(config).fit(samples)
+def calibrate(development_root: Path, label_map: Mapping[str, str]):
+    book = manager.calibrate_from_folders(development_root, label_map)
+    book.save("prototypes.npz")
+    return book
 
-def decode(binary_ink_mask, book, lexicon=None):
-    # 2-D mask: foreground ink=1 (or 255), background=0.
-    segmentation = SegmentationPipeline(config).run(binary_ink_mask)
-    batch = features.run(segmentation)
-    assert isinstance(batch, FeatureBatchResult)
-    result = DecoderPipeline(book, lexicon=lexicon, config=config).run(batch)
-    # Inspect each word's status/diagnostics before accepting its output.
-    return result
-
-# Supply your own labelled FeatureResults, input mask and optional lexicon:
-# book = calibrate(labelled_features)
-# book.save("prototypes.npz")  # also writes checked JSON metadata
-# result = decode(binary_ink_mask, book, lexicon=known_sinhala_words)
-# print(result.text)
+def decode(image_path: Path, book, lexicon=None):
+    mask, metadata = PreprocessingPipeline(manager.config).run(image_path)
+    if metadata["status"] != "ok":
+        raise ValueError("The image contains no usable handwriting")
+    segmentation = SegmentationPipeline(manager.config).run(mask)
+    batch = manager.feature_pipeline.run(segmentation)
+    return DecoderPipeline(book, lexicon=lexicon, config=manager.config).run(batch)
 ```
 
-For image files, `PreprocessingPipeline(config).run("word.png")` returns a
-binary ink mask and metadata. Check the metadata status before segmentation.
-Preprocessing outputs ink=1/background=0. OpenCV arrays default to BGR/BGRA;
+Inspect returned word statuses and diagnostics before accepting output. Input
+binary masks use ink=1 (or 255), background=0. OpenCV arrays default to BGR/BGRA;
 pass `color_order="rgb"` when preprocessing RGB/RGBA arrays.
 
-Whole-glyph decoding is the simplest initial model path. Multi-zone decoding
-requires separately calibrated core/upper/lower prototype books with matching
-feature schemas and view labels. A zone containing ink needs its matching book.
-Prototype files preserve their schema and image-view identity and are rejected
-on incompatible use. Keep the NPZ and accompanying JSON file together.
+## Core and modifier models in one NPZ
 
-The B4 lexicon gate can select only a scored model alternative within one NFC
-Unicode codepoint edit of the raw output, and it preserves high-confidence OOV
-output. It does not invent a score for a dictionary neighbour. With no lexicon,
-raw model output is retained. Read module docstrings for algorithm assumptions,
-limits, diagnostics and configuration details.
+`DevelopmentFolderSpec` declares full isolated character images and labels for
+one target view. For core/upper/lower views the strict manager extracts the
+corresponding normalized HPP region automatically. Each view needs its own
+explicit labels: a base consonant, an actual modifier, or a learned empty-string
+null class for nonempty upper/lower ink that is not a modifier. Empty zones do
+not need a prototype. Already-sliced or custom-prepared inputs require the
+`feature_builder` callback to match query preparation.
+
+```python
+from decoder import DevelopmentFolderSpec, PrototypeBundle
+
+def calibrate_zones(core_root, core_labels, upper_root, upper_labels,
+                    lower_root, lower_labels):
+    bundle = manager.calibrate_bundle_from_folders({
+        "zone:core": DevelopmentFolderSpec(core_root, core_labels),
+        "zone:upper": DevelopmentFolderSpec(upper_root, upper_labels),
+        "zone:lower": DevelopmentFolderSpec(lower_root, lower_labels),
+    })
+    bundle.save("zone_prototypes.npz")
+    return PrototypeBundle.load("zone_prototypes.npz")
+```
+
+Pass this mapping directly to `DecoderPipeline`. It contains per-view class
+means, full covariance matrices, scales, labels and exact schema identities.
+`bundle.modifier_signatures["zone:upper"][label]` exposes a read-only raw R46
+signature. Keep each NPZ and its checked JSON sidecar together.
+
+Every saved NPZ must be **strictly smaller than 2,000,000 bytes**, checked before
+writing. Storage is lossless float64. Expanded arrays have a separate 256 MiB
+loading budget and their headers are validated before NumPy allocation. Some
+large full-covariance inventories cannot fit under 2 MB; saving fails explicitly
+instead of silently quantizing or discarding classes. Factorized core/modifier
+models are usually smaller than hundreds of complete consonant-vowel classes.
+
+Native modifier ownership is recomputed from horizontal box overlap; ambiguous
+split crops are rejected while intact hypotheses remain available. Independently
+extracted modifiers can be supplied with
+`DecoderPipeline.run(batch, modifiers=observations)`, where observations are
+`ModifierCandidate` objects carrying zone features and normalized word boxes.
+`HorizontalZoneBinder` assigns each once to the unique greatest positive x
+overlap. Touching edges have zero overlap; ties and unbound marks are rejected.
+External observations replace native upper/lower crops to prevent double scoring.
+
+Sinhala assembly reorders visual kombuwa into logical order, combines composite
+signs, preserves explicit joiners, and NFC-normalizes output. The B4 lexicon gate
+preserves raw output when the specified mean-max class confidence is at least
+0.85. Otherwise it considers at most three scored model paths within one NFC
+Unicode codepoint edit; unscored dictionary neighbours never receive invented
+probabilities. `selected_label_confidence` is reported separately when Unicode
+filtering selects a lower-ranked label. These scores do not establish recognition
+accuracy. With no lexicon, the raw model output is retained.

@@ -5,10 +5,20 @@ lexicon, image directory, or network service is opened merely by importing this
 module. Calibration is explicit and must use development/calibration data with
 actual Unicode labels. Numeric dataset folder IDs are never inferred as labels.
 
-    from decoder import CalibrationSample, PrototypeCalibrationManager, DecoderPipeline
-    book = PrototypeCalibrationManager().fit(samples)  # labelled FeatureResults
+    from decoder import DevelopmentSetCalibrationManager, DecoderPipeline
+    calibration = DevelopmentSetCalibrationManager()
+    book = calibration.calibrate_from_folders("development", unicode_label_map)
     book.save("artifacts/prototypes.npz")
+    # Use calibration.feature_pipeline for query features of the same schema.
     result = DecoderPipeline(book, lexicon=words).run(feature_batch)
+
+The strict calibration profile is R^46: 16 slope angles, 12 topology values,
+and nine hole-centroid pairs. DevelopmentSetCalibrationManager uses sample
+covariance + cov_reg_eps*I with no shrinkage. PrototypeCalibrationManager is
+the generic schema-compatible API retained for other feature ablations.
+PrototypeBundle stores all separately calibrated core/modifier books in one
+lossless NPZ. Every NPZ is checked to be <2,000,000 bytes BEFORE writing; some
+full-covariance class inventories cannot fit and are explicitly rejected.
 
 Models are bound to both FeatureSchema.schema_id AND feature view. Whole-glyph
 models already include vowel marks. Zoned models are separate books keyed by
@@ -16,7 +26,8 @@ zone:core/upper/lower. A missing model for nonempty ink rejects that path. Marks
 spanning multiple selected candidates reject a contaminated split hypothesis;
 the preserved intact hypothesis remains available. No mark is silently dropped
 or counted twice. Folder calibration defaults to whole-glyph preparation;
-custom/zone preparation requires an explicit feature_builder callback.
+custom preparation requires an explicit feature_builder callback. The strict
+manager also supports automatic HPP zone extraction from isolated full glyphs.
 
 The quantum-inspired state is a classical REAL vector, not quantum hardware:
 alpha=exp(-gamma*D)/sqrt(sum(exp(-2*gamma*D))), P=alpha**2. Evaluate after
@@ -29,9 +40,10 @@ retain a lower-ranked label. The prescribed maximum-score shield can therefore
 be high even when the selected label score is low; it is not an accuracy claim.
 
 Raw prototype statistics are globally standardized using calibration mean and
-population std. Constant/tiny-variance dimensions use scale1. Class covariance
-requires at least max(configured_minimum,D+1) samples; use standardized Euclidean
-otherwise. Eligible covariance is shrunk and regularized in standardized space.
+population std. Constant/tiny-variance dimensions use scale1. The generic manager
+requires max(configured_minimum,D+1) samples for shrunk class covariance; the
+strict manager regularizes unshrunk covariance from at least two samples.
+Unavailable/ill-conditioned covariance uses an explicit Euclidean fallback.
 No feature weighting is repeated: features.py already applied block weights.
 
 Cross-segmentation paths rank by mean token log probability (or mean negative
@@ -61,8 +73,9 @@ import os
 import tempfile
 import unicodedata
 import zipfile
+from collections.abc import Iterator
 from collections import Counter
-from dataclasses import asdict, dataclass, field, fields
+from dataclasses import asdict, dataclass, field, fields, replace
 from numbers import Real
 from pathlib import Path
 from types import MappingProxyType
@@ -82,9 +95,12 @@ except ModuleNotFoundError as exc:
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.addHandler(logging.NullHandler())
-PIPELINE_VERSION = "1.0.0"
+PIPELINE_VERSION = "1.1.0"
 MODEL_FORMAT_VERSION = 1
 DEFAULT_MAX_MODEL_BYTES = 256 * 1024 * 1024
+MASTER_FEATURE_DIMENSION = 46
+# Decimal MB, strict inequality. This is distinct from expanded array memory.
+MAX_PROTOTYPE_ARCHIVE_BYTES = 2_000_000
 
 
 class DecoderError(ValueError):
@@ -344,6 +360,11 @@ class PrototypeBook:
         return self.means.shape[1]
 
     @property
+    def raw_means(self) -> NDArray[np.float64]:
+        """Development class means in the original, unstandardized feature space."""
+        return _freeze(self.means * self.scale + self.center)
+
+    @property
     def model_view_key(self) -> str:
         return f"{self.schema_id}:{self.view}"
 
@@ -358,8 +379,16 @@ class PrototypeBook:
 
 
 class PrototypeCalibrationManager:
-    def __init__(self, config: Any = None, *, mode: str | None = None) -> None:
+    def __init__(self, config: Any = None, *, mode: str | None = None,
+                 expected_dimension: int | None = None,
+                 regularized_small_samples: bool = False) -> None:
         self.config, self.mode, self.settings, self.flags, self.fallback_fields = _resolve(config, mode)
+        if expected_dimension is not None:
+            _number("expected_dimension", expected_dimension, 1, 4096, integer=True)
+        if type(regularized_small_samples) is not bool:
+            raise TypeError("regularized_small_samples must be bool")
+        self.expected_dimension = expected_dimension
+        self.regularized_small_samples = regularized_small_samples
 
     def fit(self, samples: Iterable[CalibrationSample]) -> PrototypeBook:
         records = list(itertools.islice(iter(samples), 1_000_001))
@@ -369,6 +398,11 @@ class PrototypeCalibrationManager:
         if not isinstance(first, CalibrationSample) or not isinstance(first.feature, FeatureResult):
             raise CalibrationError("samples must contain CalibrationSample and FeatureResult")
         schema = first.feature.schema
+        if self.expected_dimension is not None and schema.dimension != self.expected_dimension:
+            raise ModelCompatibilityError(
+                f"expected {self.expected_dimension} features, received {schema.dimension}; "
+                "use make_master_feature_pipeline() for the real 46-dimensional schema; "
+                "vectors are never padded or truncated")
         view = first.feature.metadata.get("view")
         key = f"{schema.schema_id}:{view}"
         vectors: list[NDArray[np.float64]] = []
@@ -408,7 +442,8 @@ class PrototypeCalibrationManager:
         counts = np.zeros(len(classes), np.int64)
         reasons: list[str] = []
         label_array = np.asarray(labels)
-        minimum = max(self.settings.min_covariance_samples, dimension+1)
+        minimum = max(self.settings.min_covariance_samples,
+                      2 if self.regularized_small_samples else dimension+1)
         for index, label in enumerate(classes):
             examples = standardized[label_array == label]
             means[index] = examples.mean(axis=0)
@@ -488,7 +523,11 @@ class PrototypeCalibrationManager:
             if not paths:
                 raise CalibrationError(f"class folder has no supported images: {folder}")
             for path in paths:
-                samples.append(CalibrationSample(label, feature_builder(path, view), split))
+                try:
+                    feature = feature_builder(path, view)
+                except (OSError, ValueError, RuntimeError) as exc:
+                    raise CalibrationError(f"development feature extraction failed for {path}: {exc}") from exc
+                samples.append(CalibrationSample(label, feature, split))
         return self.fit(samples)
 
     @staticmethod
@@ -500,6 +539,147 @@ class PrototypeCalibrationManager:
     def load(archive_path: str | Path, metadata_path: str | Path | None = None,
              *, max_model_bytes: int = DEFAULT_MAX_MODEL_BYTES) -> PrototypeBook:
         return PrototypeBook.load(archive_path, metadata_path, max_model_bytes=max_model_bytes)
+
+
+def make_master_feature_pipeline(config: Any = None, *, mode: str | None = None) -> FeaturePipeline:
+    """Construct/validate the explicit 46-value Master Specification profile.
+
+    v1: 16 K=4 slope angles + 12 topology values + 9 (x,y) hole centroids.
+    This is a declared feature-profile override, with its own schema ID; it is
+    not padding an old descriptor. With no config, both feature branches are
+    enabled even for a B0 distance comparison. Original B0--B4 whole-pipeline
+    feature ablations remain available through the generic FeaturePipeline.
+    An explicit config is validated without silently changing its settings.
+    """
+    if config is None:
+        selected = "B4" if mode is None else mode
+        factory = getattr(_project_config, "get_config", None)
+        overrides = {"features": {"micro_windows": 4, "include_occupancy": False,
+                                   "max_hole_centroids": 9},
+                     "flags": {"slope_features": True, "topology_features": True}}
+        config = (factory(selected, overrides=overrides) if callable(factory) else
+                  {"mode": selected, **overrides})
+    pipeline = FeaturePipeline(config, mode=mode)
+    if (pipeline.schema.dimension != MASTER_FEATURE_DIMENSION or pipeline.schema.version != "v1"
+            or pipeline.settings.micro_windows != 4 or pipeline.settings.include_occupancy
+            or pipeline.settings.max_hole_centroids != 9
+            or not pipeline.flags.slope_features or not pipeline.flags.topology_features):
+        raise ModelCompatibilityError(
+            f"Master Specification requires 46 real features; configured schema has {pipeline.schema.dimension}. "
+            "Use v1, K=4, occupancy=False, nine hole-centroid slots and both feature branches.")
+    return pipeline
+
+
+@dataclass(frozen=True, slots=True)
+class DevelopmentFolderSpec:
+    """Isolated full-character images with explicit labels for one target view.
+
+    For a zone view, label_map names the actual core/modifier labels visible in
+    that zone, rather than inferring annotations from dataset folder numbers.
+    Custom already-sliced or otherwise prepared images require feature_builder.
+    """
+    root: str | Path
+    label_map: Mapping[str, str]
+    feature_builder: Callable[[Path, str], FeatureResult] | None = None
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.label_map, Mapping) or not self.label_map:
+            raise CalibrationError("development folder spec needs explicit Unicode labels")
+        if self.feature_builder is not None and not callable(self.feature_builder):
+            raise TypeError("feature_builder must be callable or None")
+        object.__setattr__(self, "root", Path(self.root))
+        object.__setattr__(self, "label_map", MappingProxyType(dict(self.label_map)))
+
+
+class DevelopmentSetCalibrationManager(PrototypeCalibrationManager):
+    """Strict R^46, development-only calibration with covariance+epsilon*I.
+
+    Two or more examples permit a sample covariance, including a rank-deficient
+    covariance made positive definite by epsilon*I. A single example cannot
+    estimate a covariance and explicitly uses standardized Euclidean fallback.
+    No diagonal shrinkage is applied on this strict path. The generic manager
+    keeps its earlier dimension-aware/shrinkage policy for existing experiments.
+    """
+
+    def __init__(self, config: Any = None, *, mode: str | None = None,
+                 cov_reg_eps: float | None = None) -> None:
+        self.feature_pipeline = make_master_feature_pipeline(config, mode=mode)
+        super().__init__(self.feature_pipeline.config, mode=self.feature_pipeline.mode,
+                         expected_dimension=MASTER_FEATURE_DIMENSION, regularized_small_samples=True)
+        if cov_reg_eps is not None:
+            _number("cov_reg_eps", cov_reg_eps, 0, positive=True)
+        self.settings = replace(self.settings, covariance_shrinkage=0., min_covariance_samples=2,
+                                covariance_regularization=(self.settings.covariance_regularization
+                                                           if cov_reg_eps is None else float(cov_reg_eps)))
+
+    def fit(self, samples: Iterable[CalibrationSample]) -> PrototypeBook:
+        iterator = iter(samples)
+        first = next(iterator, None)
+        if first is None:
+            raise CalibrationError("strict calibration requires labelled development samples")
+        if (not isinstance(first, CalibrationSample) or not isinstance(first.feature, FeatureResult)
+                or first.feature.schema.schema_id != self.feature_pipeline.schema.schema_id
+                or first.feature.schema.feature_names != self.feature_pipeline.schema.feature_names):
+            raise ModelCompatibilityError("strict calibration samples must use the manager's exact 46-dimensional schema")
+        return super().fit(itertools.chain((first,), iterator))
+
+    def calibrate_from_folders(self, root: str | Path, label_map: Mapping[str, str],
+                               feature_pipeline: FeaturePipeline | None = None, *,
+                               split: str = "development", view: str = "whole_glyph",
+                               feature_builder: Callable[[Path, str], FeatureResult] | None = None) -> PrototypeBook:
+        pipeline = self.feature_pipeline if feature_pipeline is None else feature_pipeline
+        if not isinstance(pipeline, FeaturePipeline) or pipeline.schema.dimension != MASTER_FEATURE_DIMENSION:
+            raise ModelCompatibilityError("strict folder calibration requires a matching 46-dimensional FeaturePipeline")
+        if pipeline.schema.schema_id != self.feature_pipeline.schema.schema_id:
+            raise ModelCompatibilityError("folder feature preparation differs from the strict manager's schema")
+        if view not in ("whole_glyph", "zone:core", "zone:upper", "zone:lower"):
+            raise CalibrationError("invalid development feature view")
+        if feature_builder is None and view != "whole_glyph":
+            from preprocessing import PreprocessingPipeline
+            from segmentation import SegmentationPipeline
+            preprocessor = PreprocessingPipeline(self.config, mode=self.mode)
+            segmenter = SegmentationPipeline(self.config, mode=self.mode)
+
+            def build_zone(path: Path, declared_view: str) -> FeatureResult:
+                mask, metadata = preprocessor.run(path)
+                if metadata["status"] != "ok":
+                    raise CalibrationError(f"development image has unusable ink: {path}")
+                segmentation = segmenter.run(mask)
+                if len(segmentation.words) != 1:
+                    raise CalibrationError(f"zone calibration requires one isolated character per image: {path}")
+                region = segmentation.words[0].zones[declared_view.split(":", 1)[1]]
+                if not region.image.size or not np.any(region.image):
+                    raise CalibrationError(f"development image has no ink in {declared_view}: {path}")
+                return pipeline.extract(region.image, view=declared_view)
+            feature_builder = build_zone
+        return super().calibrate_from_folders(root, label_map, pipeline, split=split, view=view,
+                                             feature_builder=feature_builder)
+
+    def fit_views(self, samples: Mapping[str, Iterable[CalibrationSample]]) -> PrototypeBundle:
+        """Fit explicitly annotated core/upper/lower views into one saved model."""
+        if not isinstance(samples, Mapping) or not samples:
+            raise CalibrationError("view calibration needs a nonempty mapping")
+        books: dict[str, PrototypeBook] = {}
+        for view, records in samples.items():
+            book = self.fit(records)
+            if book.view != view:
+                raise ModelCompatibilityError("view calibration key disagrees with the samples")
+            books[view] = book
+        return PrototypeBundle(books)
+
+    def calibrate_bundle_from_folders(self, folders: Mapping[str, DevelopmentFolderSpec], *,
+                                      split: str = "development") -> PrototypeBundle:
+        """Calibrate all view signatures/covariances with explicit per-view labels."""
+        if not isinstance(folders, Mapping) or not folders:
+            raise CalibrationError("provide at least one development folder specification")
+        books: dict[str, PrototypeBook] = {}
+        for view, specification in folders.items():
+            if not isinstance(specification, DevelopmentFolderSpec):
+                raise TypeError("folder values must be DevelopmentFolderSpec")
+            books[view] = self.calibrate_from_folders(
+                specification.root, specification.label_map, split=split, view=view,
+                feature_builder=specification.feature_builder)
+        return PrototypeBundle(books)
 
 
 def _book_manifest(book: PrototypeBook) -> dict[str, Any]:
@@ -546,9 +726,17 @@ def _save_book(book: PrototypeBook, archive_path: str | Path, metadata_path: str
                         covariances=book.covariances, covariance_available=book.covariance_available,
                         counts=book.counts, metadata=np.frombuffer(embedded, dtype=np.uint8))
     payload = buffer.getvalue()
+    if len(payload) >= MAX_PROTOTYPE_ARCHIVE_BYTES:
+        raise CalibrationError(
+            f"prototype archive is {len(payload):,} bytes; required <{MAX_PROTOTYPE_ARCHIVE_BYTES:,}. "
+            f"Model has {len(book.labels)} classes and {book.dimension} features. "
+            "Use separately calibrated core/modifier classes or fewer classes; "
+            "full covariance matrices cannot always be losslessly compressed below 2 MB.")
     manifest["archive_sha256"] = hashlib.sha256(payload).hexdigest()
     manifest_bytes = json.dumps(manifest, ensure_ascii=False, sort_keys=True, indent=2,
                                 allow_nan=False).encode("utf-8")
+    if len(manifest_bytes) > 4*1024*1024:
+        raise CalibrationError("prototype metadata exceeds the 4 MiB JSON budget")
     _atomic_write(archive, payload, overwrite=overwrite)
     try:
         _atomic_write(manifest_path, manifest_bytes, overwrite=overwrite)
@@ -568,9 +756,12 @@ def _load_book(archive_path: str | Path, metadata_path: str | Path | None,
     manifest_path = Path(metadata_path) if metadata_path is not None else archive.with_suffix(".json")
     required = {"format_version", "labels", "schema_id", "view", "model_view_key", "dimension", "feature_names", "metadata"}
     try:
-        if manifest_path.stat().st_size > min(max_model_bytes, 4*1024*1024):
+        manifest_limit = min(max_model_bytes, 4*1024*1024)
+        with manifest_path.open("rb") as handle:
+            raw_manifest = handle.read(manifest_limit+1)
+        if len(raw_manifest) > manifest_limit:
             raise DecoderError("prototype manifest exceeds resource budget")
-        manifest = _strict_json(manifest_path.read_text(encoding="utf-8"))
+        manifest = _strict_json(raw_manifest.decode("utf-8"))
         if not isinstance(manifest, dict) or set(manifest) != required | {"archive_sha256"}:
             raise DecoderError("invalid prototype manifest fields")
         if type(manifest["format_version"]) is not int or manifest["format_version"] != MODEL_FORMAT_VERSION:
@@ -612,17 +803,20 @@ def _load_book(archive_path: str | Path, metadata_path: str | Path | None,
         expected_numeric_bytes = sum(math.prod(shape)*dtype.itemsize for shape, dtype in contracts.values())
         if expected_numeric_bytes > max_model_bytes:
             raise DecoderError("declared prototype arrays exceed resource budget")
+        if archive.stat().st_size >= MAX_PROTOTYPE_ARCHIVE_BYTES:
+            raise DecoderError("prototype archive must be strictly smaller than 2,000,000 bytes")
         if archive.stat().st_size > max_model_bytes:
             raise DecoderError("prototype archive exceeds resource budget")
         with archive.open("rb") as handle:
-            payload = handle.read(max_model_bytes+1)
+            payload = handle.read(min(max_model_bytes+1, MAX_PROTOTYPE_ARCHIVE_BYTES))
     except OSError as exc:
         raise DecoderError("prototype files could not be read") from exc
-    except (UnicodeError, ValueError) as exc:
+    except (UnicodeError, ValueError, RecursionError) as exc:
         if isinstance(exc, DecoderError):
             raise
         raise DecoderError("invalid strict JSON prototype manifest") from exc
-    if len(payload) > max_model_bytes or hashlib.sha256(payload).hexdigest() != checksum:
+    if (len(payload) >= MAX_PROTOTYPE_ARCHIVE_BYTES or len(payload) > max_model_bytes
+            or hashlib.sha256(payload).hexdigest() != checksum):
         raise DecoderError("prototype archive SHA256 mismatch or resource limit exceeded")
     expected = {"means", "center", "scale", "covariances", "covariance_available", "counts", "metadata"}
     try:
@@ -686,6 +880,232 @@ def _load_book(archive_path: str | Path, metadata_path: str | Path | None,
     return book
 
 
+# Strict master-specification packaging; generic PrototypeBook remains compatible.
+
+REQUIRED_DIMENSION = MASTER_FEATURE_DIMENSION
+MAX_BUNDLE_ARCHIVE_BYTES = MAX_PROTOTYPE_ARCHIVE_BYTES
+_BUNDLE_EXPANDED_BYTES = 256 * 1024 * 1024
+_BUNDLE_MANIFEST_BYTES = 4 * 1024 * 1024
+_BUNDLE_FORMAT_VERSION = 1
+_BUNDLE_ARRAY_FIELDS = ("means", "center", "scale", "covariances", "covariance_available", "counts")
+_BUNDLE_VIEWS = ("whole_glyph", "zone:core", "zone:lower", "zone:upper")
+
+
+def _bundle_contracts(manifest: Any) -> dict[str, tuple[tuple[int, ...], np.dtype[Any]]]:
+    """Validate untrusted descriptors before any numerical array is allocated."""
+    if (not isinstance(manifest, dict)
+            or set(manifest) != {"bundle_format_version", "required_dimension", "books"}
+            or type(manifest["bundle_format_version"]) is not int
+            or manifest["bundle_format_version"] != _BUNDLE_FORMAT_VERSION
+            or type(manifest["required_dimension"]) is not int
+            or manifest["required_dimension"] != REQUIRED_DIMENSION):
+        raise DecoderError("invalid 46-dimensional prototype bundle manifest")
+    entries = manifest["books"]
+    if not isinstance(entries, list) or not 1 <= len(entries) <= len(_BUNDLE_VIEWS):
+        raise DecoderError("a bundle requires 1..4 uniquely keyed model views")
+    required = {"format_version", "labels", "schema_id", "view", "model_view_key", "dimension", "feature_names", "metadata"}
+    contracts: dict[str, tuple[tuple[int, ...], np.dtype[Any]]] = {}
+    views: set[str] = set()
+    identity: tuple[str, tuple[str, ...]] | None = None
+    for index, entry in enumerate(entries):
+        if not isinstance(entry, dict) or set(entry) != required:
+            raise DecoderError("invalid bundle model manifest fields")
+        view, labels, names, schema_id = (entry[key] for key in ("view", "labels", "feature_names", "schema_id"))
+        if (type(entry["format_version"]) is not int or entry["format_version"] != MODEL_FORMAT_VERSION
+                or type(entry["dimension"]) is not int or entry["dimension"] != REQUIRED_DIMENSION
+                or not isinstance(view, str) or view not in _BUNDLE_VIEWS or view in views
+                or not isinstance(schema_id, str) or len(schema_id) != 64
+                or any(char not in "0123456789abcdefABCDEF" for char in schema_id)
+                or entry["model_view_key"] != f"{schema_id}:{view}"
+                or not isinstance(entry["metadata"], dict)):
+            raise DecoderError("invalid bundle model format, dimensions, schema or view")
+        if (not isinstance(names, list) or len(names) != REQUIRED_DIMENSION
+                or any(not isinstance(name, str) or not name or len(name) > 512 for name in names)
+                or len(set(names)) != REQUIRED_DIMENSION):
+            raise DecoderError("bundle feature names must identify all 46 dimensions")
+        if not isinstance(labels, list) or not 1 <= len(labels) <= 4096:
+            raise DecoderError("invalid bundle class count")
+        normalized = tuple(_validate_label(label, allow_empty=view in ("zone:upper", "zone:lower")) for label in labels)
+        if normalized != tuple(labels) or len(set(normalized)) != len(normalized):
+            raise DecoderError("bundle labels must be unique and normalized")
+        current = (schema_id, tuple(names))
+        if identity is not None and identity != current:
+            raise ModelCompatibilityError("all bundle books must share exactly one 46-dimensional feature schema")
+        identity = current
+        views.add(view)
+        classes, dimension = len(labels), REQUIRED_DIMENSION
+        shapes = ((classes, dimension), (dimension,), (dimension,), (classes, dimension, dimension), (classes,), (classes,))
+        for field_name, shape in zip(_BUNDLE_ARRAY_FIELDS, shapes):
+            dtype = np.dtype(np.bool_ if field_name == "covariance_available" else np.int64 if field_name == "counts" else np.float64)
+            contracts[f"b{index}__{field_name}.npy"] = (shape, dtype)
+    return contracts
+
+
+class PrototypeBundle(Mapping[str, PrototypeBook]):
+    """Immutable, lossless R^46 model mapping, stored as one checked NPZ + JSON.
+
+    Every archive is strictly smaller than 2,000,000 bytes. Full float64
+    covariance matrices are retained; an oversized model fails before writing.
+    Compression is data dependent, so arbitrary class inventories cannot be
+    promised to fit. The expanded-array allocation budget is separate.
+    """
+
+    __slots__ = ("_books",)
+
+    def __init__(self, books: Mapping[str, PrototypeBook]) -> None:
+        if not isinstance(books, Mapping) or not 1 <= len(books) <= len(_BUNDLE_VIEWS):
+            raise CalibrationError("a bundle requires a mapping of 1..4 prototype books")
+        copied: dict[str, PrototypeBook] = {}
+        for key, book in books.items():
+            if not isinstance(book, PrototypeBook) or key != book.view:
+                raise CalibrationError("bundle keys must equal their PrototypeBook.view")
+            if book.dimension != REQUIRED_DIMENSION:
+                raise ModelCompatibilityError("strict bundles require real 46-dimensional features; recalibrate the matching schema")
+            copied[key] = book
+        manifest = {"bundle_format_version": _BUNDLE_FORMAT_VERSION, "required_dimension": REQUIRED_DIMENSION,
+                    "books": [_book_manifest(copied[key]) for key in sorted(copied)]}
+        _bundle_contracts(manifest)
+        self._books: Mapping[str, PrototypeBook] = MappingProxyType(copied)
+
+    def __getitem__(self, key: str) -> PrototypeBook:
+        return self._books[key]
+
+    def __iter__(self) -> Iterator[str]:
+        return iter(self._books)
+
+    def __len__(self) -> int:
+        return len(self._books)
+
+    @property
+    def modifier_signatures(self) -> Mapping[str, Mapping[str, NDArray[np.float64]]]:
+        """Upper/lower view → Unicode modifier → read-only raw mean in R^46."""
+        return MappingProxyType({view: MappingProxyType({label: _freeze(row)
+                                for label, row in zip(book.labels, book.raw_means)})
+                                 for view, book in self.items() if view in ("zone:upper", "zone:lower")})
+
+    def save(self, archive_path: str | Path, metadata_path: str | Path | None = None,
+             *, overwrite: bool = False) -> tuple[Path, Path]:
+        if type(overwrite) is not bool:
+            raise TypeError("overwrite must be bool")
+        archive = Path(archive_path)
+        sidecar = Path(metadata_path) if metadata_path is not None else archive.with_suffix(".json")
+        if archive.resolve() == sidecar.resolve():
+            raise DecoderError("bundle NPZ and JSON must be separate files")
+        if not overwrite and (archive.exists() or sidecar.exists()):
+            raise FileExistsError("bundle archive or manifest already exists")
+        ordered = [self[key] for key in sorted(self)]
+        manifest = {"bundle_format_version": _BUNDLE_FORMAT_VERSION, "required_dimension": REQUIRED_DIMENSION,
+                    "books": [_book_manifest(book) for book in ordered]}
+        embedded = json.dumps(manifest, ensure_ascii=False, sort_keys=True, allow_nan=False,
+                              separators=(",", ":")).encode("utf-8")
+        if len(embedded) > _BUNDLE_MANIFEST_BYTES:
+            raise DecoderError("bundle manifest exceeds its allocation budget")
+        arrays = {f"b{index}__{name}": getattr(book, name)
+                  for index, book in enumerate(ordered) for name in _BUNDLE_ARRAY_FIELDS}
+        if sum(array.nbytes for array in arrays.values()) + len(embedded) > _BUNDLE_EXPANDED_BYTES:
+            raise DecoderError("expanded bundle exceeds its allocation budget")
+        buffer = io.BytesIO()
+        np.savez_compressed(buffer, **arrays, metadata=np.frombuffer(embedded, dtype=np.uint8))
+        payload = buffer.getvalue()
+        if len(payload) >= MAX_BUNDLE_ARCHIVE_BYTES:
+            classes = sum(len(book.labels) for book in ordered)
+            raise DecoderError(f"lossless R^46 bundle with {classes} classes is {len(payload)} bytes; "
+                               f"archive must be <{MAX_BUNDLE_ARCHIVE_BYTES} bytes; reduce the inventory or use factorized zone books")
+        outer = dict(manifest, archive_sha256=hashlib.sha256(payload).hexdigest())
+        sidecar_bytes = json.dumps(outer, ensure_ascii=False, sort_keys=True, allow_nan=False,
+                                   indent=2).encode("utf-8")
+        if len(sidecar_bytes) > _BUNDLE_MANIFEST_BYTES:
+            raise DecoderError("bundle JSON exceeds its allocation budget")
+        _atomic_write(archive, payload, overwrite=overwrite)
+        try:
+            _atomic_write(sidecar, sidecar_bytes, overwrite=overwrite)
+        except Exception:
+            if not overwrite:
+                archive.unlink(missing_ok=True)
+            raise
+        return archive, sidecar
+
+    @classmethod
+    def load(cls, archive_path: str | Path, metadata_path: str | Path | None = None,
+             *, max_model_bytes: int = _BUNDLE_EXPANDED_BYTES) -> PrototypeBundle:
+        """Check compressed size, checksum and every NPY header before np.load."""
+        _number("max_model_bytes", max_model_bytes, 1, integer=True)
+        budget = min(int(max_model_bytes), _BUNDLE_EXPANDED_BYTES)
+        archive = Path(archive_path)
+        sidecar = Path(metadata_path) if metadata_path is not None else archive.with_suffix(".json")
+        try:
+            with sidecar.open("rb") as handle:
+                raw_manifest = handle.read(_BUNDLE_MANIFEST_BYTES + 1)
+            if len(raw_manifest) > _BUNDLE_MANIFEST_BYTES:
+                raise DecoderError("bundle JSON exceeds its allocation budget")
+            outer = _strict_json(raw_manifest.decode("utf-8"))
+            if not isinstance(outer, dict) or "archive_sha256" not in outer:
+                raise DecoderError("bundle JSON is missing its archive checksum")
+            manifest = dict(outer)
+            checksum = manifest.pop("archive_sha256")
+            if (not isinstance(checksum, str) or len(checksum) != 64
+                    or any(char not in "0123456789abcdef" for char in checksum)):
+                raise DecoderError("invalid bundle SHA256")
+            contracts = _bundle_contracts(manifest)
+            numeric_bytes = sum(math.prod(shape) * dtype.itemsize for shape, dtype in contracts.values())
+            if numeric_bytes > budget:
+                raise DecoderError("declared bundle tensors exceed allocation budget")
+            if archive.stat().st_size >= MAX_BUNDLE_ARCHIVE_BYTES:
+                raise DecoderError("bundle NPZ must be strictly smaller than 2,000,000 bytes")
+            with archive.open("rb") as handle:
+                payload = handle.read(MAX_BUNDLE_ARCHIVE_BYTES)
+            if len(payload) >= MAX_BUNDLE_ARCHIVE_BYTES:
+                raise DecoderError("bundle NPZ must be strictly smaller than 2,000,000 bytes")
+            if hashlib.sha256(payload).hexdigest() != checksum:
+                raise DecoderError("bundle archive SHA256 mismatch")
+            with zipfile.ZipFile(io.BytesIO(payload)) as zipped:
+                infos = zipped.infolist()
+                expected = set(contracts) | {"metadata.npy"}
+                if len(infos) != len(expected) or {info.filename for info in infos} != expected:
+                    raise DecoderError("bundle NPZ contains missing, duplicate or unexpected arrays")
+                if sum(info.file_size for info in infos) > budget:
+                    raise DecoderError("expanded bundle archive exceeds allocation budget")
+                for info in infos:
+                    with zipped.open(info) as member:
+                        version = np.lib.format.read_magic(member)
+                        if version == (1, 0):
+                            shape, fortran, dtype = np.lib.format.read_array_header_1_0(member, max_header_size=10000)
+                        elif version == (2, 0):
+                            shape, fortran, dtype = np.lib.format.read_array_header_2_0(member, max_header_size=10000)
+                        else:
+                            raise DecoderError("unsupported bundle NPY version")
+                        if (dtype.hasobject or dtype.kind not in "fbiu" or len(shape) > 3
+                                or any(type(side) is not int or side < 0 for side in shape)
+                                or math.prod(shape) * dtype.itemsize > budget):
+                            raise DecoderError("unsafe bundle array header")
+                        if info.filename == "metadata.npy":
+                            if dtype != np.dtype(np.uint8) or len(shape) != 1 or not 1 <= shape[0] <= min(budget, _BUNDLE_MANIFEST_BYTES):
+                                raise DecoderError("invalid embedded bundle manifest array")
+                        else:
+                            expected_shape, expected_dtype = contracts[info.filename]
+                            if (shape != expected_shape or dtype.kind != expected_dtype.kind
+                                    or dtype.itemsize != expected_dtype.itemsize):
+                                raise DecoderError(f"bundle array violates {info.filename} shape/dtype contract")
+                        if info.file_size - member.tell() != math.prod(shape) * dtype.itemsize:
+                            raise DecoderError("bundle NPY payload length disagrees with its header")
+            with np.load(io.BytesIO(payload), allow_pickle=False) as loaded:
+                arrays = {name: np.array(loaded[name[:-4]], copy=True) for name in contracts}
+                embedded = _strict_json(loaded["metadata"].tobytes().decode("utf-8"))
+            if embedded != manifest:
+                raise DecoderError("bundle NPZ and JSON describe different model generations")
+            books: dict[str, PrototypeBook] = {}
+            for index, entry in enumerate(manifest["books"]):
+                values = {name: arrays[f"b{index}__{name}.npy"] for name in _BUNDLE_ARRAY_FIELDS}
+                book = PrototypeBook(tuple(entry["labels"]), **values, schema_id=entry["schema_id"],
+                                     view=entry["view"], feature_names=tuple(entry["feature_names"]), metadata=entry["metadata"])
+                books[book.view] = book
+            return cls(books)
+        except (OSError, EOFError, UnicodeError, ValueError, RecursionError, zipfile.BadZipFile) as exc:
+            if isinstance(exc, DecoderError):
+                raise
+            raise DecoderError("invalid or unreadable strict prototype bundle") from exc
+
+
 @dataclass(frozen=True, slots=True)
 class ClassPrediction:
     label: str
@@ -733,7 +1153,8 @@ class PrototypeScorer:
         normalized = np.divide(differences, magnitude[:, None], out=np.zeros_like(differences),
                                where=magnitude[:, None] > 0)
         euclidean_squared = np.sum(normalized*normalized, axis=1)
-        use_covariance = book.covariance_available & (self.settings.distance_metric == "regularized_mahalanobis")
+        use_covariance = (book.covariance_available & (self.settings.distance_metric == "regularized_mahalanobis")
+                          & (self.mode != "B0"))
         squared = euclidean_squared.copy()
         if np.any(use_covariance):
             selected = normalized[use_covariance]
@@ -765,6 +1186,7 @@ class PrototypeScorer:
         metadata = {
             "mode": self.mode, "model_view_key": book.model_view_key,
             "distance_metric": self.settings.distance_metric,
+            "effective_distance_metric": "standardized_euclidean" if self.mode == "B0" else self.settings.distance_metric,
             "class_distance_metrics": ["regularized_mahalanobis" if value else "standardized_euclidean" for value in use_covariance],
             "distance_display_saturated": bool(np.any(exact_distances > maximum)),
             "probability_scoring": self.flags.probability_scoring,
@@ -1339,6 +1761,128 @@ def _bounded_float(value: np.longdouble) -> float:
     return float(np.clip(value, -maximum, maximum))
 
 
+def _zone_identity(feature: FeatureResult, *, views: tuple[str, ...]) -> Any:
+    """Validate coordinates shared by all regions of one normalized word."""
+    if not isinstance(feature, FeatureResult) or feature.identity is None:
+        raise DecoderError("zone observations require FeatureResult candidate identities")
+    identity = feature.identity
+    if not isinstance(identity.candidate_id, str) or not identity.candidate_id:
+        raise DecoderError("zone candidate IDs must be nonempty strings")
+    if isinstance(identity.word_id, bool) or not isinstance(identity.word_id, (int, np.integer)):
+        raise DecoderError("zone word IDs must be integers")
+    if feature.metadata.get("view") not in views:
+        raise ModelCompatibilityError(f"zone feature view must be one of {views!r}")
+    box = identity.normalized_bbox
+    if (not isinstance(box, tuple) or len(box) != 4 or
+            any(isinstance(v, bool) or not isinstance(v, (int, np.integer)) for v in box) or
+            not (0 <= box[0] < box[2] and 0 <= box[1] < box[3])):
+        raise DecoderError("zone bounding boxes require four nonnegative, positive-area integer coordinates")
+    if any(int(value) > np.iinfo(np.int64).max for value in box):
+        raise DecoderError("zone coordinates exceed the supported integer range")
+    return identity
+
+
+@dataclass(frozen=True, slots=True)
+class ModifierCandidate:
+    """An independently extracted upper/lower observation in word coordinates.
+
+    Its FeatureResult must use the same extraction policy as its zone prototype
+    book. The identity's candidate_id is the globally unique mark ID; its box
+    locates the observation in the normalized word, not in a cropped canvas.
+    External observations replace candidate-local upper/lower crops during
+    decoding, so the same ink is never scored from both sources.
+    """
+
+    feature: FeatureResult
+
+    def __post_init__(self) -> None:
+        _zone_identity(self.feature, views=("zone:upper", "zone:lower"))
+        if self.feature.metadata.get("empty_ink", False) or self.feature.metadata.get("empty_canvas", False):
+            raise DecoderError("modifier observations must contain ink; absence requires no observation")
+
+    @property
+    def mark_id(self) -> str:
+        return self.feature.identity.candidate_id
+
+    @property
+    def word_id(self) -> int:
+        return int(self.feature.identity.word_id)
+
+    @property
+    def zone(self) -> str:
+        return self.feature.metadata["view"].split(":", 1)[1]
+
+    @property
+    def normalized_bbox(self) -> tuple[int, int, int, int]:
+        return self.feature.identity.normalized_bbox
+
+
+@dataclass(frozen=True, slots=True)
+class ModifierBinding:
+    mark_id: str
+    parent_candidate_id: str
+    zone: str
+    overlap_pixels: int
+    overlap_fraction: float
+
+
+class HorizontalZoneBinder:
+    """Bind each mark once to the unique maximum horizontal-overlap core.
+
+    Boxes use half-open x intervals: touching edges have zero overlap. Ties and
+    observations without a positive overlap fail explicitly; an intact
+    segmentation hypothesis can then retain otherwise ambiguous ink. The
+    operation is geometric and does not assert a probabilistic dependence model.
+    """
+
+    def __init__(self, *, max_candidates: int = 4096, max_modifiers: int = 256) -> None:
+        _number("max_candidates", max_candidates, 1, 4096, integer=True)
+        _number("max_modifiers", max_modifiers, 1, 4096, integer=True)
+        self.max_candidates = max_candidates
+        self.max_modifiers = max_modifiers
+
+    def bind(self, cores: Sequence[FeatureResult], modifiers: Sequence[ModifierCandidate]
+             ) -> tuple[ModifierBinding, ...]:
+        if isinstance(cores, (str, bytes)) or isinstance(modifiers, (str, bytes)):
+            raise TypeError("cores and modifiers must be sequences of observations")
+        if len(cores) > self.max_candidates or len(modifiers) > self.max_modifiers:
+            raise DecoderError("horizontal binding exceeds its configured observation budget")
+        identities = tuple(_zone_identity(core, views=("zone:core",)) for core in cores)
+        if any(core.metadata.get("empty_ink", False) or core.metadata.get("empty_canvas", False) for core in cores):
+            raise DecoderError("parent core observations must contain ink")
+        if len({identity.candidate_id for identity in identities}) != len(identities):
+            raise DecoderError("core candidate IDs must be unique in a binding hypothesis")
+        if any(not isinstance(mark, ModifierCandidate) for mark in modifiers):
+            raise TypeError("modifiers must contain ModifierCandidate instances")
+        if len({mark.mark_id for mark in modifiers}) != len(modifiers):
+            raise DecoderError("modifier candidate IDs must be unique")
+        word_ids = {int(identity.word_id) for identity in identities} | {mark.word_id for mark in modifiers}
+        if len(word_ids) > 1:
+            raise DecoderError("core and modifier observations must share a normalized word coordinate system")
+        if not modifiers:
+            return ()
+        if not identities:
+            raise DecoderError("nonempty modifier observations require parent core candidates")
+        core_boxes = np.asarray([identity.normalized_bbox for identity in identities], dtype=np.int64)
+        mark_boxes = np.asarray([mark.normalized_bbox for mark in modifiers], dtype=np.int64)
+        overlaps = np.maximum(0, np.minimum(mark_boxes[:, None, 2], core_boxes[None, :, 2])
+                              - np.maximum(mark_boxes[:, None, 0], core_boxes[None, :, 0]))
+        maxima = overlaps.max(axis=1)
+        positive = maxima > 0
+        if not positive.all():
+            index = int(np.flatnonzero(~positive)[0])
+            raise DecoderError(f"modifier {modifiers[index].mark_id!r} has no horizontally overlapping parent core")
+        winners = overlaps == maxima[:, None]
+        unique = winners.sum(axis=1) == 1
+        if not unique.all():
+            index = int(np.flatnonzero(~unique)[0])
+            raise DecoderError(f"modifier {modifiers[index].mark_id!r} has ambiguous equal-overlap parents; retain intact hypothesis")
+        owners = overlaps.argmax(axis=1)
+        return tuple(ModifierBinding(mark.mark_id, identities[int(owner)].candidate_id, mark.zone,
+                                     int(overlap), float(overlap) / (mark.normalized_bbox[2] - mark.normalized_bbox[0]))
+                     for mark, owner, overlap in zip(modifiers, owners, maxima))
+
+
 class DecoderPipeline:
     """Bounded candidate-path decoding, explicit Unicode assembly and OOV gate.
 
@@ -1347,6 +1891,12 @@ class DecoderPipeline:
     a matching upper/lower book whenever the respective zone contains ink.
     An empty-string class is an explicit learned null-mark class allowed only
     in upper/lower books. Empty images are neutral coverage transitions.
+
+    ``run(batch, modifiers=observations)`` instead binds independently extracted
+    ModifierCandidate observations by horizontal overlap. This replaces native
+    upper/lower crops; an empty sequence explicitly supplies no modifiers. All
+    supplied observations must bind once per retained path. Extraction must
+    match the zone books' calibration policy.
 
     Per-word failures are reported as status='rejected' with diagnostics;
     malformed batches, schemas and model-view mismatches raise DecoderError.
@@ -1376,6 +1926,8 @@ class DecoderPipeline:
         self.scorers = {view: PrototypeScorer(book, self.config, mode=self.mode)
                         for view, book in books.items()}
         self.assembler = SinhalaAssembler(max_tokens=self.options.max_tokens)
+        self.zone_binder = HorizontalZoneBinder(max_candidates=self.options.max_tokens,
+                                               max_modifiers=self.options.max_tokens)
         self.lexicon_gate = LexiconGate(
             lexicon, tau_oov=self.settings.tau_oov, d_edit_max=self.settings.d_edit_max,
             eta=self.settings.eta, top_paths=self.settings.lexicon_top_paths,
@@ -1385,12 +1937,14 @@ class DecoderPipeline:
                scores: dict[str, ScoringResult]) -> ScoringResult:
         if view not in self.scorers:
             raise DecoderError(f"nonempty {view} has no matching prototype book")
-        result = self.scorers[view].score(feature)
-        scores[f"{candidate_id}:{view}"] = result
-        return result
+        key = f"{candidate_id}:{view}"
+        if key not in scores:
+            scores[key] = self.scorers[view].score(feature)
+        return scores[key]
 
     def _options(self, feature: FeatureResult, candidate_id: str,
-                 scores: dict[str, ScoringResult]) -> tuple[_TokenOption, ...]:
+                 scores: dict[str, ScoringResult], *,
+                 modifiers: tuple[ModifierCandidate, ...] | None = None) -> tuple[_TokenOption, ...]:
         if feature.metadata.get("empty_ink", False) or feature.metadata.get("empty_canvas", False):
             return (_TokenOption("", np.longdouble(0), None, None, False),)
         if self.recognition_mode == "whole_glyph":
@@ -1405,29 +1959,56 @@ class DecoderPipeline:
         core = feature.zones.get("core")
         if core is None or core.metadata.get("empty_ink", False) or core.metadata.get("empty_canvas", False):
             raise DecoderError("nonempty candidate has no nonempty core zone for multi_zone recognition")
+        core_identity = _zone_identity(core, views=("zone:core",))
+        if (feature.identity is None or core_identity.candidate_id != candidate_id
+                or core_identity.word_id != feature.identity.word_id):
+            raise DecoderError("core zone identity disagrees with its parent glyph")
         results: list[tuple[str, ScoringResult]] = [
             ("core", self._score(core, "zone:core", candidate_id, scores))]
-        for zone in ("upper", "lower"):
-            zone_feature = feature.zones.get(zone)
-            if zone_feature is None:
-                raise DecoderError(f"multi_zone candidate is missing its {zone} feature view")
-            if not zone_feature.metadata.get("empty_ink", False) and not zone_feature.metadata.get("empty_canvas", False):
-                results.append((zone, self._score(zone_feature, f"zone:{zone}", candidate_id, scores)))
+        if modifiers is None:
+            for zone in ("upper", "lower"):
+                zone_feature = feature.zones.get(zone)
+                if zone_feature is None:
+                    raise DecoderError(f"multi_zone candidate is missing its {zone} feature view")
+                if not zone_feature.metadata.get("empty_ink", False) and not zone_feature.metadata.get("empty_canvas", False):
+                    zone_identity = _zone_identity(zone_feature, views=(f"zone:{zone}",))
+                    if (zone_identity.candidate_id != candidate_id or zone_identity.word_id != core_identity.word_id
+                            or min(zone_identity.normalized_bbox[2], core_identity.normalized_bbox[2])
+                            <= max(zone_identity.normalized_bbox[0], core_identity.normalized_bbox[0])):
+                        raise DecoderError(f"native {zone} zone has no valid horizontal parent-core link")
+                    results.append((zone, self._score(zone_feature, f"zone:{zone}", candidate_id, scores)))
+        else:
+            for modifier in modifiers:
+                results.append((modifier.zone, self._score(modifier.feature, f"zone:{modifier.zone}",
+                                                          modifier.mark_id, scores)))
         options: dict[str, _TokenOption] = {}
-        # At most configured glyph_top_k ** 3 combinations, never pixel loops.
-        # Glyph top-k is bounded again by beam width to limit joint enumeration.
+        # Zone combinations use a bounded beam. Independent modifiers can be
+        # numerous, so never enumerate a Cartesian product exponential in marks.
         limit = min(self.settings.glyph_top_k, self.settings.beam_width)
         choices = [result.top_candidates[:limit] for _, result in results]
+        if len(choices) <= 3:
+            combinations = list(itertools.product(*choices))
+        else:
+            combinations = [()]
+            for predictions in choices:
+                combinations = sorted((prefix + (prediction,) for prefix in combinations for prediction in predictions),
+                                      key=lambda group: (
+                                          -sum(np.longdouble(p.log_probability) for p in group)
+                                          if self.flags.probability_scoring else sum(np.longdouble(p.distance) for p in group),
+                                          tuple(p.label for p in group)))[:self.settings.beam_width]
         maximum_joint_probability = 0.
-        for combination in itertools.product(*choices):
-            labels = {zone: prediction.label for (zone, _), prediction in zip(results, combination)}
+        for combination in combinations:
+            zone_labels: dict[str, list[str]] = {"core": [], "upper": [], "lower": []}
+            for (zone, _), prediction in zip(results, combination):
+                if prediction.label:
+                    zone_labels[zone].append(prediction.label)
+            core_label = combination[0].label
             try:
-                if not labels.get("upper") and not labels.get("lower"):
-                    label = labels["core"]  # May be an explicitly detected visual kombuwa.
+                if not zone_labels["upper"] and not zone_labels["lower"]:
+                    label = core_label  # May be an explicitly detected visual kombuwa.
                 else:
                     label = self.assembler.compose(
-                        labels["core"], upper=(labels["upper"],) if labels.get("upper") else (),
-                        lower=(labels["lower"],) if labels.get("lower") else ())
+                        core_label, upper=tuple(zone_labels["upper"]), lower=tuple(zone_labels["lower"]))
             except UnicodeAssemblyError:
                 continue
             log_probability = (sum((np.longdouble(p.log_probability) for p in combination), np.longdouble(0))
@@ -1512,16 +2093,40 @@ class DecoderPipeline:
         return self._prune(states, width)
 
     @staticmethod
-    def _check_marks(candidate_ids: tuple[str, ...], links: Sequence[Any]) -> None:
-        selected = set(candidate_ids)
-        for link in links:
-            owners = selected.intersection(link.parent_candidate_ids)
-            if len(owners) > 1:
-                raise DecoderError(f"mark {link.mark_id!r} spans multiple selected candidates; retain intact hypothesis")
-            if not owners:
-                raise DecoderError(f"mark {link.mark_id!r} has no selected parent candidate")
+    def _check_marks(candidate_ids: tuple[str, ...], links: Sequence[Any],
+                     by_id: Mapping[str, FeatureResult]) -> tuple[ModifierBinding, ...]:
+        """Verify native crop ownership from geometry, never cached parent IDs.
 
-    def run(self, batch: FeatureBatchResult) -> DecodeResult:
+        Every overlapping crop already contains some pixels from that component.
+        Selecting only its maximum-overlap owner cannot undo fragmented pixels
+        in another crop, so native paths conservatively reject any multi-owner
+        component. External observations can instead be assigned intact.
+        """
+        boxes = np.asarray([by_id[cid].identity.normalized_bbox for cid in candidate_ids], dtype=np.int64)
+        bindings: list[ModifierBinding] = []
+        seen: set[str] = set()
+        for link in links:
+            if link.mark_id in seen:
+                raise DecoderError("native diacritic mark IDs must be unique")
+            seen.add(link.mark_id)
+            if link.zone not in ("upper", "lower"):
+                raise DecoderError("native diacritic zones must be upper or lower")
+            box = link.normalized_bbox.as_tuple()
+            if not (0 <= box[0] < box[2] and 0 <= box[1] < box[3]):
+                raise DecoderError("native diacritic bounding boxes must have positive area")
+            overlap = np.maximum(0, np.minimum(boxes[:, 2], box[2]) - np.maximum(boxes[:, 0], box[0]))
+            owners = np.flatnonzero(overlap > 0)
+            if owners.size > 1:
+                raise DecoderError(f"mark {link.mark_id!r} spans multiple selected candidates; retain intact hypothesis")
+            if not owners.size:
+                raise DecoderError(f"mark {link.mark_id!r} has no selected parent candidate")
+            owner = int(owners[0])
+            bindings.append(ModifierBinding(link.mark_id, candidate_ids[owner], link.zone,
+                                            int(overlap[owner]), float(overlap[owner]) / (box[2]-box[0])))
+        return tuple(bindings)
+
+    def run(self, batch: FeatureBatchResult, *,
+            modifiers: Sequence[ModifierCandidate] | None = None) -> DecodeResult:
         if not isinstance(batch, FeatureBatchResult):
             raise TypeError("batch must be features.FeatureBatchResult")
         by_id: dict[str, FeatureResult] = {}
@@ -1536,24 +2141,79 @@ class DecoderPipeline:
                 raise DecoderError("normalized bounding boxes must contain four integer coordinates")
             if not (0 <= box[0] < box[2] and 0 <= box[1] < box[3]):
                 raise DecoderError("candidate bounding boxes must have positive area and nonnegative coordinates")
+            if any(int(value) > np.iinfo(np.int64).max for value in box):
+                raise DecoderError("candidate coordinates exceed the supported integer range")
             by_id[identity.candidate_id] = feature
         if set(by_id) != set(batch.by_candidate_id) or any(
                 batch.by_candidate_id[cid] is not feature for cid, feature in by_id.items()):
             raise DecoderError("features and by_candidate_id must refer to the same feature objects")
         if any(feature.identity.word_id not in batch.hypotheses for feature in by_id.values()):
             raise DecoderError("candidate references a word without hypotheses")
+        external_modifiers: dict[int, list[ModifierCandidate]] | None = None
+        if modifiers is not None:
+            if self.recognition_mode != "multi_zone":
+                raise DecoderError("external modifiers require multi_zone recognition to prevent whole-glyph double counting")
+            if isinstance(modifiers, (str, bytes)) or not isinstance(modifiers, Sequence):
+                raise TypeError("modifiers must be a bounded sequence of ModifierCandidate observations")
+            if len(modifiers) > self.options.max_tokens * max(1, len(batch.hypotheses)):
+                raise DecoderError("external modifiers exceed the per-word observation budget")
+            external_modifiers = {word_id: [] for word_id in batch.hypotheses}
+            seen_marks: set[str] = set()
+            for mark in modifiers:
+                if not isinstance(mark, ModifierCandidate):
+                    raise TypeError("modifiers must contain ModifierCandidate instances")
+                if mark.mark_id in seen_marks or mark.mark_id in by_id:
+                    raise DecoderError("external mark IDs must be unique and distinct from glyph candidate IDs")
+                if mark.word_id not in external_modifiers:
+                    raise DecoderError("external modifier references a word absent from the feature batch")
+                seen_marks.add(mark.mark_id)
+                external_modifiers[mark.word_id].append(mark)
+                if len(external_modifiers[mark.word_id]) > self.options.max_tokens:
+                    raise DecoderError("word exceeds the configured modifier observation budget")
         decoded_words: list[DecodedWord] = []
         for word_id, hypotheses in batch.hypotheses.items():
             scores: dict[str, ScoringResult] = {}
-            cached_options: dict[str, tuple[_TokenOption, ...]] = {}
+            cached_options: dict[tuple[str, tuple[str, ...] | None], tuple[_TokenOption, ...]] = {}
             rejected: list[dict[str, str]] = []
             paths_and_ranks: list[tuple[WordPath, np.longdouble]] = []
             seen_hypotheses: set[str] = set()
+            bindings_by_path: dict[tuple[str, ...], tuple[ModifierBinding, ...]] = {}
+            word_marks = () if external_modifiers is None else tuple(external_modifiers[word_id])
+            marks_by_id = {mark.mark_id: mark for mark in word_marks}
 
             def get_options(candidate_id: str) -> tuple[_TokenOption, ...]:
-                if candidate_id not in cached_options:
-                    cached_options[candidate_id] = self._options(by_id[candidate_id], candidate_id, scores)
-                return cached_options[candidate_id]
+                key = (candidate_id, None)
+                if key not in cached_options:
+                    cached_options[key] = self._options(by_id[candidate_id], candidate_id, scores)
+                return cached_options[key]
+
+            def assigned_options(candidate_ids: tuple[str, ...]) -> Callable[[str], tuple[_TokenOption, ...]]:
+                cores: list[FeatureResult] = []
+                for candidate_id in candidate_ids:
+                    feature = by_id[candidate_id]
+                    if feature.metadata.get("empty_ink", False) or feature.metadata.get("empty_canvas", False):
+                        continue
+                    core = feature.zones.get("core")
+                    if core is None:
+                        raise DecoderError("external modifier binding requires every nonempty candidate's core feature")
+                    core_identity = _zone_identity(core, views=("zone:core",))
+                    if core_identity.candidate_id != candidate_id or core_identity.word_id != word_id:
+                        raise DecoderError("core feature identity disagrees with its containing glyph candidate")
+                    cores.append(core)
+                bindings = self.zone_binder.bind(cores, word_marks)
+                bindings_by_path[candidate_ids] = bindings
+                assigned: dict[str, tuple[ModifierCandidate, ...]] = {
+                    cid: tuple(marks_by_id[entry.mark_id] for entry in sorted(bindings, key=lambda item: item.mark_id)
+                               if entry.parent_candidate_id == cid) for cid in candidate_ids}
+
+                def get_assigned(candidate_id: str) -> tuple[_TokenOption, ...]:
+                    observations = assigned[candidate_id]
+                    key = (candidate_id, tuple(mark.mark_id for mark in observations))
+                    if key not in cached_options:
+                        cached_options[key] = self._options(by_id[candidate_id], candidate_id, scores,
+                                                            modifiers=observations)
+                    return cached_options[key]
+                return get_assigned
 
             for hypothesis in hypotheses:
                 if hypothesis.hypothesis_id in seen_hypotheses:
@@ -1568,16 +2228,43 @@ class DecoderPipeline:
                 width = max(by_id[cid].identity.normalized_bbox[2] for cid in candidate_ids)
                 try:
                     if hypothesis.kind == "sliding_windows":
-                        states = self._window_states(candidate_ids, width, by_id, get_options)
+                        if external_modifiers is None:
+                            states = self._window_states(candidate_ids, width, by_id, get_options)
+                        else:
+                            # Ownership depends on the selected covering path,
+                            # not the complete set of overlapping proposals.
+                            geometry = self._window_states(candidate_ids, width, by_id,
+                                lambda _: (_TokenOption("", np.longdouble(0), None, None, False),))
+                            assigned_states: list[_BeamState] = []
+                            for path in geometry:
+                                try:
+                                    path_options = assigned_options(path.candidate_ids)
+                                    current = (_BeamState(overlap=path.overlap),)
+                                    for cid in path.candidate_ids:
+                                        choices = path_options(cid)
+                                        current = self._prune((self._extend(state, cid, choice)
+                                                              for state in current for choice in choices), width)
+                                    assigned_states.extend(current)
+                                except ModelCompatibilityError:
+                                    raise
+                                except DecoderError as exc:
+                                    rejected.append({"hypothesis_id": hypothesis.hypothesis_id, "reason": str(exc)})
+                            states = self._prune(assigned_states, width)
                     else:
-                        self._check_marks(candidate_ids, batch.diacritic_links.get(word_id, ()))
-                        states = self._partition_states(candidate_ids, width, by_id, get_options)
+                        if external_modifiers is None:
+                            bindings_by_path[candidate_ids] = self._check_marks(
+                                candidate_ids, batch.diacritic_links.get(word_id, ()), by_id)
+                            path_options = get_options
+                        else:
+                            path_options = assigned_options(candidate_ids)
+                        states = self._partition_states(candidate_ids, width, by_id, path_options)
                     if not states:
                         raise DecoderError("no covering candidate path within configured limits")
                     for state in states:
                         try:
-                            if hypothesis.kind == "sliding_windows":
-                                self._check_marks(state.candidate_ids, batch.diacritic_links.get(word_id, ()))
+                            if hypothesis.kind == "sliding_windows" and external_modifiers is None:
+                                bindings_by_path[state.candidate_ids] = self._check_marks(
+                                    state.candidate_ids, batch.diacritic_links.get(word_id, ()), by_id)
                             text = (self.assembler.assemble_visual(state.tokens) if self.flags.unicode_assembly else
                                     unicodedata.normalize("NFC", "".join(state.tokens)))
                         except UnicodeAssemblyError as exc:
@@ -1599,6 +2286,8 @@ class DecoderPipeline:
                             "confidence_policy": "mean_max_token_class_probability" if has_scores else "unavailable",
                             "selected_label_confidence": state.selected_probability_sum/state.scored_tokens if has_scores else None,
                             "log_probability_saturated": has_scores and state.log_probability < -np.finfo(np.float64).max,
+                            "modifier_source": "native_candidate_zones" if external_modifiers is None else "external_observations",
+                            "modifier_bindings": [asdict(binding) for binding in bindings_by_path.get(state.candidate_ids, ())],
                         })
                         path = WordPath(text, _bounded_float(state.log_probability) if has_scores else None,
                                         confidence, state.candidate_ids, hypothesis.hypothesis_id, metadata)
@@ -1614,7 +2303,12 @@ class DecoderPipeline:
             paths = tuple(path for path, _ in ordered_paths[:self.settings.beam_width])
             metadata = _immutable({"recognition_mode": self.recognition_mode,
                                    "hypotheses_considered": len(seen_hypotheses), "rejected_paths": rejected,
-                                   "retained_paths": len(paths)})
+                                   "retained_paths": len(paths),
+                                   "modifier_source": "native_candidate_zones" if external_modifiers is None else "external_observations",
+                                   "external_modifier_count": len(word_marks),
+                                   "modifier_bindings_by_candidate_path": [
+                                       {"candidate_ids": ids, "bindings": [asdict(entry) for entry in entries]}
+                                       for ids, entries in bindings_by_path.items()]})
             if not paths:
                 decoded_words.append(DecodedWord(word_id, "", "", None, (), None, "rejected",
                                                   MappingProxyType(scores), metadata))
@@ -1630,6 +2324,8 @@ class DecoderPipeline:
                                "fallback_config_fields": self.fallback_fields,
                                "word_count": len(words), "rejected_word_count": sum(w.status == "rejected" for w in words),
                                "score_is_correctness_probability": False,
+                               "modifier_source": "native_candidate_zones" if external_modifiers is None else "external_observations",
+                               "external_window_search": "bounded_geometry_paths_then_binding" if external_modifiers is not None else None,
                                "model_view_keys": {view: book.model_view_key for view, book in self.models.items()}})
         return DecodeResult(words, " ".join(word.text for word in words if word.text), metadata)
 
@@ -1637,6 +2333,9 @@ class DecoderPipeline:
 
 
 __all__ = [
+    "DevelopmentFolderSpec", "DevelopmentSetCalibrationManager", "PrototypeBundle",
+    "MASTER_FEATURE_DIMENSION", "MAX_PROTOTYPE_ARCHIVE_BYTES", "make_master_feature_pipeline",
+    "HorizontalZoneBinder", "ModifierCandidate", "ModifierBinding",
     "CalibrationError", "CalibrationSample", "ClassPrediction", "DecodedWord", "DecodeResult",
     "DecoderError", "DecoderOptions", "DecoderPipeline", "LexiconDecision", "LexiconGate",
     "ModelCompatibilityError", "PrototypeBook", "PrototypeCalibrationManager", "PrototypeScorer",
