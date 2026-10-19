@@ -1,0 +1,5 @@
+# Tested CPU-only dependencies. Python 3.11+ for these pinned wheels.
+numpy==2.3.5
+opencv-python-headless==4.13.0.92
+scikit-image==0.26.0
+scipy==1.17.0
