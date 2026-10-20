@@ -1,0 +1,5261 @@
+{
+  "archive_bytes": 209290,
+  "archive_path": "/workspace/OCR-test-19-/artifacts/prototypes.npz",
+  "archive_sha256": "e10e4243af494b46ff8a614702eb8dff9e9dcff2d79e513817ac74681b853877",
+  "calibration_sample_count": 600,
+  "calibration_samples": [
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a10.bmp",
+      "sha256": "38ef9c8696077cd58c274d79a30484c584a0d81445ec962bd2efa8e73921b90b"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a23.bmp",
+      "sha256": "1eb72ec15ccb9a0542909e5e59722c0b8921f52255aec1204992f8a8dd9ba4ac"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a25.bmp",
+      "sha256": "970533fd30d24b523613a8f5e4aab5ce6b939f733a0cb9eb2bae4fe0f1275d2a"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a20.bmp",
+      "sha256": "ef3cb5bd2299fd57b01d992fc6f65b2db1786336c6d3c9814085c56e74a478c0"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a19.bmp",
+      "sha256": "77428e08cba1b35949fdf9df738222aeea8781817cff46c6a1c56a7f3b897276"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a8.bmp",
+      "sha256": "8b3fbbeb1e4d0bcc0996acd53fb28829eb578361a191dfcf38479b58ca6c7211"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a16.bmp",
+      "sha256": "cc2963c406d1de9d6840795b8ff55750002d4dfa19bed67f854a26c27c365e0b"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a3.bmp",
+      "sha256": "82d4bac931d2622258221cd734448470340ca2b8f6e8e3c86485c0855f2f6233"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a2.bmp",
+      "sha256": "7588de134b01e7e19a152918c4011281abc85fd3e43682bdf4d6d1a3f7d0e526"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a21.bmp",
+      "sha256": "c9ba301bd8f358affcc532bd9f9518ec31b41f6a6c5bcf3dda34e5c597fa5a74"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a15.bmp",
+      "sha256": "7f8e5528054a4f59d0de668c3b3a51bc7451e446cd2e92b5f479fa33e43fff23"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a17.bmp",
+      "sha256": "a675e771e7c0aa2772867f0864306cb2933707987c5bab43038f2c30486255e3"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a6.bmp",
+      "sha256": "2cceddf28ba4ff30daf5c22f9fbb8141f588a615a8d98cf5431b6b0e9057186a"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a1.bmp",
+      "sha256": "97ecee3dd4ea4e3d64c6eb19a1a8e0818c3d4f6a03daefe5474bdb5a4633d8f5"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a11.bmp",
+      "sha256": "381880a8e031350d309ecf8b7e5291c4a6f52fa39314eeee6b8e4de207a7bfe4"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a18.bmp",
+      "sha256": "799c21448ab7a25f4a2d3eee7e2d2f71ea128a028eb92ac8ed154ddc44c2b9ca"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a14.bmp",
+      "sha256": "2c26e8018828c61680ea89bd4884fe8c6446d76bd38f5916c2ebe15630027e5b"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a24.bmp",
+      "sha256": "13852c9bad6a9ebb74edf04be44694213b8644163cbd5115d8b70846a01bd850"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a22.bmp",
+      "sha256": "b706fe4139b29e1e04888ecee4b44df1c9a7a8bd98652423808fd848ff490712"
+    },
+    {
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a13.bmp",
+      "sha256": "ae08adcb8de521f943d0d7d66e155113bb46a526aa373477b99647533e3e5fd4"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa18.bmp",
+      "sha256": "324c9edc9f5db73ad736824e212159b04514da52309da6d2636ab08f4d5b05ad"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa11.bmp",
+      "sha256": "75b76ddda7186181fdfedc17180070ee7cf068c7ce5a9f0b9da39bb752041e03"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa17.bmp",
+      "sha256": "0908e59d69568c582c57722cfce79ab155473730760b476b0620063a00bb272f"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa19.bmp",
+      "sha256": "d3882e359cbd4f65bcc7b6c87c5ba67c170d8f7ab60799a8cd1b82b0a5270934"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa12.bmp",
+      "sha256": "969ecd1503a1a7a6f87322f12a81202f644c31bec66e77d56fc8392e34ae3fad"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa16.bmp",
+      "sha256": "42e934f69a2bb98afe3f9cf5bd7819b9cab2aebd2ba56813eaa1015cd412c1c4"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa20.bmp",
+      "sha256": "1310ba728f30b675af573bdb948f4df4433a7f7e7785f5ffa5ff0929ae7ca67d"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa6.bmp",
+      "sha256": "723527a195d7f2f677680fe5427b3b44a932d4f5a8364f1b0bf40b29cba3d7ac"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa14.bmp",
+      "sha256": "b4ffb6f06cf05ab0bc3c99f91fccb67260de7465d14656737ec0fa6bb05294d9"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa10.bmp",
+      "sha256": "103f1f90b78ce71efa2ceaf2f93543524f00a3b1696435730b97666732bade9e"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa22.bmp",
+      "sha256": "65fc11fc4d2c0df9f574f1b073efeea2fd93a9c5eb1bf1c92060eb1da767acb8"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa2.bmp",
+      "sha256": "4399f600beb9b2543714ee7a1dc632865460a314c5e43965bdeca217b0b4fd9e"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa23.bmp",
+      "sha256": "b9086d83f665add24dc245ca2919146f79d8dc67e2ca6c43d565200ec9346515"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa5.bmp",
+      "sha256": "2d004aaa42173193a9976d41ed0aea4fb2f83eff2d8a8b94de18dd27d6e4f50b"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa24.bmp",
+      "sha256": "89d4217f6df78638dbce5f534fa88a859991e8d065d91abea2588553a29679c7"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa7.bmp",
+      "sha256": "002034e0d1fcd91339132dd460e9d8289270116bfa4889665a74f76a57d54267"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa4.bmp",
+      "sha256": "d994cadada08f2ecab8daddca42f030a214d43f9217dcb32bf2195301d3e8e8b"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa21.bmp",
+      "sha256": "449bf6dbeb46fc41c225938a9b71f948dc6b7b0b1e2cc23d69b7f155541eabd5"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa15.bmp",
+      "sha256": "722a931e84ca285fafd403d71a8033da39632d9959a27b922353137a84922a46"
+    },
+    {
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa8.bmp",
+      "sha256": "c7e78d26b554cc8698c8cae78a8bc9ab71d414f4da2888d46d6da84fdbbbb48f"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac10.bmp",
+      "sha256": "6e6a23031510bfbdc7ade683702d9a6e76933c4d82f0e7b5533279a37d846b7e"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac22.bmp",
+      "sha256": "c658baba99352bfd5e63dbe7ba7a87d609062f1b30c1a396b3ab3bd396bb4c84"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac11.bmp",
+      "sha256": "5552480d02c2aa2890210f90d9fe5b92a36b3544cacd39bcfc78af9452d3529d"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac25.bmp",
+      "sha256": "754e1e071247e35743b4339a7dbffb7cde4faeb1c4189b80fce1d58177f54661"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac14.bmp",
+      "sha256": "9876777e1127300727fae5eed7c4dc96e5bb863755a0f1d37da0ebc5a37a98b3"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac12.bmp",
+      "sha256": "c3e4583d0fb3e59845d78fe1bbe1d8f206a3c2ca858a74d326d001cce62f6364"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac4.bmp",
+      "sha256": "dac546b57a42c080112be41766eb09247f1f1b50cd3c78099088fae79c865a26"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac13.bmp",
+      "sha256": "1fe5c03b8915d0c299fe4a6c16588c95a6ed8d5b8301f35cd7119d56f8e6b976"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac17.bmp",
+      "sha256": "010e1d08cd24264d93ddf830aeca52c436953d5f6a9915a4ea63e4a311efc4d8"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac5.bmp",
+      "sha256": "a21fd47194b9b3924e31b9e19da67f61763881cbe0d8793ea860359abc442252"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac2.bmp",
+      "sha256": "e1f7f7e7dfc238273f91c71ae697dcd52e1a1084cc5bf7b3709456d88db98e61"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac8.bmp",
+      "sha256": "3657f251d1df46c59cef0bcb674780143963e8870e80272d3350ce4b28e776ea"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac9.bmp",
+      "sha256": "38b2f2f4bba1a5839743a14a03871fd5fd15b521f30ba1fc8ae43cdb43177515"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac7.bmp",
+      "sha256": "e308cc12dc88047193665230b01438d2b2f682950c5732d81b4013be281c4cf9"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac23.bmp",
+      "sha256": "2e968169877c9f8a8367f11c539548e8cc44bcf476de693c32a3763836347a40"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac20.bmp",
+      "sha256": "b354be9c9de205a6410593930552b29b39ab136ecb718dfec02a127e06206431"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac3.bmp",
+      "sha256": "dd5f3bfca30ab4468cb9343432d92af3a89392e37c809d9c6a8597c747636277"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac16.bmp",
+      "sha256": "d9dd0892915acc7d7f3b9c3dd224f4033732bee194485a973e9d9dd8a9fe5357"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac19.bmp",
+      "sha256": "a8f1bc065b747de3b1760cc0f550853efafddf6008f575f60065f1eb29cd1280"
+    },
+    {
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac21.bmp",
+      "sha256": "c93c7dc6e4088abfb27a9a0d5a1e018e3a355f560ea0b6a7a1d00ebb092b49ae"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae25.bmp",
+      "sha256": "f30d239dcf687bd9d16c855047091a5f0e37f241020df4e477f72ae0d6a144a9"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae7.bmp",
+      "sha256": "cb2b576a98eeb9bfd7841a78b6f37df91b8481592e04eb8cf3afca9b9019f559"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae5.bmp",
+      "sha256": "f3162c081a772ba26931b4675c3635ad6421482a5e3ece05a8075fd78e4b7923"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae18.bmp",
+      "sha256": "a794c890923bd69b8225eb9e8b9b97ab12fa44cb589d45a65a313677a6a1cde0"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae19.bmp",
+      "sha256": "c02aa44a08266077c870b06a04b8023d2625577e37abbd1dd8af3f162f44de89"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae11.bmp",
+      "sha256": "5b3c5325dbe7ad8b6dee52a40010c88e101eb1cdf2f06c5084fdd608300a98fc"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae14.bmp",
+      "sha256": "46b438ceeee32dc9328ebab764a9bc6a7b6ef22e338021315df5eaaad754a9a9"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae6.bmp",
+      "sha256": "cb0ccc1412286616441b77e24ce282716837a9ea6a06eb3a736a9bde4c957430"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae12.bmp",
+      "sha256": "bb78ab14c97c18620b99fca3ea0d1347da2d54a70c851f6fd8d52fe2f1fa172b"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae8.bmp",
+      "sha256": "10c64c88fc054e470fdc336573b89d1ee746c8565c442226dc251a89fe234566"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae10.bmp",
+      "sha256": "f7819552e311e7ae91b42a99179ec36a6cc102bf1ef21f60d9803676eab00580"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae3.bmp",
+      "sha256": "f58847a372c23e9ecb36fccbb17f4bd4e32de6d8e7ffd63e0010604f52bdfe93"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae16.bmp",
+      "sha256": "01a67b27fc64a2e776c75b2d935deab324343910569215f7c42747d32c4fdc9c"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae2.bmp",
+      "sha256": "a44895ca00d9d2c030a7f2633245a3610abf00988eaa20c06bd07485c2f9f2ba"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae23.bmp",
+      "sha256": "502206243eed3bb6a3917999f02315161237d4d0624fa00254bd7797a233eef6"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae4.bmp",
+      "sha256": "1340e91b39f2d44f111ea0882bcb1825aa1c106f2db9f45395fa34fef7bf8a87"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae21.bmp",
+      "sha256": "0b6561f12b7d4d51a43870f8450748c49876f7a4464c2861fc2f94eaa4c653ad"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae20.bmp",
+      "sha256": "e19e621ffec8662eb382fc1e9f1bcc216de5bda8006e415af8a5c83f25a16ad7"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae13.bmp",
+      "sha256": "9b0ef485f643ebfab493d4d22c44ab56b8c9dc963c811105e5b809890a8007dd"
+    },
+    {
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae15.bmp",
+      "sha256": "1823cab7c2a110ae3a6e1fc94a4dd76c55aff53c67399a7b323cb7d8b3f3885d"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af23.bmp",
+      "sha256": "7293ba45d359d28ce92b564e2566cdce6ad1b5b30934bc45e96e6c508c27d2a5"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af22.bmp",
+      "sha256": "4adddacaf8f3586fbb7465bbe884b145ebee4860f180a020b1d52bd4990afbfd"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af17.bmp",
+      "sha256": "b2f9c49839c6739f658aab92e7f381de5e28545fae760efdd2771aef1999c311"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af18.bmp",
+      "sha256": "418c60ddad71c1252da0cb9ec329419299003ba2611c2749fb43ba5ad84d7c9b"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af24.bmp",
+      "sha256": "d9c65e15417088bd3f6663b00deea3104a0fb401c7854f0d7db549e07b2da580"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af21.bmp",
+      "sha256": "b114a251e869bbdaaf3c8451c22a724cb97a0a00c171ef282a2534a1c95d6188"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af4.bmp",
+      "sha256": "f4b83b654d48619e2f60a685259d58a57020a2f77d955e0aec78932c548b33a0"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af25.bmp",
+      "sha256": "363f945bdbfc08732c1d485c2f99bdd67d1fe1153ea0d8d94e9b5348389d11af"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af5.bmp",
+      "sha256": "8eea5c5091600477adba89884f9bd58594a718fcc867d1b37005938598b02e43"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af1.bmp",
+      "sha256": "e4a05db5ad81def888223df2720ddba4cc7f821029210d51e2c1fed3e35be260"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af15.bmp",
+      "sha256": "05143e8d6424e276dae3de39d87512a18b887e1b9f386e24ad6a6d3e29888b0d"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af3.bmp",
+      "sha256": "0a4bd139979686f6f63524b4f73fa8d66475dfb04660ead217a8f6122fd13549"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af6.bmp",
+      "sha256": "69c3d7ecabfa4c2e5e624636fe8887c5229dac2cfd2a844de6c26380a88111ac"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af20.bmp",
+      "sha256": "2d390756e38d3f624748ee4dde3d1deb42b257a818835a0e0fe05bfcd96c441b"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af11.bmp",
+      "sha256": "221e3c6d9a625fffc39227f5f8d43781e27be4b114a94c89847ea70868363f6e"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af14.bmp",
+      "sha256": "38b30ad16fd4e373d38e18a780cae64bd9afbef8e5a2d2b9195d23f4b0378f44"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af9.bmp",
+      "sha256": "31a2414aff8ad05df92b119b533d26a551f22ace90b2dcc731b14539b9856851"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af2.bmp",
+      "sha256": "7ffb461912f71b7a9037adba1aac415e4b58d3a40152f58d994ff1f72d44f933"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af19.bmp",
+      "sha256": "e1baf37f6eba4f29374a0dd6962676afcc2f6872c0d61e3d413f1f1e97d32c2e"
+    },
+    {
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af10.bmp",
+      "sha256": "dec033780a94ec274c6a3a9381534451c1d59248420f887e5516b889c9c01f9b"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag23.bmp",
+      "sha256": "6dd681ea0c36a05f04d636f2ebf512992f80dfb015ecd316493768f36b0852fb"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag12.bmp",
+      "sha256": "6a2dbeb7f9094a713faf5bb2cb105922b43cda988d03948d65ec369ad4156bd4"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag24.bmp",
+      "sha256": "74b21b0a9a08583a7c7f8ddde561d3a0354890aa9e190ba711aad99ba3bcf8fd"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag6.bmp",
+      "sha256": "603f49eddcd26268aed1ebd05352900cb519ba1c0ad90c94cab474eabe20165d"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag9.bmp",
+      "sha256": "12b5a2cea4f997afb5885713aff67af716b85208042389b76ce26a33c0e02cd5"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag22.bmp",
+      "sha256": "677ec85f1ac32e297c45f0ff960c579da948aa75395b7028307b3223a67473df"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag19.bmp",
+      "sha256": "dec0acff618491aaaf8a4f4f086b057a66065e0b4227d584931853a465397f28"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag16.bmp",
+      "sha256": "23cb1f5cede3d4d4cd13395efc430255b717ae1619a106e93ebe7c002e9ab831"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag15.bmp",
+      "sha256": "cebd98054dff3adefb1b5794069f15497c0b91b566cf46a1af31f91ca3e5ebea"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag4.bmp",
+      "sha256": "4220a6e59e2f43a7fc1b68f677fad38d58d78041c448f2b5124535c4cd2dfeca"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag13.bmp",
+      "sha256": "4e360f20d8304df5b2bdfffce42c127cf5e859500cac8230ff055e34076a7a33"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag5.bmp",
+      "sha256": "bf6832c94203e6a48d6890deda2a4a6e2ae9a9014ce370c0dd769c1cc5ad85ca"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag3.bmp",
+      "sha256": "7a4698b13180950e82931e1d3c4b7882ee69ac680a2e1c922134445b6e4b0fa5"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag8.bmp",
+      "sha256": "d3c37e26eb7b4c55e47f0a8a2d228ac7fa3864aa5f01c45817af720d4a58e99f"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag21.bmp",
+      "sha256": "9866a71dbb8d0e6f81a38b6e3334822fa21924bc87631fe2b560e13423d338eb"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag20.bmp",
+      "sha256": "cd70d9a3dc2228c0a7c29f9fa35d9e35f659b4e95743c914951e8d37ae8d950e"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag10.bmp",
+      "sha256": "72007cb6290922e083d7e8d365251825307585ff4cafa3f81dbd3dc8f4fae4c3"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag17.bmp",
+      "sha256": "5eb99b8444a07ef25ae62f2f36dbbc7bef2a554d243281f092c22e54785ad533"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag14.bmp",
+      "sha256": "bda5ec5e9f66558269fc58321d8bac258ac17d389f77631a9264e7cb7462fcfb"
+    },
+    {
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag18.bmp",
+      "sha256": "01e2b363ada3f9d2a9330980633b2d3b17c4fb92bd75fe1578086553f305b687"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b9.bmp",
+      "sha256": "b7fcda3ccfe3cd0714e235dcda1f07b880e419b4bd3be5b72fb23545e108f59f"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b8.bmp",
+      "sha256": "c61be5cc2b1f0b06f1d9ae20de4db6211c09cb34165d0bde2e6e0a5d7dfcba22"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b12.bmp",
+      "sha256": "af304d225e01fed5584492e87eba8fe43ed9ce674807dacc457dcdc1fc2f3cbe"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b2.bmp",
+      "sha256": "400d366f8bd8831c90b07aeeb0c53113c14d220eff7c0c5cf5d6bb143e114aab"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b25.bmp",
+      "sha256": "99f59068c899efd0c2a3571ea61d467b72155e9a3e188260e3c57ec038b0afba"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b15.bmp",
+      "sha256": "060f33948f3dda324f80f92e4e541ea475afb22f17456a7fbe070cb141c9df4a"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b22.bmp",
+      "sha256": "84b6bb06281b7378e48cd4f966c5e3e32ef530120ee39ff28d0875c5103677ce"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b6.bmp",
+      "sha256": "bdfed3b9e533fcecab6e5e1732855775f80418dc39c7c592f3637c14d3c9247d"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b10.bmp",
+      "sha256": "893daea608223265aa1864fdc76865642414eb6274cc272d5c405309a28c6b46"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b3.bmp",
+      "sha256": "03bfe905bddb6fb9ebca1b778333e9a62fad9807dd529b9e7423fd1186be0680"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b21.bmp",
+      "sha256": "99efffdb470e3d9cc11028d03bf37411943c4bd6cd9a5db1771f968e76817994"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b17.bmp",
+      "sha256": "88143b9e293ccffa62b72eb0c493b1ac7eebd7bb4344e925b50386da9240ef62"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b24.bmp",
+      "sha256": "531bfb42946159f2550f37605cfe3b8b4de4a474b196edc84b74d4a08b0d6936"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b18.bmp",
+      "sha256": "81fd2888335cf89235ab1bd349faec8bad346465e1bf3332e65a3c37b9deb380"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b13.bmp",
+      "sha256": "42b40c3467baa1f4278824b6aeb0ea9c6f115abdee99049d65f09ae9fbe1ebfc"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b16.bmp",
+      "sha256": "858aa2943a191a50381a8aad8e503753f230e3ed0f104dc9a54a5d5a7944a8e3"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b5.bmp",
+      "sha256": "d7360f820a4d977bfa36f9aabcfaf3dd849af9ea751ce91fa2fca8528a2e11c5"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b19.bmp",
+      "sha256": "b21f55c525559303aae39bb9f4044635f4ccf3d9f74dc6c6c95d820eb1b9c7ff"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b1.bmp",
+      "sha256": "88c8b28d365c31a23da5c7e35ee7b1a324233b433b45797ccc879167cf59fdf1"
+    },
+    {
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b7.bmp",
+      "sha256": "6c26ec65ffbea35eb74a213fbc15b402699b7aead30c00d1110525a69f559e0a"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c15.bmp",
+      "sha256": "1997c6a0dfdf1ebff52930a7c5c377a886063efe475ab03dec1d87d15e42f595"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c24.bmp",
+      "sha256": "38728bcb7e97107d9d0124ae14f78a7831e6ce5c8f36a7b77e3a57fca07f832e"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c22.bmp",
+      "sha256": "82af4d233df549a7d1346206dabbb17c6fac5562576c9db1983f787d3788ba6d"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c12.bmp",
+      "sha256": "03da3559926bb584bdadd95c7931604a2ab392a110b6e0ec0eed9a564b16d815"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c21.bmp",
+      "sha256": "eed5af1af974fd669c9e06c6dab2019d80ca510c5a886c98df32ab148713790d"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c20.bmp",
+      "sha256": "fbdec2890444afb55750f5fc7bf591d5fcc096493bbefb1c5f07749271ad5ce2"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c17.bmp",
+      "sha256": "cf336ee7c8556b002ea28d59c1fea598bd17b88839967ff5c9a6d684d3dff2ba"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c9.bmp",
+      "sha256": "e3aea1ee245d66565d049593dc2f1ee2edf8126598b761cc0ef46a77a35fded1"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c2.bmp",
+      "sha256": "907bdaa3f6dc1202044b846c0074695d069fa434bc66d5b095623364d5a68d75"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c5.bmp",
+      "sha256": "0f2c4ddf3a8332832732e79807d76da81ab4d99f3059dbd783b78661eb481d82"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c11.bmp",
+      "sha256": "5fa711dac19af45593b64a4b94f11ed56c34d38d62e0948adc8b06705c07747e"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c23.bmp",
+      "sha256": "f96a83db3da6c15512e709d28614d5705b1a3310451141357bb5ef72acb6a3df"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c4.bmp",
+      "sha256": "c2b4b1f1f5b4ba4ca01730d11f01fc622adbe06e1bbf0d92ae7504a6c5bd416d"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c8.bmp",
+      "sha256": "c34a3ec590a1b6f6e4bbe44d40228aa49a04f0a27ef6db8b3c4e40e4d305e67c"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c19.bmp",
+      "sha256": "5224bcc8258d789e08b2ac7390639979231542e9ecfde953abad86bcf73581ff"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c25.bmp",
+      "sha256": "275012f7f1bf4d04a1b685e14eba44dcb194c9bad44ad43aa627cd985aee33c4"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c18.bmp",
+      "sha256": "025ae4ea01183993d239de2d5003b0a94456ca4086a3c0d43aea996be247407a"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c3.bmp",
+      "sha256": "aed6c28dcdf942e5e7a06881dec6034fdad84517ce4d24f3a9aab6368aca59dc"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c10.bmp",
+      "sha256": "24622b88c656f096fcdad21881e759b7b9efa9c994c28aba8fa6a58a356e7ca6"
+    },
+    {
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c7.bmp",
+      "sha256": "2d3965ec6f89b924c6a65d12215892acf0bc5b76a89a14ebeb853d6eddaaea55"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d25.bmp",
+      "sha256": "3b06d3881965867d1e9903c4100d95c868d0f810b2c7eb51c4ff542121772c5d"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d12.bmp",
+      "sha256": "4d1e2b15dd35534e7c292123d32ba96ce5f2d067916fe66b8296d94f1d2ae605"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d14.bmp",
+      "sha256": "3a6b4ed079155c613ba3085e1abe3a189ff52b771d1aa7743871c54ce2f6c248"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d18.bmp",
+      "sha256": "50504d6104111fbc4339e2c6a5d4e0aed617b870b91014a94a7bd9c78f2d4293"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d22.bmp",
+      "sha256": "918e956f730c0bc56fa976789626a1b1e7272e751fc5dd38521cc60b6de9f5d0"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d8.bmp",
+      "sha256": "5e8c117bb34f3ef3755e42a0cadc4b883c53b9e94b2cf1de48312667ad560d0d"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d10.bmp",
+      "sha256": "7efd2303b69e0ae12ae586e53ac61b74ad3e79915be5c7fd9e779359a1ee3345"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d19.bmp",
+      "sha256": "4765d80687d100fe5030f1bf54e66257c9719db305722fab6dadc75c3aac88d3"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d16.bmp",
+      "sha256": "9919d2b5ab3bdaa453d9dcb6002bd4ee57f8a9c1672c5bc734dcbd23dc8ad59b"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d24.bmp",
+      "sha256": "8ac88dec9e9685fae884bb96dd7c60cf0b19aefabd51391b1693a517f7672357"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d6.bmp",
+      "sha256": "087fde72a9793825aa78406dd3c41729726bc08ece0d3d31b209a7047c62c996"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d7.bmp",
+      "sha256": "a030f745da1d80747fd32cd74a729dee58512d4afaa307e471ef15a69a0600e3"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d1.bmp",
+      "sha256": "8d045ca4d0cc27e35055cb2bcd1813e2ca5a8ea97850d7633582f2e4965e5d6a"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d11.bmp",
+      "sha256": "3341068f04a9866d9e4df68fb47ea0d03b4e6117b2dbd0408f7344b8c8fa8671"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d20.bmp",
+      "sha256": "787c01c836d84675777971893279704b32ae84a5872921fbdfd7e9a36a061def"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d5.bmp",
+      "sha256": "da90a8287490c9af29ece4f3ca75bbea035690304f8a637103312a87f55e2674"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d23.bmp",
+      "sha256": "f2f0fb1fba9551e75066ced8e053905e74e6e0055ebc54b8e6be7166ae3b9520"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d15.bmp",
+      "sha256": "e56803f3c52b2351894ac8fe2ed20c81582f9987dd19a0dc1bcf11e45048a8bb"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d4.bmp",
+      "sha256": "8b516aae7a4a3f55c6412b2900d2bd032c356d797c0ae591e9cf9b8234eefd41"
+    },
+    {
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d2.bmp",
+      "sha256": "9c5369c2ee3677af417587d71b45a7c1b4c7307a1951ec7d481c920fdc4303a1"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e4.bmp",
+      "sha256": "20b260f494e4be215edd0addcb8e62f9eb755c0bb19486203dccf1228fcc9a35"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e21.bmp",
+      "sha256": "cc2ac7b074f23b4c00f08407532ff8f762fe94c2fb674f0e8b58b7b281ac597d"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e17.bmp",
+      "sha256": "4adf7a160dd937ade03f6a9f60e1e3a6eefaeb1d8bde31645f1200edcb6e3fae"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e18.bmp",
+      "sha256": "8169bc159d475557253325f8b5b06a73ff7531a5c71449bcdee0c5cb477975d4"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e25.bmp",
+      "sha256": "7babf7bc6f0366602e9327500fb1ea43af2d76da80cc73ec4a3cef9ed8ff1d52"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e12.bmp",
+      "sha256": "c68d104f0ce961bb5df29fd761a166dbb8fbff598ad74a04ead8e270223ba53e"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e19.bmp",
+      "sha256": "d99748d698d1eeccf7a7047e8fe6d73b1187ae66a1763f0038ad04dc19b93a82"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e15.bmp",
+      "sha256": "11bd51e17aba37ee22254a1284ae27af6bb6a174eb87cd2ec1f7ab49c017263e"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e10.bmp",
+      "sha256": "5b94601d676070df2f43dfeb0beea123226f212e208eadccba3d527237083097"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e8.bmp",
+      "sha256": "5a869ef079a2ea5ad0cba97eb6c215d28dbc9e62d8da6035f7569abd40c482f6"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e20.bmp",
+      "sha256": "1c32f8a19d51f35b93ab02fed1f52462cacf735bd15c44bba2e823fd4c064f7d"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e2.bmp",
+      "sha256": "65ceed93894d94278ace2a58edf418dd5e6a980e527fc2cceb0e7dc6f31e37f3"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e6.bmp",
+      "sha256": "0b750390835472315e0c2c882ad7b2822afec1bee747a3cdd242d7b0397fe643"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e14.bmp",
+      "sha256": "0955879163f172ee1fa4bc4d1fe2d60a95bec6e79be6145b349f0c0aab19d6ca"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e16.bmp",
+      "sha256": "5648580108ab9281e56b4cc4ca4a41da1e5b56e30383b97a177f996cbc5eb8d7"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e13.bmp",
+      "sha256": "9072da5d44a57ea94382071c3d1972e704c755241d9dbed130f9448081ee9dcd"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e24.bmp",
+      "sha256": "33caaa4e4bd4b941a4039e9b132f5f9ded13a36ee5dccff96df3a7f41ab96e65"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e11.bmp",
+      "sha256": "f9809f715d4086b04738f05ab2cbf6e0f99af845c092a1fa5124d50beb4ef462"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e1.bmp",
+      "sha256": "f8521ac6d3fc68b8c74e52cf9f72845b27318a291a01753cabc263afcc00c464"
+    },
+    {
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e5.bmp",
+      "sha256": "1cba82e34f0b3cc40919d2bceac2400857554ba9ad9cdcd1551c05abda01a9dd"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f19.bmp",
+      "sha256": "dab7663bb877e8684333a2f66539810db3f260ac7aa5fdb18144ee51aa970c80"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f4.bmp",
+      "sha256": "3486a9abdd4a1cd56db485c4c4b5bf6d54526a24aa2ac151b382486bae150d40"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f7.bmp",
+      "sha256": "2442a9f0e94b90da2df86f508b1826eb47276e6105e8ca8088be66d6b50f6d63"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f22.bmp",
+      "sha256": "6b9692c69eace3b091e1c09835826f7acb5d9aa1788178fa068728665f2bd536"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f14.bmp",
+      "sha256": "49de994fd8578608ab0cdf12cd1f3430165b1568547a4f9e6ccfc038fc526765"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f15.bmp",
+      "sha256": "b5d0d9c9d1159dd22d28453d8bafa4d9e0fc58a30ad8f489182fabf78b37ed81"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f6.bmp",
+      "sha256": "b32c71c9673679e9375e4e04f691e7c2bcc8d0f1edc4fc6a529995733e38e793"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f24.bmp",
+      "sha256": "cf13840c2b3b01c9587ad9ac97c5a8f7186279cfc2625632cb764a09f257a758"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f21.bmp",
+      "sha256": "68b40f78a94c479790e1615e692df5ed22c0946eb717a6bc4751c7bde92f92ec"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f20.bmp",
+      "sha256": "cdb9e010ae9cdd6a107565ac78db30536e805178aa48ea7ba1710f1f6b79afeb"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f25.bmp",
+      "sha256": "3acb9d42a16ec0adb7e9cc6a622cd64a69bd42b6650d69800756cb7aeef2c564"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f10.bmp",
+      "sha256": "63788e5408d1c9fb1408f98fdfcf5b91f9a4bc929c9912d49c96771076d9f09e"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f5.bmp",
+      "sha256": "289ce95817d3c1853f6bbd3120168331a4f86b25df348d5a116b2e587d0fadd9"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f17.bmp",
+      "sha256": "b634185318af8a23eee6940b9b62e026cb47fde78149496063e262e5c645fbaa"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f13.bmp",
+      "sha256": "42073ec1d08dca1de73957fd8eb1f180fd613fc343cf58e675806d4cee2a2bc7"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f18.bmp",
+      "sha256": "dbbe06287defb0d7e53157e1602d20df9eb0e85110783afa845b8fdcb0543447"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f2.bmp",
+      "sha256": "5f2ceefe56a5bd12d9dca36930cfca60f9274a1408ee9623a05a20c4cc5ff144"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f3.bmp",
+      "sha256": "3a73ece4ca31c8f3b0e52d08019e71ef5fcf56adf93c2289f584c6cf1fe25e1d"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f16.bmp",
+      "sha256": "e43f77f5e52b4fe5f09c2329543d81c0981d674c099d3e8a3e8c08beb1304bae"
+    },
+    {
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f23.bmp",
+      "sha256": "b3966450605e4b38c27842ea8c5d873adb0ff90138648ea82ed4c6ab50653065"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g21.bmp",
+      "sha256": "39143b039e59e1760e8385f96e1e07869b49e778819118a60d24bc4bffaa3ee4"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g1.bmp",
+      "sha256": "0a207746c12a44c18de19f5439486589dd8b7b98e5ad6222cf3d595bb0a2d6c4"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g5.bmp",
+      "sha256": "e491e1f0e5fd7ec17e2aea82ff8da479224134e13dfb94857f0e3221199b26bc"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g24.bmp",
+      "sha256": "354b0fa2ce32cfb54e59637ce2afdcbd9316bc99bfb6f17bb31b155abbab49a8"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g18.bmp",
+      "sha256": "564a35449241a2cc61f50f7bc0742da868624c7270f06b656a897566c3c1948b"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g16.bmp",
+      "sha256": "98dba6921321d96d858532fc291ee41dc3ce2ae8cc78bfbffea735dedd1a1df0"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g8.bmp",
+      "sha256": "9560abd76272a13836ba4603d3c7b89d232b2458108df42795f1f98a3dd226f2"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g15.bmp",
+      "sha256": "e77541aa8b87e074ade1829b876fc780333e82d01b810c7134b66e48f1bfcf94"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g20.bmp",
+      "sha256": "efe8dfca108c80ac97a59a71577b29ce3eee35273e4ecda8a1ea9e50d573b6d7"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g7.bmp",
+      "sha256": "d5aef2596483592579d1c08145ec3634bc8441f0abab61faf50856e26e501a9b"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g22.bmp",
+      "sha256": "17b9676dbe4e0145d518aa77e1ca878310b3d72eaa76b4e66b86c096c086e3e2"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g6.bmp",
+      "sha256": "f62b799210bd31b0b7c38223a49b5e9ba94152da3f3069280179bfffb071157d"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g2.bmp",
+      "sha256": "8b2538de132e6cfbaa5890554a2e355711265d5a05c17a970b75ff3f937528a6"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g17.bmp",
+      "sha256": "15decef8f39b5f6c2952a5be8d050c6032c202f9441f58b341b5cfda12e96ec1"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g11.bmp",
+      "sha256": "ed90ae0a995ac7c58222e873960d0b0ffa452689d0e49235d9761a89a2286c66"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g4.bmp",
+      "sha256": "9c11a9bcfc3e4dc0b51fb0d1f7eb1557884a1bbeb0612e71c6262c17991c7f5f"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g13.bmp",
+      "sha256": "b1b15e9d6b6268af8dea408cc5f97bc05d46b088f497a4a26fdafaafe5fdbd50"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g23.bmp",
+      "sha256": "302e3466b27bedb1894ce40a5b96a6540f8052277c8f1f2b9a70bbf70bf182d2"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g14.bmp",
+      "sha256": "a6f741aff11fadb179da9c79f75e291da9c025b06ef5817f4761ffac932cc784"
+    },
+    {
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g3.bmp",
+      "sha256": "4104013a811bb794168998b74326ffa056aeae463c286b5febeb65e206171813"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h20.bmp",
+      "sha256": "b2aa10125885f08bc03d8a77d4b8494afc6742bd232a74f3ba0430c3e7dca0d6"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h13.bmp",
+      "sha256": "ced4ab61d9b18f211251efdb90ca5f2b3873cb6803e11a33b06b6e0f54ac456c"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h10.bmp",
+      "sha256": "7242308c28db81d3e3aeb64d330ec85f0a63c2feb95396a8b7221daf217ed3c1"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h2.bmp",
+      "sha256": "4a72c4b39d8c63ed2806ee0dc2e02c7b75cdb4f952fa6effc103935f1b5c8386"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h4.bmp",
+      "sha256": "1a2591bfe344073714687e416fef9bf666e90d0bf2d25aed4ea47f9e21dc8a55"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h24.bmp",
+      "sha256": "1ecea1915174e3b35ec54d1077876505455c16d57b88ad7049b416d3a2d1f52c"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h15.bmp",
+      "sha256": "def08628140cae8f8eb710cf2dbdb519134d275d9982d49a42d91d5256646120"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h16.bmp",
+      "sha256": "2db68c5a83f32d0fe0975d6f6cef2af8992181ef57996ea5dc26e79dc1b643b3"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h3.bmp",
+      "sha256": "5587fe84b5b58c27e6b91558bf68d3ca7f83ff214b0d180751bd578bee8f9921"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h18.bmp",
+      "sha256": "ddfeab10d16293a282fe71d5151ad7cfb928b55ca4d832ec518e3922b84e4f85"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h12.bmp",
+      "sha256": "44c4a8546bc3c181a585b8e6cd924bca1999d09aaa8fe606743d7b9abc19a314"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h22.bmp",
+      "sha256": "5b9bb2e79572eddfb279d58700f1c9260f07c94f6c72d8c8f317a2e370983be2"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h8.bmp",
+      "sha256": "ec3bb2f65a21023ae3811bb57731bebb74b9db526ba88df8f688b407114e4d2a"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h19.bmp",
+      "sha256": "e1e9eceaa1516a02a6f2032aeb849520c024aa2ecd2c57ca58a80e10ea984242"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h17.bmp",
+      "sha256": "2077057a22c138b55868b24eb41986d8939e7a1698f3e62b2d7fb8a4abe4e098"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h9.bmp",
+      "sha256": "c9dca57816bf341b73db68be46236e0bfc0a3af3cc56534772934c697224c6cd"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h23.bmp",
+      "sha256": "7eda028a6f10e9f7e7140a99fc840e226b90f67755eab15872510f5d57272da8"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h7.bmp",
+      "sha256": "079a97e8f59e1ecd972ea428099689034b15c3a9c959df2f80008071c59b1b9e"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h21.bmp",
+      "sha256": "8b663932496b0913263f0e185ec2dc18445dc88b817f256920bb2ecc01483ffc"
+    },
+    {
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h5.bmp",
+      "sha256": "bca34fc050ef08423f7cc9e292bec0048db0630cbeb5986d294aadab6eca47ca"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i7.bmp",
+      "sha256": "ae64b4feec77162d1efe4f4fb6c905cceff4947348702ee5372c94548574afea"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i9.bmp",
+      "sha256": "3ac41956b4d4b6f153c76f76e0f1bc9fb05e71df358dbc0fe046415f1ec29277"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i1.bmp",
+      "sha256": "301e2435c6e1ebffc5c5b2babdc52d2e52549ac663ae462b91af2ee147e1961a"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i12.bmp",
+      "sha256": "649cef231a5e0f8c828ee6288aafd239370f3dbd7e613e58109a63bf1ad84225"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i4.bmp",
+      "sha256": "5ab2ec3fec6b4cc274aa69073e9573d9f8d8be43b1e9afde7ed1652a5a0fe0d7"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i3.bmp",
+      "sha256": "8cbaf354df3e8ff392e8292ef7d91ac8119decb5f4172e5c77c003f8083af722"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i24.bmp",
+      "sha256": "e59261dacb40319205f47d2c32bd57d56d8bb34e6c02d7daeca1a113453ab3ce"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i21.bmp",
+      "sha256": "b6d685a01f90892bb1605191c9bfce83a7c68835fb9131068a0101a671ac42e2"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i17.bmp",
+      "sha256": "710c9158608163c5f544faf60c1a1a114b7a0ea8ffb729160f9761b1c939516e"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i14.bmp",
+      "sha256": "2a3301b7f3fb91a22cdbaf1f86f5f4c8c8c8f353339cb90a1813e734216bcc7a"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i20.bmp",
+      "sha256": "0798b9188b0660e09fd28ee790bf58df793deb25ecc45fa517ade542f840c5be"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i13.bmp",
+      "sha256": "85d39d14e1fd2998d435e9bb9a2c95365242a94dc9734422e00fde5b93d8b538"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i6.bmp",
+      "sha256": "59b99f16646de19451c03a1151a380e9e4abebfbd6b13350651346a8faa8701d"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i8.bmp",
+      "sha256": "9f4495d3cc57b42f6dd2cc33cd7de07807681a2770501035626a868dfeb491f3"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i19.bmp",
+      "sha256": "d8900a3a1d50f230ee9f1534a857affe99419c93ee9f167ca9c571cf7728eca1"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i11.bmp",
+      "sha256": "7d48710d5abbfb5a763c2e81104b09bd5a426b3b86ecd04340c8f85b3a41b7e7"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i23.bmp",
+      "sha256": "480a4a74ec286d521d809ed2882d8d2a3063b11d40057436fcfb5a70322346f4"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i10.bmp",
+      "sha256": "efdb78564a4d02218c13f47e5ad5da2e3852f883ca2dc572cf6764e196e6d4dc"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i25.bmp",
+      "sha256": "69b85bf43d8a12acc67ac4b06da668f79af142263d6834228a93c333e1bf7ec1"
+    },
+    {
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i18.bmp",
+      "sha256": "4cbee3147edb4b532f956a78d6f88fc4cc66b524bfac1c0c9b2e65b9af7c8017"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j17.bmp",
+      "sha256": "7390a12fac4119f31e38ea15ecd13da525ffa82d6fb04176f43d5c0218cc6f04"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j22.bmp",
+      "sha256": "432842cebc22a3ce21c8954eba2dc360b0fffa0fc44ae2442b75e2f7b969f438"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j8.bmp",
+      "sha256": "7434757b2f7cb82142c0bc5b7090f0807e411655ae9d1e39bbcb60ac55636d8e"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j13.bmp",
+      "sha256": "6faf1821bbbbd3ed83db09fbe512a9a56b99f0bfdf5a49084c2dbf028920e3a5"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j25.bmp",
+      "sha256": "4477466d35e097e6556a9924f6a40cc23ea9bdcec7e68071039f069ab845e9cc"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j18.bmp",
+      "sha256": "67cd3c0be7e44b31e55ae9c8cf52975daeeb483f51e4801256ae4970ad1ce0ae"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j9.bmp",
+      "sha256": "2ba37fd9d527110674653373ad2b5ac90f91ed5caea0c15fb231a5f4853ce5e8"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j24.bmp",
+      "sha256": "ff98b66d760658b4192f5d6412b34a75cd9ffa56f62d4547f2f818721627c527"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j16.bmp",
+      "sha256": "7be8408c3ca4af431901957c187393dc90c1c4a1423e6b4f9b4bac24eabe899a"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j19.bmp",
+      "sha256": "2d7cc6b4be94acd8ca0794630db760ea74b69082966d3883cf80b7be59afb9b7"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j21.bmp",
+      "sha256": "42a23ebbd0cd3f327343a5e46fcf25ca6eeaaf97cf9035931c37992056ae76b4"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j20.bmp",
+      "sha256": "24be26353bfb347f1404f5484dbcfae07fece1398f472a9af834bd671d080dfc"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j5.bmp",
+      "sha256": "fa3d0fa9eca2ff4acb3d83b624a1799668ff0f78fc97f33951dfa19069110076"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j1.bmp",
+      "sha256": "abcccb943d4614fa3ea27133b1acf300b9f4ba811db08d1cff246c95e56f8088"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j2.bmp",
+      "sha256": "25b8b313f032f67480a07d3a84d83624dc97f4b925848a51475b8c5b23319134"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j4.bmp",
+      "sha256": "8311ab70407f57471a9495093e1f3d95a6023f4ceebc6ece98e81b5afe977651"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j3.bmp",
+      "sha256": "ebcd6c01e3930a06b5c202c4f7c1662b5b575b03a6df52dafa247064a32705d9"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j12.bmp",
+      "sha256": "b47b9c68c90544d98372c23c955358633b462a3165e641ef41c20198b7e85265"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j11.bmp",
+      "sha256": "71941dfd11cd87e214fee0c5dc6d7689dc56f2d83d0799adc06344d7b1948a2a"
+    },
+    {
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j23.bmp",
+      "sha256": "13af9db7f9fcd4bce27eecc7bb7cb843bdafe67dd92f7d8af54f396658e77541"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k19.bmp",
+      "sha256": "5aa9ac645212043306836234ed1d9238f355adad5c0882046b418e6a9626170c"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k8.bmp",
+      "sha256": "fc584b4db580eda89d619a419b5934eee5cfc329110231e63b0585a6e6299e21"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k25.bmp",
+      "sha256": "d90cd57474fced494d273f54cacd7a4042257b60ea501cad90d15ef503adde4f"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k15.bmp",
+      "sha256": "419971516fca07d4979c1408a261adeabbf92cfce9abf268c861a00eea9cd19b"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k9.bmp",
+      "sha256": "2b92f754c79bd99c99e359e58e2bd72e37c6cd34dbd70312b5b002cd7a105eb3"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k1.bmp",
+      "sha256": "ec7376f20373828001dbb6440910b9607b6b0cc3e19400b404a833c4d457482f"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k11.bmp",
+      "sha256": "245df811e8d2e7a771fc4f6bb47e69cce21be815eb906253fdf0b4c8f648eec5"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k16.bmp",
+      "sha256": "77cbd9d0822b0d91cf4fc47446e07839373c4a7e60d1a44982813e2432d7b857"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k2.bmp",
+      "sha256": "c1ea13abcda1362d19618556706d54f331800681a10be814c4922357721deee4"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k6.bmp",
+      "sha256": "769197323ccb5221e8da6472901022f977b995151807ad417632057d00c753c1"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k20.bmp",
+      "sha256": "5e7c511bd01ac3ebab8df57c402eb8c427467f925cbac0a545bb4cc3ddd5ad54"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k14.bmp",
+      "sha256": "6d13d45fb257c3b9ffb374cd2bda0035689866bd41ceb55496b399108815b641"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k24.bmp",
+      "sha256": "7c9cb2c6ed65e2fb198f4f7c43351baf20f783d4314c61b396f37fe849ed77f3"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k13.bmp",
+      "sha256": "10c7780cdb0bb9200291543560bce4769267b636050a1dda1de4684d52560cf2"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k12.bmp",
+      "sha256": "30f75fe62b0867f4dfac18f15973466a62c258f496479154c72823816c30a2aa"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k5.bmp",
+      "sha256": "31766e752df559ab602915a07d0421a4014394944f7a9db9d30fd443399ef6c7"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k3.bmp",
+      "sha256": "be933262a71ba130b9630be8ce89c8af75c1c51735e4aa208136c37224dbe8ff"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k4.bmp",
+      "sha256": "f544981c0c899053eab681ea98ceab3c4566c9d073852123eefe280da1381da2"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k10.bmp",
+      "sha256": "2fca6ccc9e9fa31b320ad69976c53304729ebdc5754eeb762dae4382eee40917"
+    },
+    {
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k7.bmp",
+      "sha256": "76a85f09d4d0c3eb687b33b1eb9a37e7ff29d21d8ecc0140098d7bf41addd294"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l22.bmp",
+      "sha256": "67993289d9661be207aef7e8d7cef030b38abf52e304311b43d969828cdebcf5"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l20.bmp",
+      "sha256": "a5d42a2e57e846adafb320677099fd2a6fcc9f8a07a5c4ac20e5a0d083550dba"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l23.bmp",
+      "sha256": "6d8bb5086f8d7a7b15193b8206914ca020ec4046eef2df486bfb0b061289c77d"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l5.bmp",
+      "sha256": "88abd58cf76a480c5f0a95b89db86c3f3c199e8df1f7c804e0f5e2f82ee1302f"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l7.bmp",
+      "sha256": "a3508d839e81cb153a3de0f4f9422a6636bbad3aac270d0c58c543633001f038"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l13.bmp",
+      "sha256": "a054e0bd1f4a9e50a655ab842d75f4d66e54cc51c115d53959f57ccac30f931e"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l25.bmp",
+      "sha256": "b0d6502a8bd51c8c304de16f5684692d0b8f7114a72bcfea1bdcd6c860b42d45"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l9.bmp",
+      "sha256": "c0c889ca9a1e4732e6bc325d39d03fd7789ef64951e286f1908fdb76d173c1f6"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l4.bmp",
+      "sha256": "58b26839e1d282b424509b1bce65f66a48b365c62836404c4fac8fd02b569959"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l21.bmp",
+      "sha256": "54b39f7a3da200a0d894e96bcbd97426bd45efdd8963c68e0d7e42d84b327f8b"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l19.bmp",
+      "sha256": "c408fcb622c310ee9b26506b65ce14d12e54572a32ff1ecc3aa0f42a6e97023b"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l17.bmp",
+      "sha256": "f32c2eac591e6a1a61aab47cbe264b2637a35301eea150454947cf598170aab3"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l24.bmp",
+      "sha256": "7d0e898f215c85fdb3d82a867529b45999d6bcc9066034e7dcc7b337c1b2c199"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l12.bmp",
+      "sha256": "b69bbb3330940cfdfc04dc795d0eca6832b2a44c9bb2ed794a9a4829b18ac3e2"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l15.bmp",
+      "sha256": "ecc1a99fe4279409b7960d1f0292c82066124fd85c46869be5932251197dcb39"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l3.bmp",
+      "sha256": "989e66762b42e95a87e28361036c0caee8e1e0c65d542e78ed9553d9dbf5d781"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l16.bmp",
+      "sha256": "5d9040ea5179edb504e669c39f1c01205506abd751c6ad6b9cc81d4b9aae52c2"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l11.bmp",
+      "sha256": "32e7746d558369a9ae7ad47bb94c9912435a4f722c47b63e4b539fb7c78e08d1"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l14.bmp",
+      "sha256": "bdc914b62abec2d05f6ead911550e08a00fcbbf70e65cf8126a94fd05cf8a127"
+    },
+    {
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l6.bmp",
+      "sha256": "b2a3f9d5e4a1446153027e747ce4979314e46a3dab7c0015da8bcf27aae09473"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m5.bmp",
+      "sha256": "547f41857d764b951d0f706a7c6ef7c940cacb35e007a1cbd6974bc63eb9eced"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m3.bmp",
+      "sha256": "36935b176fc9a5abdf84a1356be3dc6460425c0a56be905bdce6ac7b874c0d42"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m22.bmp",
+      "sha256": "3337e2ffc8c6c842f251faad65f174f9df80866050a7ff4d49814270e0ce32b4"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m14.bmp",
+      "sha256": "96c82b803f2f55889ac5c81a87bef53cb6c9701c5bfa39ea62dd31b53bbf1a89"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m25.bmp",
+      "sha256": "f464645b1bd626e733bd85cd6fb41f81dcc8858d17be2e8aa5f3747b2dc13d00"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m23.bmp",
+      "sha256": "d6060240d4c65c4899f6f35c31ddf39c3224243cd0fb7545c857ae56a3c11ee7"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m2.bmp",
+      "sha256": "d715233e401671635b0b3d615d1fe879ebada5ccd4374f832072b32464d57eb4"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m8.bmp",
+      "sha256": "4721f62230644e24b782f0b779993ae67e88eac9500917bb279d72c1b7cde2ac"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m18.bmp",
+      "sha256": "594d2ba5fd10847a6402db71f0e7393c5edca0e3316c4979334565db1b3a8e8e"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m7.bmp",
+      "sha256": "35bd54abe21fe6b18bf79ea41b3804a3ff4b2d4d1974c18989eb4b9548ae2d98"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m20.bmp",
+      "sha256": "9d2552a2f0fdc93841d8147808d37cd04170dcf86de2bbfa138dbeaf03e8eaff"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m16.bmp",
+      "sha256": "d5250fb1c660e27fb46dcc6b8848eea7b07ca27acf3cb4debbac9d2bd589d4a1"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m12.bmp",
+      "sha256": "3bd91c7c36101f3ef3f42eb5a8b9daa5c1b3e9a737d65483dc97418e6a160ffe"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m15.bmp",
+      "sha256": "7b3456be639e85632894ee773481f7bde42b9972840d170bc23c0c80b1c95e1b"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m17.bmp",
+      "sha256": "b02bf2fb8ce19300b6d8b5eebc3509233468f265d9e35a13c5b830d929fa7941"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m21.bmp",
+      "sha256": "0a339d38db5427ee7951c4ace8e091755b0b2a3fbe454e3b3317809455c3273c"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m24.bmp",
+      "sha256": "1d5f82569a31959de12643c53440df110dfac170c5cf922267c849fd84657605"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m4.bmp",
+      "sha256": "d1848d8e1cc12d22099d1e8b814e917849680f2482fae73cf63a2528a554261f"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m19.bmp",
+      "sha256": "25e529659e21dd04ba93507b6fb76d9bd8b2c680dd8c1112447db7de99e259e3"
+    },
+    {
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m13.bmp",
+      "sha256": "f4e3e36424069495a85080931d20c197b1ef7a8c271473a125b97a717dcec40c"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n20.bmp",
+      "sha256": "d9e2aa5cb0a2951e7ea3fe7b2ba137f8c47dd0c18a52f0ad0db0ec0b2d392eb6"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n25.bmp",
+      "sha256": "c5f416b75fd8e846ec93be69534244ac90306c7138572a868de51b5549ea5fc3"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n23.bmp",
+      "sha256": "e2f64d5612767202039ff17cd662702348c1b9f8de1b6cd2147e0ad31858fab9"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n14.bmp",
+      "sha256": "ba487ba644ae79a8b4c8e3a7220da25320c708e809e2e9ce97c696c1120ca357"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n21.bmp",
+      "sha256": "2c8e4456c292a5af15b198e16c20c24513e0f2915ce2b635c6283e445e8f6b76"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n8.bmp",
+      "sha256": "462d6d6404af5b3c035def47bf72e6d1218560000e9927be16a705762ca5f60e"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n6.bmp",
+      "sha256": "edc7d67d155b867c7e04cdeddcb501e07c89e4747b994af22da7919a966ac016"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n3.bmp",
+      "sha256": "ad7e4925b843296286444221bedb278fa7d9f86d9633953159381ee9d2f76e10"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n22.bmp",
+      "sha256": "f597c26a67b67b111c56fa3bcb2d3792eb3abfa14a597650b7961d55e20d0853"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n9.bmp",
+      "sha256": "c4d017f7903c9fdd1894ada70af2d69d125261b3d5c06de9f8b7583c785b9e8e"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n10.bmp",
+      "sha256": "0d6cca43c44c45d28133f33a711a6d7fbcb0af950c06609ed4da1533a4d92e25"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n12.bmp",
+      "sha256": "2855a30b5585c8c9a7b785a88599f04ac7c5ab0391587dbfb88934c557ae572e"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n7.bmp",
+      "sha256": "d4a68f00ae1165e3908027e578fc6a5593e23b79856396304729f23cd6844aab"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n19.bmp",
+      "sha256": "f1de3716e933ea6f902a5f199bc13097458675a843f171b452d93fe203ee4d54"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n11.bmp",
+      "sha256": "af4f94fb52fa790bbb13ee9bc51066ed1975895c39c6adc81f5cbfc19d31924a"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n24.bmp",
+      "sha256": "b652d1cef86dca6066684aac434b4f9c7c4746c7d29a98f94f52e9fb0a8d4bb5"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n17.bmp",
+      "sha256": "d70fe4d3fcaba6622308a107c95ecd6a9d369326b8c83534da558968dcc60d1f"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n18.bmp",
+      "sha256": "2a2931014e2e54147dd6f2bf0cb12c472d7d6f8260d9b4905b289b094de9018d"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n13.bmp",
+      "sha256": "a526bc2f680cb41787bc23490bb4eb4df5487fe7f07b774395b837c869e9a1a9"
+    },
+    {
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n4.bmp",
+      "sha256": "c935ce135c59d33eebb00c00b427114eda8d81671794d68248beb5e05e781ae9"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p23.bmp",
+      "sha256": "9b3e72d8fb51ae908c3c8726ec1345fa00de9b48e334e6b7baa7a90dcf32701e"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p11.bmp",
+      "sha256": "7df5d15f19cc3f4e0a58224942dc502b2157932f708061d04372b50dffee3aa8"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p14.bmp",
+      "sha256": "ac38cfc9881f4fdcd60894f03f1fb35d984a75a987dff1ee6ec81886b5f3b904"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p13.bmp",
+      "sha256": "5974efdb5d84c4472bc7c50156c9f705b3962473de761c06eb61efdc74b88c6d"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p4.bmp",
+      "sha256": "981c003cd69c4cd973d33655128c57d9c38d1d05f9831bcc1337e1f4b0683d6a"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p15.bmp",
+      "sha256": "68a8f636cee9ba2bc6653e225c66e93674fd706b09a51bcca55ca8b6866f30ac"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p24.bmp",
+      "sha256": "3856274e067f399f84562fdf567cba4ba1036fc3b873b61d342466fda8f5f4e7"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p12.bmp",
+      "sha256": "708a9f0dfa8d47d6e580914ff2a3fb9cfe30c85259c2a3c1032098645f0e2a95"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p25.bmp",
+      "sha256": "3697a7465495a7bc54d6067f53d51c8a3b4eac35cf046e4fd5dbffa60312cb56"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p10.bmp",
+      "sha256": "e76eaf2a148d0d80ae5d0dbebd917fa4f8eed4e4b2bca5d0243d6e8368d5688e"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p7.bmp",
+      "sha256": "b73ca19f7e9deed21335eac64f7f31b4de06a655949fc715caae92256987d0b6"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p21.bmp",
+      "sha256": "c70643c1b0401a8e6d892b1714a65cad1d84d9356d5a3692fd8cd6d5fa7f6e5e"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p1.bmp",
+      "sha256": "602105fe8befb19e27442b300c0efa81cfd284eff037fa5542dd1362b47d7ade"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p22.bmp",
+      "sha256": "b8250522e34704ce1aed894f223542adf12e03b437899a313934df2566886e54"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p19.bmp",
+      "sha256": "071a96fe1b8d47330218de49123c3d61f49bcf3e13fdee3e2304a3391237de00"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p20.bmp",
+      "sha256": "9ee44c0660f4972433e43e0a54a82be1e3c7c152155590ab6a28a449462771b1"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p18.bmp",
+      "sha256": "cccb32b25bfa26cf0ae2bc0e644911d026a57ac4d35b0f472d3a2986f56d8163"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p8.bmp",
+      "sha256": "23dd11ff7862b98ba8e94a79f86a5c890adea47e27e102f424429a659c814f21"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p2.bmp",
+      "sha256": "eff09cb649d1b5ee1ddeaf427964d32e9cc014d832fcc226c9a7e4c0b475f4a5"
+    },
+    {
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p16.bmp",
+      "sha256": "070dc911009f8e1a2254d5fdda231b879b78ab83a194e880ecc1db1b581580f8"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q16.bmp",
+      "sha256": "f302e8eb8cd5c0b5364c11cf99fd4b93627b0cbab032f2fc616ad08ab844ff69"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q11.bmp",
+      "sha256": "7e72aca1b73161f4f206fe0bad97f944ec62417daba30dafc4a4e02a2a32c7fe"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q19.bmp",
+      "sha256": "18bf6f2579a06382da60c5b7b4cfbde69a9d537516f95f4a52fc759e6e7bcbf0"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q10.bmp",
+      "sha256": "79929ef23fc728cd604d3c7b4a371bb412d255a658ccaeabe2f2e04c86554b16"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q17.bmp",
+      "sha256": "ee20e070317c66fc1fb7252b3cbae70617a0d52b359f0730f8aaed2805f889d9"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q7.bmp",
+      "sha256": "a29352fc1d3e19459d449bee504945d8aa9e7ba8cf5ccdbeedeef87af0c1e146"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q4.bmp",
+      "sha256": "aec1f09445c3c84937192e14f0290ea3f1e45a470728b68e11c30ed77d48a514"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q23.bmp",
+      "sha256": "3a968d264579ba33aaebf9fc5cbaa8dfe9617656da6d27893f87c176467ad627"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q21.bmp",
+      "sha256": "2c9ae8c8e3825bbc5df71ce4fc22338622edcfdba17d0ff973eb56696db2ce6e"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q2.bmp",
+      "sha256": "12dbc7f96eb411f6f6d1918c2aebdec66f6381ed5a3fe5c84bed19eca450aa2a"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q9.bmp",
+      "sha256": "c472583d1647f7b828f81dee14bffb0f491873ff5dca998ed7a0fe55f8f6436a"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q5.bmp",
+      "sha256": "9c5b4f3e0900ae5035f443210bc309ecfc8ce93a2bef2882024fca8e595bd443"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q8.bmp",
+      "sha256": "325359609b0d584e384e27479a4b5770c8a46b3e4d8982807ebf8685d21c434f"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q6.bmp",
+      "sha256": "76e950d75013d78b2ddbe62973a75728c0e00b63fc25a074206584ea85fc0eb3"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q1.bmp",
+      "sha256": "fee90ab3c9f96dd8fee0b0e0b891b583b8187e89fd2c8dd4919bc8b0f835ab95"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q25.bmp",
+      "sha256": "78c5b3c37104d2d1f4caad44c7cd11559e7368f28117327081b9b3cf414c6c32"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q13.bmp",
+      "sha256": "79be4abd4d030c619879ea96a3af9b75afdc6e85baaa0998fa50f8c246fe1ed0"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q20.bmp",
+      "sha256": "edeab341c3c214e66e07d4961c917df11cd8fcaa202a3a489d2e1a200f95432f"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q14.bmp",
+      "sha256": "6b8ca39ebf0c32edf02eb8e6a3c7d1b0a4964bc2d5395b773e0ae124abf55bec"
+    },
+    {
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q18.bmp",
+      "sha256": "f54410a5ee4346477a873aaf20831f062865c808ca42ba07e56c6b0da6d96001"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r18.bmp",
+      "sha256": "92ef01c0c7b946f381c64f1fb6a95a03b0651783e95ffd4d1e49fbb7e461bf4c"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r14.bmp",
+      "sha256": "da988b52987f052df239a22af4d11c703f818f2bc24757fbd374b8431c57c67c"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r13.bmp",
+      "sha256": "e7a1587e3e6f043cdc854c46ac662e18f5a1e1ff1aa8915edd50eaeccbdd8181"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r25.bmp",
+      "sha256": "c420b5d26999d0be617f2099ec4da14bf8fcd1e01fedb93a6bb9fce670a8ef21"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r5.bmp",
+      "sha256": "da3964ad025aa540b591441ecc4217da6f6d015e428f89faa370447ca066ecd0"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r21.bmp",
+      "sha256": "e3c5a4a038425ba46ddef0a7e4fe3b0cc78be548e59d21ac426a76422c5268a1"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r22.bmp",
+      "sha256": "92739461adbb7f8259d05add45f85ab424714298f671c8814080438393c522f6"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r11.bmp",
+      "sha256": "ccf3bc9af7342aaca4c44c10c3e0331a51ccaebe4f5a89479b45e6fb2fb12c10"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r20.bmp",
+      "sha256": "ee02e8a38d27cee42bffa93bc23fe6d38ed7c48ca24f7fe4a8b6726dd3c24e01"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r23.bmp",
+      "sha256": "5cbafb37ed289357797eb60a648e15f5e3704b9dd943315e455970e71a1610bd"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r2.bmp",
+      "sha256": "4f193c3053dac33e6bd78ff0c4cff526eeee0f30fa907650ba6ad86c1b14aa3e"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r1.bmp",
+      "sha256": "4f5a5810021b86f8ee36b418540fe5d4768479b6c32d31174ed80bf4db4c4516"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r7.bmp",
+      "sha256": "b368e490dc0f73a0a8f9aea5e41bd05cb2313d69daff2e0ada3ef27a10e806d6"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r8.bmp",
+      "sha256": "cc49983e1cf205fa35ebb5435b03ebf042b9e6290e8251361f7e323935e36ac0"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r6.bmp",
+      "sha256": "31747e1feb04efea90259113a5139fd2d97cd2f8332db3d060aadac40ae39e60"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r19.bmp",
+      "sha256": "634e76f6be11d7582941e2d998570d8ec2377fb74248aefd7b9d8c2152060fdd"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r4.bmp",
+      "sha256": "8da9b89f633eed241301ffe1e7a692b5e9f2456386392114ee2ece28b2a0943e"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r17.bmp",
+      "sha256": "add4d4300f349b79a9c2333e7ab266242e95d3a15bb53ca6b4d24cf454673f16"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r10.bmp",
+      "sha256": "79072ee077dcc0ef484d0cb0eda922f26831b9bdafd2a8e5a08782355a89bacc"
+    },
+    {
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r15.bmp",
+      "sha256": "4b2b8fdffdd0bcc60cf8a7257510596ce57d6c9ac517c80c0dd6beb431e0f520"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s20.bmp",
+      "sha256": "01436f0a25898785351ae72f7601cf74843fe18e65a71e64d6d9affb18153fb4"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s7.bmp",
+      "sha256": "bf0798524a3cce9a5f0c1c1cdb7350b297172f22e222e6bfe3412348eeccee59"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s22.bmp",
+      "sha256": "2bd8cf0996016c9ea917be0d9b750f2a269cbe63873c98498aa269b71eb96ac1"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s15.bmp",
+      "sha256": "58906ea244203f6039cb24e467fc9632fe438354062de8fa2243e735eb1f8d73"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s11.bmp",
+      "sha256": "59f92b35b4995cf473854e65fd784e1bbe03b80ffc15d58b1c48fe195f30b5fc"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s16.bmp",
+      "sha256": "8023d852a3408f6d76868b2e97e495e28a95d0697b128ab463145039e457c2ee"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s12.bmp",
+      "sha256": "399f6eaa39965c8362e40ad5191e57ba0748f1f98aac1bb7c7d9d5d499c86647"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s23.bmp",
+      "sha256": "284b7b643f2d9ab87df0ce0d8c04931066a904ac77f2f4e4e17a6ed65906136a"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s6.bmp",
+      "sha256": "e6c482842324183aebc6f6223f7aed341cb40c6933c40ff577a44edc13728933"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s5.bmp",
+      "sha256": "80b1b1c33175e285f598134304c21a55d00e8e5031f79dc0641396bf6449b074"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s1.bmp",
+      "sha256": "eeca251fae452d2fc0dbe099b12d0cb727ddd4e4390f8c64c010aa1c46289579"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s14.bmp",
+      "sha256": "f3af0718631aba3ebdba5f76d06212132567e1288e0dd56bc3d631c70263337a"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s21.bmp",
+      "sha256": "c55e8a835884493239cfc2e5d08237cf15ddce915efbb172da859155278b8171"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s2.bmp",
+      "sha256": "1d2a7339069b3d08b9a25c0be5053c90f97be2eef2eef23006b6da24fe679eb4"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s13.bmp",
+      "sha256": "c71ef2a54b3e56ceef1f8389300efaa85d77299fd6e2527fca7f596096393a24"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s25.bmp",
+      "sha256": "2ff3b5dcab6ea5f63daa6fa06f73d2393da3114e63b8ab629c9357b25d7fbfa6"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s9.bmp",
+      "sha256": "5bfd5b5d38769798a8dfb02cf45d5f97580a36adba5e0e86538b2251c58a9479"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s10.bmp",
+      "sha256": "9b66315df51248916ecc81e11844645ec6503b7b7d7e8cf4e8dc795de40cb838"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s8.bmp",
+      "sha256": "506aaee11bb99e3d2dbe500e21efc47cd322532747f07e46e5d94c4fa304c383"
+    },
+    {
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s4.bmp",
+      "sha256": "98a40bb823a6ac17506c87a0fe535efc99fb0a1d505dbff22b3d51796035a8b2"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t7.bmp",
+      "sha256": "4fc98cd45e2df4e0524741909f08ed10578f67524b9e63fbae21829ff247d4bd"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t17.bmp",
+      "sha256": "6b80852fa9be32f9bf3fa778a73c35f5598db1d769fe04c4613e5793835e0103"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t18.bmp",
+      "sha256": "f11cc4a480b7f2e9476108ff0566a3d7d07c5d24386db9016d481399a94d5411"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t9.bmp",
+      "sha256": "00f92014be2a8e20e6afa844e157610bfab7726b669234e2981e837981263bb7"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t5.bmp",
+      "sha256": "f51ed2bf2e1aec136925f5d14f683037c2d036f8bb8cc741fc757bb33500d13c"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t25.bmp",
+      "sha256": "9f52f4c320b97962a9dedc02b197c086c3a7d327031b2dd53e35b90563e46166"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t11.bmp",
+      "sha256": "ad9533ac273716f95570dec70af787714d61fd61fc47a0ffeef036304b5bdaff"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t22.bmp",
+      "sha256": "3209017e5537718cd5f46ffc3e488d2d43628a46aaf8d5235eb87f8e1f1674e2"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t3.bmp",
+      "sha256": "6a40bfe8a2e857aa7fb75a36a2abca97c4ae23f3f08731e52c24e2873d046b45"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t2.bmp",
+      "sha256": "ed85fc710f114eb2799613ba384d87c63eda7a202f26da4ce80d5e9daf8e785d"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t1.bmp",
+      "sha256": "50459645cc552881cc76bb0910474292f63c141f635c279d5d8365ef747a0ccc"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t16.bmp",
+      "sha256": "218a56495cf3b3b5f21d062feb3191b75080d16e5565a0f74ed75966f55f4e30"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t12.bmp",
+      "sha256": "939d98a1bfe9c4243c749eb31aa9790761f98ae7044569cbc71bfd1782381b62"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t14.bmp",
+      "sha256": "ca6f732d0322ae6ffdcc52e52eeacffb876560104b6d649df0793934b11e819c"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t4.bmp",
+      "sha256": "14209b8f1786918809b127229b591d5e2bfe4c3d9d0830625d2adbcbdd0fb410"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t10.bmp",
+      "sha256": "f10450179b6b2d60754cc6e20be04d1662522296988d5c21a262f953ea4964bc"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t8.bmp",
+      "sha256": "f65fe018a1f7ded45d2f9c93d422297190551a121449242927215ff14995e2f8"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t6.bmp",
+      "sha256": "c6ee2f03c787be25655350bec7cc9c9a49b8482887e989547c2e6a2d428ab408"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t24.bmp",
+      "sha256": "402faa73f0bcf0d1598bcf4b77f9b071031df86e0c387338df153f22449b3f83"
+    },
+    {
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t23.bmp",
+      "sha256": "2523178c8207eb7033823fc71d0181c937ce161a9cb35a8b7bec2e3cf087cb98"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u19.bmp",
+      "sha256": "b5eec03ebf16270272bd4c0e6ace6be24433d7c45e9797fb568922428d947a02"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u15.bmp",
+      "sha256": "d964241225f02158eb646d1e4c30e6f9611a1f7cbd1dac9a84f3bede1cdb21aa"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u12.bmp",
+      "sha256": "4d8fec3bd85c755ee919f7d617a12c4132ab35e416c0d706f2a41de3de3e40b9"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u24.bmp",
+      "sha256": "a5d50227b26e6f397eede458c6d25c8c16f54f91e31a155860440d168878290b"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u21.bmp",
+      "sha256": "80f0395c5fdb95aeff29592aaf8740fddf32f73d5054471da06ccf3993d9089d"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u23.bmp",
+      "sha256": "3893d44b63a905c779b72c600f2f02f2f52567207807a84fd935dbb648100075"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u10.bmp",
+      "sha256": "05c5663a34ad9481fcacd27a4c08e7d0dc9aff9ae13693770cabbbd79bc5013f"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u1.bmp",
+      "sha256": "f5d35b3442acf996b15981cbe648d62498185cd38e82d57c9b30531a6751fb6a"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u11.bmp",
+      "sha256": "71969a1c92ab67546b217fac524159a6571d81079dc6b27efda13b425bf0c424"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u25.bmp",
+      "sha256": "d8a319656474e3c77c50353cb6749ca99a642a66da5ba4501ffe2746d64fd2ce"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u7.bmp",
+      "sha256": "da47ba1a83a8ddfb1a2c6c17eca5f26d241926e540ae7135e241a502807e9ea8"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u3.bmp",
+      "sha256": "38c9c2355051876b18bd8f73b5f3ebe7c1c768827824c50eb07c8a17f17b7472"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u8.bmp",
+      "sha256": "b15d352123e37ab293ccec815992f9755ea6963f9afdb08195b60af162ec6626"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u22.bmp",
+      "sha256": "d30a3e430b40d3c0d73e21091e29fcf52bf38c35488bf18b97047cb476508402"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u18.bmp",
+      "sha256": "e4c3ab47c584dd80c417a7fa08f4f8835946f59458aa9bebd3b934f638fbd78c"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u5.bmp",
+      "sha256": "3bb328430d781435d72494bb8af13610bd9e136ffbec3ae2c0e3d70d24e102e0"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u4.bmp",
+      "sha256": "ac864863ed886d50ceb4cd47176c48ec03fbd58222b441a4de014a4be25efe99"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u14.bmp",
+      "sha256": "5dd1fbcef075cb82ffdd1c28ed123d9d3353fa9d92a4fd525927f0dc6bb303af"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u9.bmp",
+      "sha256": "91d6f39d942f5468ea8f95c18a0f457d39b80b4e2619127c467bc0593a11a211"
+    },
+    {
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u20.bmp",
+      "sha256": "8073cb5d10e56516a1703ffe6c210d07cec52c88868d5bf15d11a153daea0a2d"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v1.bmp",
+      "sha256": "5e7b744e6e37b37c05c8a03adc646c1a40ff6df0b4ce98e07f58eadda491ff2b"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v21.bmp",
+      "sha256": "ab96c5ef5218de2917844fc5dd5b8f42dea087914f5a7ae26811bddd6ee01dda"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v12.bmp",
+      "sha256": "d58ac4cdc9066f63b8d24e0ac48cbd109ab154bf9c9f1a2d024278c34d015b80"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v5.bmp",
+      "sha256": "c55da15948f2793a634f17a2b75556b8bf06d3d6615c0909dcacfb6ae495cbe0"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v3.bmp",
+      "sha256": "90030a75472f9fa657b1b6eba08680b25f92cf508f5e55e625d695a8b0e26b45"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v25.bmp",
+      "sha256": "9da956f2ed8e714566ce2161e5ce699a7cc061b2e69986295a4f96864147b5af"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v18.bmp",
+      "sha256": "4d4c7dd353f9b091e5fc996b0812a57c194a184f17abebd00791d93167b261d8"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v24.bmp",
+      "sha256": "c1e08cb4330c6678fdc0c700f4fc3dd56898c5a0b85aee3433002cd282c88505"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v20.bmp",
+      "sha256": "b5528d2a9a34a6e77965f950a501dd470ab408222fdd78c43c48fe48df7524ad"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v9.bmp",
+      "sha256": "7582d5de403bf0e8603f0c0243ff07c1b7d2a9fdfb0ad283986666ba6057fa10"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v11.bmp",
+      "sha256": "bda07452de853b44f5a75f86d0c6745403ad9281997fccda76638afa290083ce"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v4.bmp",
+      "sha256": "bf7c1e6e3328857ee8fe556ee97dd7ad08c530eeb73ea560dcefb313734f7f40"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v16.bmp",
+      "sha256": "1ee86667013b5e555eef86c5f894bde7bec2bbb67e5642da7a0b55e2a37a5c7c"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v2.bmp",
+      "sha256": "af1a432ba61a8f991ed4a251472f616dc0ac20351c0221d740b4af205b8932c9"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v15.bmp",
+      "sha256": "1788f83100415723cd1a2af3e9c41b757624915f04d57286cbda9b2ffc5d40de"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v8.bmp",
+      "sha256": "847c71fa89ce724250f0d76c3c3d286946629a71358aa1eb6ff0929f051fd226"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v14.bmp",
+      "sha256": "26f1c924d08903f4f9fd848f85796b36f7cf715eca62d1a8c03aa5900ebe906a"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v23.bmp",
+      "sha256": "7a180f10cadcd9c146d26d1e03d00105f44d2a843bebaf16c3121bfd92009527"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v10.bmp",
+      "sha256": "d1d95157be63572d50a90b6bb04e4b2d8fd70deb6f3bc668be2fbfda43d69415"
+    },
+    {
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v6.bmp",
+      "sha256": "0e31df075c767f1991bc976b37f103bdea5001fe45a33eace38f80ef01565849"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w6.bmp",
+      "sha256": "aa74fff727ed4457cfee21021bf4190a96a1996e4321ed8f4a5f4a9d563cc253"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w22.bmp",
+      "sha256": "a5e7c2556899c3abb6fe811264d230535db5096cf6c73d105310a6b534d08577"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w15.bmp",
+      "sha256": "c92203d220fd6188dbbb52046a8d51fa89d6389eca2b63acfcb5c8cddc72b447"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w21.bmp",
+      "sha256": "d693145db9c6bfa37d5b6f0bd828cbcc3b14c2311bdd7223713f3ac0790bebc8"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w2.bmp",
+      "sha256": "f59879eb53bc3a737f32f7183ee8fcfec8e84dc69031fdc9047376d114ee7691"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w18.bmp",
+      "sha256": "9536df111ce6618d62b6ae0433b74cd04d5a105a4000032603408c25722f2f5b"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w24.bmp",
+      "sha256": "506f1179236bfb11d787c88d6140840673e758fcb547323fc219fd3c0b3199ad"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w13.bmp",
+      "sha256": "95766549776336183689a8949e59b0656de618bde2b8d8f0fd23206bfb44c72b"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w1.bmp",
+      "sha256": "7e43bfc3f9eab9e2759a831fa01c104e93fec558291bf2748bd0b5746ea95cb6"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w12.bmp",
+      "sha256": "17e6d52381d7ff81e8c716def91277e7dd2742491caa80d2e70d4c3f7ca031d3"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w23.bmp",
+      "sha256": "449adb4075f448828d6386d0cbe3c71d949bf55f763e79ca42374d232fca7c7e"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w14.bmp",
+      "sha256": "9ccb819d7a77f6d33cb06267d8815aec95141b09f3ab6c525b9a3b4e27ac7b25"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w9.bmp",
+      "sha256": "de01d70858bb3a7fa8c66d79a8a9394738a634c58497a69e531e07c0e4f55701"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w25.bmp",
+      "sha256": "4d10fa8df1d0e98dde6dd67b4e5ff8a77e490b187b96c986e0af615d4184806d"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w19.bmp",
+      "sha256": "672b1e5792437e5abb2758fd096c9611bebe0e506c400b0ab91cef24215f8c76"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w16.bmp",
+      "sha256": "49fa8c3dd8ea12aabe0698ca4b0c596415b28bc144fe1baf729eba977eb9cd25"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w4.bmp",
+      "sha256": "6ed75e4223c2201e8a312533133ff699dc036a895cc041a0e905996098245d4c"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w10.bmp",
+      "sha256": "5b14f60e7763d0bd9cc14d945ece5df83b07ff6d0da2e95fd22b0dc87e88e262"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w17.bmp",
+      "sha256": "0535a678a87331e56e1d65b3549c0497a38e688ca72fee7b898e13d5db7251bc"
+    },
+    {
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w3.bmp",
+      "sha256": "6bf12d5002b25e0f5d9b55d028c95195cb76da0bde4320d7a1c34bc31adbd63f"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x9.bmp",
+      "sha256": "2c7e5fb548d721cb7e0d656be0d8ca3bc6cf8e83a8f4e3af8432bf3ad55a8837"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x21.bmp",
+      "sha256": "eca869512b52bc8be98c3ffeddbcd7a8c06c0acb61baa8b0f9e4b2d307b7458b"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x2.bmp",
+      "sha256": "393403c444f712a1e93078437e7b5710fe5de7d20a6d99c0b7c8003d2bbd7960"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x17.bmp",
+      "sha256": "4ec473ad6d9e4f35cc26c67bc74797225a48e284558a0eb94d69e708c8e8a69e"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x4.bmp",
+      "sha256": "e6a3e24783f653eb82d4620b917d458968307a008f828a9118f4055f8c9e1700"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x14.bmp",
+      "sha256": "1273b9427915407f2d8376418d2c8a9aab96c19ec42fdc68f4b4112e32a9dd6f"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x20.bmp",
+      "sha256": "58b845129e5be8b2aa97da3ca61784c272ed0447e087a11bcf4a943bf70b55b1"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x19.bmp",
+      "sha256": "5729a13ecc0a77a476440cfb75f0b7489d716412c2dd5d1dd50a0cc3bff214a6"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x6.bmp",
+      "sha256": "af4e4173b8059296f4b2db6aca2363b98b92b42edff568b2ca6aa306f46c08d5"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x5.bmp",
+      "sha256": "71ec64522f79503745ac5e04bc1cd7f3853188ec2380c2628e2d16fa655c8e18"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x1.bmp",
+      "sha256": "fd3692b964b157e1b94365c5ae7f435dbc313476b4d36aac1f95cb7942731b08"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x8.bmp",
+      "sha256": "c10d8d510713b2de81e476ac1d73c1ba24a0b8851a57a725e0769360517a8060"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x25.bmp",
+      "sha256": "3eaa49beb7d59460ab1a6660acf2b9a85a9d92a988553bb64ddafd2b33f6eea2"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x18.bmp",
+      "sha256": "b1fe996939625c04070aecc1dc711b571784c9e8e352bb4580a0810f39003abd"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x24.bmp",
+      "sha256": "141770b0709871c191a6e3025ced8f835ffb090541e00ce044c0cd24aea26322"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x22.bmp",
+      "sha256": "ac3e3c698a31a125eef18179ffdfd400194c98a92d64afd122b8c8321b9cc58a"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x7.bmp",
+      "sha256": "33983fb283dd6b7b7ab305d7179950e7b879c7e4503c058d4cbbfad2e3a0fb58"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x12.bmp",
+      "sha256": "407b10d5aac1373a33bd18ecd5b8a86115f7c79223a62968104a36123ffdd619"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x11.bmp",
+      "sha256": "fb43da24aadc8f80b37017d45726fb7260674a71889e98af1c726503ec00399e"
+    },
+    {
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x15.bmp",
+      "sha256": "fe0120fe798b4f12b721491cb106771e7e0c7c8b5f0405e830bc5c2f4961f3df"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y7.bmp",
+      "sha256": "fa6e4d76074537a3a7966aca5e6f6bfd962bb9273f894b06dc928c7be496d23c"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y5.bmp",
+      "sha256": "6e5c204c82479f782256f4672d392f3b0517fd1db482e0213688bb5610e46e79"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y2.bmp",
+      "sha256": "0c79482cd52f3ee92a82b09b902437d789d9f53eb51b7daf5043ec3db76ea9c4"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y3.bmp",
+      "sha256": "291237ebea6598d0cddc609e31479c286abbde9d6ec0795df06939b21a6c3a8e"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y18.bmp",
+      "sha256": "4c624e46cee33999a74affd1937ec1d5632b0fb05e0a3a64afae6ca1b4039378"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y17.bmp",
+      "sha256": "b4f24eb2ca76c57ada18c52c65b8a65ba60b8401b522e3d1badcbd75312301b6"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y8.bmp",
+      "sha256": "dc198f58e361aa2016a790bae2cb8fc38e4e5f2deaeb8b402cb002a68f8392b9"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y6.bmp",
+      "sha256": "ce304f54e6d6145f5a9ed1b0ed509732fbc1d03d3ae91717a80a441de3c1d4d3"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y4.bmp",
+      "sha256": "7537dbb6c5dbc65b9d27066bd65c8a2dbc757fdfb411ea9facd0dcf91ce35637"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y24.bmp",
+      "sha256": "e7ead0ed1f84c5e93800c4572fafe250b6defba23c9ee364ec619ea865e65219"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y14.bmp",
+      "sha256": "f5888fcc23f2ca7aff50e2f2670cb0a06196841f555b79904060e7a886789d3a"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y19.bmp",
+      "sha256": "c414a3672118dd90aa569c73cd815dbb564ad1744fe0876196dd1fc1d37099d1"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y1.bmp",
+      "sha256": "2813ffee866f64bf0b7b2c730b693943bb8796dfd224011862e573e8e7bae088"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y9.bmp",
+      "sha256": "90e6637c7a71021de05247c1eac96fecafab3a54612afd8dd9a628b3dc6b05ac"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y12.bmp",
+      "sha256": "e45dc9f2342a3e399f0294864a82ef5c1f99603f2603c9cb9b2ebd391fb534da"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y15.bmp",
+      "sha256": "ceb22a5b3749dbd4774374794bc366eca807cf09939762d5c58b9afea2823074"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y22.bmp",
+      "sha256": "4284bada3c7ff337df30325fecd45954569708a3e3b8915bd3f73e689f79d21f"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y25.bmp",
+      "sha256": "ff0ad4c422ab4935b53170c0e5f1a3c7207ef0e2707ba4d838ae6c2afe2bdffd"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y11.bmp",
+      "sha256": "45af7d147c4729ae2bff08933e70167fad7d265bebe8e0ad032768dc38aba0fd"
+    },
+    {
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y21.bmp",
+      "sha256": "a6182cf83687d6cb6e847d2b63e4dde42627f99f09da5948b086b6441363fd6f"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z8.bmp",
+      "sha256": "b342971193f56770d00550a4985a55bbfedc43fb68b5bf4f9601ea6f1c642564"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z10.bmp",
+      "sha256": "f1ae4fb5374c192defc3a5bc745c2515a65b005a7f671ca02702b4817ac91db4"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z25.bmp",
+      "sha256": "aba69b82cf9ec6d8c6db7258656bd79cf4fbfb8617bbbb4caf2c33a64274fb95"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z6.bmp",
+      "sha256": "6eea69c5d1b835352e9c2638aadc96c0f27f0812ae9c821f05e96b2da22c546d"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z9.bmp",
+      "sha256": "1669350d13cdd5fbcccee32164b9824c5146908a68fa144e6b998191fbe00d56"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z1.bmp",
+      "sha256": "c8ac25d5fe06d37c63e65d890029437c9d32aa0cc5c9d77c8d01907338c5464e"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z13.bmp",
+      "sha256": "eda33aa990126620b88ae6e765d9d47b0b1904e453fbf7b35e424357da49202e"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z11.bmp",
+      "sha256": "c35d0ad13599fde46b3916dfaaaaec8b6b415e4a3cc46b48bff9081b13de6b9c"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z4.bmp",
+      "sha256": "df10e82f28f13993c3a75d150c7613f4e0ad4f715dc06625b609dc4a8c744de3"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z7.bmp",
+      "sha256": "074902dfdd66a6ba57a82bedb461d089f5df1afa4e024d5b05c1497929cb0a48"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z22.bmp",
+      "sha256": "94d281beed7d232c26e1c1ccb03f8b9b76e9a85fda2291aca9b4d0c15a37bb7b"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z19.bmp",
+      "sha256": "e5447472cac9c3067760ba09ee08d5f97b991d7352357838547d1f685348b00c"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z2.bmp",
+      "sha256": "7841508f6a837ecaa437299955eb44a383e3799d94b7aaf1a3810386ee8be827"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z17.bmp",
+      "sha256": "14b513de1072841180816fac1f0d99857223cae8e34eb6f0aa3b555ca820b73c"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z5.bmp",
+      "sha256": "eecd602da83c253ed2445a5795799485428b060a32a7a480791647b3b9a6cc80"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z16.bmp",
+      "sha256": "279d21995081750a4512dda97d0d446bf806f5caedb090daca2e813639ddc6c4"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z14.bmp",
+      "sha256": "b751cd239bc981a5ab56e95e0bc535fa27c56222631cd4b29e8ac965fd75a346"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z12.bmp",
+      "sha256": "ae22dbf8853d1cb163dbc865cdf9bccddcccff413feb6a614f6c0291c4259b38"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z21.bmp",
+      "sha256": "89dad7907426d3979e3bf2baa13ed4de67d818cef6785ff8804bd3e40c9b2a25"
+    },
+    {
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z3.bmp",
+      "sha256": "ede89035dbdb99af0a8de0727abfd4fae82d67eb6c624c49d375114345dee0c0"
+    }
+  ],
+  "cov_reg_eps": 0.0001,
+  "covariance_available": {
+    "අ": true,
+    "ඉ": true,
+    "උ": true,
+    "එ": true,
+    "ක": true,
+    "ග": true,
+    "ඝ": true,
+    "ජ": true,
+    "ට": true,
+    "ඩ": true,
+    "ණ": true,
+    "ත": true,
+    "ද": true,
+    "ධ": true,
+    "න": true,
+    "ප": true,
+    "බ": true,
+    "භ": true,
+    "ම": true,
+    "ය": true,
+    "ර": true,
+    "ල": true,
+    "ව": true,
+    "ශ": true,
+    "ෂ": true,
+    "ස": true,
+    "හ": true,
+    "ළ": true,
+    "ෆ": true,
+    "ෙ": true
+  },
+  "data_directory": "/workspace/datasets/asithi-sinhala",
+  "deduplicated_files": [],
+  "feature_dimension": 46,
+  "folder_to_unicode": {
+    "a": "අ",
+    "aa": "ඩ",
+    "ac": "ශ",
+    "ae": "න",
+    "af": "ඝ",
+    "ag": "භ",
+    "b": "බ",
+    "c": "ධ",
+    "d": "ද",
+    "e": "එ",
+    "f": "ෆ",
+    "g": "ග",
+    "h": "හ",
+    "i": "ඉ",
+    "j": "ජ",
+    "k": "ළ",
+    "l": "ල",
+    "m": "ම",
+    "n": "ෂ",
+    "p": "ප",
+    "q": "ට",
+    "r": "ර",
+    "s": "ස",
+    "t": "ත",
+    "u": "උ",
+    "v": "ව",
+    "w": "ෙ",
+    "x": "ක",
+    "y": "ය",
+    "z": "ණ"
+  },
+  "heldout_correct": 119,
+  "heldout_glyph_accuracy": 0.7933333333333333,
+  "heldout_predictions": [
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 188.52322703957398,
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a9.bmp",
+      "predicted_label": "අ",
+      "sha256": "03da64df130e621baece69d9442492ffeeb84560a9fe0b2c73dc9ba176ff294f"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 314.40502421688046,
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a5.bmp",
+      "predicted_label": "අ",
+      "sha256": "78f4c2bb1a90114fb2dbd7c317259d9904b3f0ec2289f48e83f255902bb497b8"
+    },
+    {
+      "class_relative_score": 0.7474227773273294,
+      "correct": true,
+      "distance": 355.94346915488774,
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a7.bmp",
+      "predicted_label": "අ",
+      "sha256": "9eb8059685eac826aef275fcd80d78f385c56ad3404bb3433bc8459aecd02ab8"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 188.90224658314983,
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a12.bmp",
+      "predicted_label": "ඉ",
+      "sha256": "bf59bf96e121a71aa317f268c6e53a8eba993a3ab63c14148f93e34d05df98e6"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 224.56495053806927,
+      "folder": "a",
+      "label": "අ",
+      "path": "a/a4.bmp",
+      "predicted_label": "අ",
+      "sha256": "1ec4cd5e82cd858b57a02facf253a92732e946a94fc490b39fc619860f04e706"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 107.69595930720685,
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa1.bmp",
+      "predicted_label": "ඩ",
+      "sha256": "97308a02d6dfaedc95c57dfac9443998dc8f94a3e51bdbac4cbeb60be1895885"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 108.3644454389579,
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa25.bmp",
+      "predicted_label": "ඩ",
+      "sha256": "2762fa5ffb4f025e6320aa0fa37a429ec9fd122c5606c31386547ac41e7d3037"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 99.73189449711535,
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa13.bmp",
+      "predicted_label": "ඩ",
+      "sha256": "f45108777a83a97cb3539f2f69d72cf5b76b222c6609bba84054bd5ef2d3ede6"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 97.19234663892085,
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa9.bmp",
+      "predicted_label": "ඩ",
+      "sha256": "d734048f513e788f62a52c001a695bf4e08ed8bc0fbcd18703041dac38820a8c"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 111.6889850981397,
+      "folder": "aa",
+      "label": "ඩ",
+      "path": "aa/aa3.bmp",
+      "predicted_label": "ඩ",
+      "sha256": "308cf5f5dd72d69c0753733776e1aaa862bf7751e4ddc865af8127b3512a38a0"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 76.4215412468198,
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac15.bmp",
+      "predicted_label": "ශ",
+      "sha256": "3fc43df5abcaa93f5c85e83b9c550cc62e02f4fb94fb38c1916a052939e0ce00"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 138.51149091184,
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac18.bmp",
+      "predicted_label": "ශ",
+      "sha256": "7bbc961c57d51ecbf1222c8ff8283c54c1e41b0a04193fd32f9fbe1fce86bda4"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 24.883503977332218,
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac24.bmp",
+      "predicted_label": "ශ",
+      "sha256": "187e1ef7020314a1b35c6bd15b2c6a047d21d5ca14d68492bf83712f6726961d"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 27.783835922959124,
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac1.bmp",
+      "predicted_label": "ශ",
+      "sha256": "70ba040df20e54244584ce129f4bc28b90b1f85c4b1722ce8d64a81a0e0a3471"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 29.069268500198138,
+      "folder": "ac",
+      "label": "ශ",
+      "path": "ac/ac6.bmp",
+      "predicted_label": "ශ",
+      "sha256": "4d1ba61f30e7edc622a83476fe82aafc0bfd72fc15871bf51cf3fc3dbb7b4411"
+    },
+    {
+      "class_relative_score": 0.9999999999999998,
+      "correct": false,
+      "distance": 92.91955007478039,
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae17.bmp",
+      "predicted_label": "ව",
+      "sha256": "333414525647d9dcebb5401a0888077758eb253bcf362e011a40a06cb5af12bd"
+    },
+    {
+      "class_relative_score": 0.9999792896745178,
+      "correct": false,
+      "distance": 138.3291774581015,
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae9.bmp",
+      "predicted_label": "ත",
+      "sha256": "e0260bd94ade09ec616077b11eca69ac32490d9de2b723f49eac1144a4044125"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 65.50460022700972,
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae22.bmp",
+      "predicted_label": "න",
+      "sha256": "fab3992d8b52b0ee63482b581d0b724fd2076d3728ba952a6fe282efaf52d19a"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 65.07305319472518,
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae1.bmp",
+      "predicted_label": "න",
+      "sha256": "83bfa85ebd6ac1931598f56bc9aaef52edc2ccefeec13b72829d26be77093c48"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 121.04871423438338,
+      "folder": "ae",
+      "label": "න",
+      "path": "ae/ae24.bmp",
+      "predicted_label": "භ",
+      "sha256": "132f392bf7b94892b2ef8a1da80953b1f9aeaa7c7c90e99c1178005f6df66052"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 69.16716255566817,
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af7.bmp",
+      "predicted_label": "ඝ",
+      "sha256": "b5137b291447164e880bd975b7856be6aec5cd8231b4c34530f59f6daabf7756"
+    },
+    {
+      "class_relative_score": 0.7983692889302215,
+      "correct": false,
+      "distance": 123.24010242441659,
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af8.bmp",
+      "predicted_label": "ක",
+      "sha256": "bd4f72343c4b93c9b1c23c8c19df417f75d3a121d0271276f385c1876e6bb2bd"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 160.82332240223874,
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af13.bmp",
+      "predicted_label": "න",
+      "sha256": "f89ee3c9e9737cca45d773aad0dc43e4e8f9c538f93ec42357cb99abe1ddcfb4"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 28.836077689673235,
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af16.bmp",
+      "predicted_label": "ඝ",
+      "sha256": "0d39363effa9e4cbf98bbd785eafdd81ae77b4e136fb3a1549045da804a62efb"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 57.66480691929004,
+      "folder": "af",
+      "label": "ඝ",
+      "path": "af/af12.bmp",
+      "predicted_label": "ඝ",
+      "sha256": "c842ffc6186a633d4e37b1af7856ae649719bc760320f6f6d699aebf3b8a4d1a"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 116.62848232766856,
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag1.bmp",
+      "predicted_label": "භ",
+      "sha256": "7343d217a9932c333f2752780bc5921b02967cb03a3e25fb185a40d122ee0f45"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 91.91577979556712,
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag11.bmp",
+      "predicted_label": "ය",
+      "sha256": "bf7f4684cb48c15b046beeb6665cbe459eb97b51079ad1d10a070ef80945900e"
+    },
+    {
+      "class_relative_score": 0.9999999999999996,
+      "correct": true,
+      "distance": 128.52456498075716,
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag2.bmp",
+      "predicted_label": "භ",
+      "sha256": "a0f424000afeb1e6fdc704ca35599eb9af17be742bcf5a4c095ab469f30f77eb"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 77.36738497099886,
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag25.bmp",
+      "predicted_label": "භ",
+      "sha256": "ba222fb168b8a79f50b5d6d767dfdac6d6cddb7e528a38dedd5b1983d0b31032"
+    },
+    {
+      "class_relative_score": 0.9999999999999671,
+      "correct": false,
+      "distance": 136.60162707875375,
+      "folder": "ag",
+      "label": "භ",
+      "path": "ag/ag7.bmp",
+      "predicted_label": "ඝ",
+      "sha256": "79a7590a2b375955bce60e4987ed81179103cec13b2a6c4851110d9a546ba3bd"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 118.84435682218424,
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b23.bmp",
+      "predicted_label": "බ",
+      "sha256": "cbb4eff5862d392a79c0fe6fca68a2888baaced017af6f2391841686aa18a79d"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 100.70654114394671,
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b11.bmp",
+      "predicted_label": "බ",
+      "sha256": "17058c525998f6ca46056ea8f3d7c78a1b7045827aac0419f8158598b689d79d"
+    },
+    {
+      "class_relative_score": 0.9999999999999296,
+      "correct": true,
+      "distance": 152.1819111073743,
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b14.bmp",
+      "predicted_label": "බ",
+      "sha256": "ee90652377be79c5297c8e0c15751fe99e4ff07f4600ee3b9eb5c05cc7670c8d"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 129.64294056070517,
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b4.bmp",
+      "predicted_label": "බ",
+      "sha256": "024c0749deef35706c2f9dfc501dfaa6e34a1af9f09140cbd53a83c5f972fe89"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 26.544820718438746,
+      "folder": "b",
+      "label": "බ",
+      "path": "b/b20.bmp",
+      "predicted_label": "බ",
+      "sha256": "effa077f5ad16a65b956b0370ef5cef9af8be5bdb444426d523a96f0a341de7a"
+    },
+    {
+      "class_relative_score": 0.9999999919296174,
+      "correct": true,
+      "distance": 58.52677828943056,
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c14.bmp",
+      "predicted_label": "ධ",
+      "sha256": "82a4b2646e9cc160cb8123932237ea48beba4a5575bb49aedd2ff4ae46052b9c"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 24.447250437957347,
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c1.bmp",
+      "predicted_label": "ධ",
+      "sha256": "627b9af22ad2401c398b435b01c2a694b35958e87e7dfa1a0899c6260a39abf6"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 36.02049102325281,
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c16.bmp",
+      "predicted_label": "ධ",
+      "sha256": "428d04e67df9281dab326a97a0bdb53c6b14d7732d72a15e5cf586323f93975e"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 13.129990905504501,
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c13.bmp",
+      "predicted_label": "ධ",
+      "sha256": "a9edfe5c164f98ac9c0735807be5c65273a08c83d13d83ec0b35e8afc37ef5bf"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 31.063500062934075,
+      "folder": "c",
+      "label": "ධ",
+      "path": "c/c6.bmp",
+      "predicted_label": "ධ",
+      "sha256": "29802eb6a514cd323b58eb52b4c2ecc4276668156f85f2af927600b7ecd4904e"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 130.760678658674,
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d9.bmp",
+      "predicted_label": "ද",
+      "sha256": "b65c548e0abb2a9a31c6fc1841369e51349be5476ad2262452a7250d0bc0d112"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 186.83292236240882,
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d13.bmp",
+      "predicted_label": "ද",
+      "sha256": "796e25c6611840d008e54578faee2c32a33ac60d07ad9ff28d4dcaec5ac718c3"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 99.3000171067712,
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d17.bmp",
+      "predicted_label": "ද",
+      "sha256": "1edcf557ef98666b8c86814ccac4c08f320adbaab6c489ddbed74ce13ea9b131"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 146.8801650501087,
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d3.bmp",
+      "predicted_label": "ල",
+      "sha256": "4fc7d71d41fb109ab63959405164aed95ae4f2498d1d47e8bb556774b469696d"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 99.93699292814414,
+      "folder": "d",
+      "label": "ද",
+      "path": "d/d21.bmp",
+      "predicted_label": "ද",
+      "sha256": "b44bb7cf7513e1dc55552da4a4263c5b0fd8b72a0759f44c6a66c92bbd42fea3"
+    },
+    {
+      "class_relative_score": 0.9999999999999971,
+      "correct": true,
+      "distance": 265.70532547758825,
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e3.bmp",
+      "predicted_label": "එ",
+      "sha256": "a85109ed2c79273aca3c9f58c003249e247e00931668316518a7080cb78b3118"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 407.15118397630175,
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e22.bmp",
+      "predicted_label": "ණ",
+      "sha256": "4846558cb9ef922b2031414c8fd46b89df956b93c7ab35bfed6a1e653115c50c"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 97.82861137788153,
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e23.bmp",
+      "predicted_label": "එ",
+      "sha256": "63296bf3807e957264f4420c582548ddae420499146d15b8ffcf3da93ad9fef9"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 91.3067781106582,
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e7.bmp",
+      "predicted_label": "එ",
+      "sha256": "2ca4456eb1ff0acf422a232f85480ef9785e743079f632d9b67b74914241e016"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 144.80209899774107,
+      "folder": "e",
+      "label": "එ",
+      "path": "e/e9.bmp",
+      "predicted_label": "එ",
+      "sha256": "6444e84d64286912987a601fe99d91d2a044873fc5626030b17d62bca4eb1576"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 33.75750245593611,
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f9.bmp",
+      "predicted_label": "ෆ",
+      "sha256": "ed16368c5ae614a72a32a750ebed46de70d40c2b5e4d8eb0af6c39bef1ab73d1"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 67.787744698228,
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f8.bmp",
+      "predicted_label": "ෆ",
+      "sha256": "8805d8b720b3275550ea5cb984a36039150ff62054a6485f13142b31c2c2c227"
+    },
+    {
+      "class_relative_score": 0.9999963459143654,
+      "correct": true,
+      "distance": 16.240015202170987,
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f1.bmp",
+      "predicted_label": "ෆ",
+      "sha256": "fc1d32ee9edcb695a64b80d2e442032c015a50413ba018dd371ad180774675ef"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 55.30346253409682,
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f12.bmp",
+      "predicted_label": "ෆ",
+      "sha256": "2629bdb03f7503827cb84d3008c5c21e608d9835a43126a8c5b51749f3c7a500"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 39.62115139450636,
+      "folder": "f",
+      "label": "ෆ",
+      "path": "f/f11.bmp",
+      "predicted_label": "ෆ",
+      "sha256": "ad689593615dec3df38671e04da0239d36dc1c6aa9970e6af5c6b7fe19287384"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 18.676984147807843,
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g10.bmp",
+      "predicted_label": "ග",
+      "sha256": "c3d7b42beca3012c7f602873326b8a66ac63e1f603c1a48e9d9b6adb34bef544"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 10.261455926313749,
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g12.bmp",
+      "predicted_label": "ග",
+      "sha256": "286ead2739983e167ab1c1f85cdb999adaa537ae436e9454088fa43b81273cfd"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 10.81069512279514,
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g9.bmp",
+      "predicted_label": "ග",
+      "sha256": "23f352a4aa0e386ab7cd4560e07cb6d3a2e269170cc6c8ca3f9b5308d3e1a97b"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 7.720925632843317,
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g25.bmp",
+      "predicted_label": "ග",
+      "sha256": "be1ba6d457b486f24d1fd2ec1d6405ef78783003e6cb6926a66b84df1fb7810b"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 5.4738669651570335,
+      "folder": "g",
+      "label": "ග",
+      "path": "g/g19.bmp",
+      "predicted_label": "ග",
+      "sha256": "df6e77ebb706a1b4467bb9fe06dbf5b4438b0ea2ea9226c3963e116a885ac063"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 53.94852848679511,
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h14.bmp",
+      "predicted_label": "හ",
+      "sha256": "ded22ac11eb34411554da19eaf65e18d7c969b6489403117430b3aa832c1ef8a"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 87.42064231440742,
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h25.bmp",
+      "predicted_label": "හ",
+      "sha256": "9d42d2ec1c9023a40385fd252cd66952aa4696e102e6ef78148403ba1b22d25d"
+    },
+    {
+      "class_relative_score": 0.9999999980018577,
+      "correct": false,
+      "distance": 114.36529024269127,
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h6.bmp",
+      "predicted_label": "ශ",
+      "sha256": "a43f8115d1904b6193c23c33c0ce140991aa70940797054184b4fcc81d729019"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 106.83038588551229,
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h11.bmp",
+      "predicted_label": "හ",
+      "sha256": "d608b24b2e24885a2e19636301e17f320234c35579a4fcbeaa66c687b62bb931"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 79.31175632608372,
+      "folder": "h",
+      "label": "හ",
+      "path": "h/h1.bmp",
+      "predicted_label": "හ",
+      "sha256": "53fd605ee3caaadb484bc6898b98c0501c64584caf3e2fe781055bcb0713b3ec"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 72.97478178740715,
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i2.bmp",
+      "predicted_label": "ඉ",
+      "sha256": "ed250f6bbc848540ecf0cf048bcb4cc3c6520456457908e5fcb1721e8ccd6f09"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 69.56068507153437,
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i22.bmp",
+      "predicted_label": "ඉ",
+      "sha256": "3285e057424841c4ba27e4c8f68f887e41224f0e300e606ed890bfda510adb41"
+    },
+    {
+      "class_relative_score": 0.9999999999999991,
+      "correct": false,
+      "distance": 305.7820013731896,
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i5.bmp",
+      "predicted_label": "ව",
+      "sha256": "815306861177314c9f6ee97dade0e1eb25a808864b2e2c594aaf4ba2bb99fa5b"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 42.37450357951556,
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i16.bmp",
+      "predicted_label": "ඉ",
+      "sha256": "1ed9fa32ba8c24a9659a323559c8cc20fe0e68109a80c6869b1951a8c72d2b36"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 12.902469803311725,
+      "folder": "i",
+      "label": "ඉ",
+      "path": "i/i15.bmp",
+      "predicted_label": "ඉ",
+      "sha256": "cac02daff845c85122b9d0212b23a34c8028f5e9bd176b7f3afe9be865e42c80"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 93.67152275726544,
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j6.bmp",
+      "predicted_label": "ජ",
+      "sha256": "59e1ca832c1626563dc36a7902f3ce055f3e1e37c4259a54944a62fb689acaf4"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 144.11831024005602,
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j15.bmp",
+      "predicted_label": "ජ",
+      "sha256": "0f0cf426f63b8b105e93f47eb520d741a3a57c07ad9bc6582e15e6e86fa07b56"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 499.922297371929,
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j14.bmp",
+      "predicted_label": "අ",
+      "sha256": "44d633b9169616add51aadcc02673df1a8691b95dd18e0bebee068e7ca7dffc4"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 77.08706765563407,
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j10.bmp",
+      "predicted_label": "ජ",
+      "sha256": "62519f86ae8791650e8c8ff42aede6ce8ce4001df677b75cf9720441e16daf12"
+    },
+    {
+      "class_relative_score": 0.9999998805940624,
+      "correct": false,
+      "distance": 331.4473009312648,
+      "folder": "j",
+      "label": "ජ",
+      "path": "j/j7.bmp",
+      "predicted_label": "එ",
+      "sha256": "745087f098e5bc980c1b974522342667e2fefa5c61e83ccb2d923207df223c29"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 62.06025657533032,
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k22.bmp",
+      "predicted_label": "ෆ",
+      "sha256": "49b0e7b56c19bbcabe27caea2080ee666885503e9269a5f2cb8580bf9bc15b72"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 103.41559509227218,
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k23.bmp",
+      "predicted_label": "ළ",
+      "sha256": "7e7a38a4ef5ad41b1aaddc24827ffd06d083d0ae555ec4ffdd4047a475395d5f"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 42.58815956816192,
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k17.bmp",
+      "predicted_label": "ෆ",
+      "sha256": "3ae0e85f358838b2fc5cd553f3cf1ffe7c261cf9348fe190aea5162ee2826e4d"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 91.48295608094155,
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k21.bmp",
+      "predicted_label": "ල",
+      "sha256": "01101aac2b23a3f5d00a5dacdace7ace48a7057974e3343ca1b7b03de597e47e"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 122.86149732370453,
+      "folder": "k",
+      "label": "ළ",
+      "path": "k/k18.bmp",
+      "predicted_label": "ළ",
+      "sha256": "847deee0264feb6d7fc7cde62e4ae0d1200f3426aa104dda66f8c130c9a34a3b"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 45.518117949700354,
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l18.bmp",
+      "predicted_label": "ල",
+      "sha256": "6e2bafafd72d95294ca3de9bdca45ed50307e17b7397b4c49accb0034acfb496"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 108.3734806479986,
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l2.bmp",
+      "predicted_label": "ල",
+      "sha256": "fd63340ecc5cc08ca789aec891ef58b9f658c7f10e3d9cd1ce8b3abca0f8fabb"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 119.77189010174018,
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l1.bmp",
+      "predicted_label": "ල",
+      "sha256": "9f48f0c7bde40aa562db947bcd05aae3b0e7c14f4c11a3cabcbe7bad1b1b0a04"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 36.29926782660526,
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l10.bmp",
+      "predicted_label": "ල",
+      "sha256": "27302dba73f9175616105db38405e5d9702dad653d5179114f6433a6d36004cc"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 56.870107054152086,
+      "folder": "l",
+      "label": "ල",
+      "path": "l/l8.bmp",
+      "predicted_label": "ල",
+      "sha256": "953049638f8da1495fc83f80acd9da49d0b97558223edb9206f9551745c360af"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 96.07913554329545,
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m6.bmp",
+      "predicted_label": "ම",
+      "sha256": "cd463c8c5478b5a390da94ce0a4cdcf9bf26ff613701bd92d248118e26ba36a8"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 39.78296126854356,
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m1.bmp",
+      "predicted_label": "ම",
+      "sha256": "8eb29d16c3e47b5f3b0dcfa53323a2965c25e3f51723b1d9c28a861c814ea0f8"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 21.613210305910208,
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m11.bmp",
+      "predicted_label": "ම",
+      "sha256": "40e457ed65e32d5cba3934e8b200c5c54e4ad31f9995bf6d180e266894b92c06"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 41.08874259131283,
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m10.bmp",
+      "predicted_label": "ම",
+      "sha256": "ff378c091ab030831cabbe1fba1d117bb6c873f7d4f4dbf9f745c72a26c5f546"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 31.162100836070085,
+      "folder": "m",
+      "label": "ම",
+      "path": "m/m9.bmp",
+      "predicted_label": "ම",
+      "sha256": "70348437d0c9a41473eee48a527ca5caddf71655a6d6d9a46fb100bc697e9a9e"
+    },
+    {
+      "class_relative_score": 0.999909961088471,
+      "correct": true,
+      "distance": 152.9732859763811,
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n15.bmp",
+      "predicted_label": "ෂ",
+      "sha256": "3df8af8c92688307052de722455e2d5cdc328ad94265c6fee2cd38e47660941c"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 108.34501977848517,
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n2.bmp",
+      "predicted_label": "ප",
+      "sha256": "b150abb140ec10f419f24d37cb1a0b5f70cd58b1b784f09137e40719b41ac323"
+    },
+    {
+      "class_relative_score": 0.9999999981851535,
+      "correct": false,
+      "distance": 242.57228277755544,
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n16.bmp",
+      "predicted_label": "ඝ",
+      "sha256": "b0a80d112513e203b9c53a0ac53d021d61ca63dc2d76c3a25d762c747b37827c"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 157.84181084806343,
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n1.bmp",
+      "predicted_label": "ත",
+      "sha256": "dce11e160c2a3f5b3f3816c0a76d651e0ea228f877968ef3cc528eb5a8288f8a"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 268.1245358219101,
+      "folder": "n",
+      "label": "ෂ",
+      "path": "n/n5.bmp",
+      "predicted_label": "භ",
+      "sha256": "d35b6ebba948dd92e8bb02be24b46ee86a6040dd078da04efe8cabf2a4e88ccc"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 40.28749045882432,
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p6.bmp",
+      "predicted_label": "ප",
+      "sha256": "0b25d9e035e1fbf7b2bd9d900bd937f82bfae03e3529894ee144f96b1a2f19c9"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 54.31880287107822,
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p17.bmp",
+      "predicted_label": "ප",
+      "sha256": "7365841ad1be6aa778737f6f0b5611b372de4abd999eee978e72cf4b2a99eb97"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 154.36446032813643,
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p9.bmp",
+      "predicted_label": "ප",
+      "sha256": "e177249f0a3ceb4e38ec4b892439c57c2b4f731514f16b89769a8c39c9e5a01f"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 46.39167055505226,
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p5.bmp",
+      "predicted_label": "ප",
+      "sha256": "524cafb842ef8cf8e354f029dddd86c266e2cc3aad6db6a72b56d3db51ac6308"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 43.90549693159916,
+      "folder": "p",
+      "label": "ප",
+      "path": "p/p3.bmp",
+      "predicted_label": "ප",
+      "sha256": "a791663a84d3dd8e7e91630dff7f6dcff53d13484e3b4b7f2c893e7f5d52f1b0"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 5.954174904987353,
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q3.bmp",
+      "predicted_label": "ට",
+      "sha256": "5567acb85b8ee77ecb76755fae1f15f94ef23203d8b6690b7b198e7866bdeb37"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 13.480156549214964,
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q12.bmp",
+      "predicted_label": "ට",
+      "sha256": "c96c76955d9dd958074e055cd3f83057cbceb80bce6cc00f6ce35a29ef150823"
+    },
+    {
+      "class_relative_score": 0.9999934217081167,
+      "correct": true,
+      "distance": 48.78061030035255,
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q22.bmp",
+      "predicted_label": "ට",
+      "sha256": "66173029255a91a9248e06282ad726633e0cadc3a0c33979b0ae782e22c2481c"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 12.209150837306067,
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q24.bmp",
+      "predicted_label": "ට",
+      "sha256": "a174623ec87ab12b0dfc405a1153118cc87095873086e90096cbd2ffe5bbaa2e"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 56.45424725693029,
+      "folder": "q",
+      "label": "ට",
+      "path": "q/q15.bmp",
+      "predicted_label": "ට",
+      "sha256": "85beef9b3d92d7556d1af3bd2830210025bd407caf51cf4d52fd8971a7dd2ed3"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 163.83678794886495,
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r3.bmp",
+      "predicted_label": "ර",
+      "sha256": "6b83dd8a8681095868f5e55971b5e3ecbf582a3b182c9530c4b7eae9fbb05ded"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 78.19188725235102,
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r9.bmp",
+      "predicted_label": "ර",
+      "sha256": "e7f840dfbcefad8070337c78697c6cf12e6f610a78e25d5c5da5fa65bf2f34ef"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 47.27081326096005,
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r16.bmp",
+      "predicted_label": "ර",
+      "sha256": "efdc8c723c145d55dcb1ac23cc15f10683ef7c55de8235fdfe19675a49bb185e"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 173.07892845067508,
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r24.bmp",
+      "predicted_label": "ෙ",
+      "sha256": "aee2b3fc9e3fec7aa5f6edf82f443f75fc8c922484e8ada7a57adc248c0ef820"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 401.5046464289857,
+      "folder": "r",
+      "label": "ර",
+      "path": "r/r12.bmp",
+      "predicted_label": "ස",
+      "sha256": "44e4f4f49ad3a6ef0d3c7648b9947c0d58b28b48fade7946c1a70b535f2812f0"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 96.91365297546751,
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s17.bmp",
+      "predicted_label": "ස",
+      "sha256": "57edad69163fe2457bfb0db051b09a6629e95eaedb6060b9473f2a6d31c7fb9c"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 79.69812103264236,
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s19.bmp",
+      "predicted_label": "ස",
+      "sha256": "023449827c3bcac173233b711cf36cab79922a30885a63f8b6e9e39303c96823"
+    },
+    {
+      "class_relative_score": 0.9999998810241175,
+      "correct": true,
+      "distance": 125.34965113718717,
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s24.bmp",
+      "predicted_label": "ස",
+      "sha256": "c8bc6f775bb89824cfcc4b7dcf5c07522f33e8147a20e2c51d97c0f439b2f8dc"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 125.12986164241562,
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s18.bmp",
+      "predicted_label": "ස",
+      "sha256": "1304ce987eb451542fe3768fd2c3ad1ff9818080296c06b2c5398e95ebfcaf73"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 176.90732184762402,
+      "folder": "s",
+      "label": "ස",
+      "path": "s/s3.bmp",
+      "predicted_label": "ස",
+      "sha256": "534a8f0b957f102da59595e584eb98baf623fa4b42b2fa172d5aa758b38cc86d"
+    },
+    {
+      "class_relative_score": 0.9999999999999734,
+      "correct": true,
+      "distance": 42.960380859900106,
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t20.bmp",
+      "predicted_label": "ත",
+      "sha256": "de5d4d9a85296a94a01ebb8efb25d5408a5808ba9bc24b66e777c423532a230f"
+    },
+    {
+      "class_relative_score": 0.9999999963776154,
+      "correct": false,
+      "distance": 55.92047882356699,
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t19.bmp",
+      "predicted_label": "න",
+      "sha256": "9ff108c8b202c7e9b1e947fab03a507c18a65659b2d21e7d4a74defa5817c398"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 33.74001978721465,
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t21.bmp",
+      "predicted_label": "ත",
+      "sha256": "39cb6fb11ebdb0517994646551654f249f31e9907bddee1a69c650831a0c6073"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": false,
+      "distance": 60.3417190193859,
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t13.bmp",
+      "predicted_label": "න",
+      "sha256": "2385985be990fe2253cdd4b8c097837fda2c86c852b1553abb36694efba301bf"
+    },
+    {
+      "class_relative_score": 0.9999973643563522,
+      "correct": false,
+      "distance": 72.83810943774535,
+      "folder": "t",
+      "label": "ත",
+      "path": "t/t15.bmp",
+      "predicted_label": "න",
+      "sha256": "9dbf36093a0e6e8d1be8d206b8c721f0b99d4c36ba3f62b6bdaa00c8735fbb8b"
+    },
+    {
+      "class_relative_score": 0.9999999997635338,
+      "correct": true,
+      "distance": 163.6691235523959,
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u13.bmp",
+      "predicted_label": "උ",
+      "sha256": "44bd484d4f84de7e4a8df79a41c71ebe0651bbf42db3d8c7ebc78b629162f9c5"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 64.43558049933235,
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u2.bmp",
+      "predicted_label": "උ",
+      "sha256": "1b51e0b95eb685717ac62686d3cb8f61d3e78952289715c39c828b94b126c603"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 64.09478910270107,
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u16.bmp",
+      "predicted_label": "උ",
+      "sha256": "82191ac49ff487357c9531c80ec98758503c502a36c4f1e347de566d6b196318"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 102.75631051525376,
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u6.bmp",
+      "predicted_label": "උ",
+      "sha256": "1913d55ab7982ffc7d06500ac0dad8749dbb619c79eb9915e66d4cfa6d8b9a1f"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 78.35996510466741,
+      "folder": "u",
+      "label": "උ",
+      "path": "u/u17.bmp",
+      "predicted_label": "උ",
+      "sha256": "6cb438ecd740a555e26268efd6be6a7bb0b560d9548839405e070eb355b48a12"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 82.34914131885719,
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v7.bmp",
+      "predicted_label": "ව",
+      "sha256": "829681fee40a2b6530b1b3355b3639f6f909dae8af07ff63a3b8298489840846"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 97.68836388640173,
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v17.bmp",
+      "predicted_label": "ව",
+      "sha256": "6d6fce20cfa5d8767fae79f3a159f750410118838c3e2a8274bf342047777e4b"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 86.21220932145123,
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v19.bmp",
+      "predicted_label": "ව",
+      "sha256": "a711208b73e24c38601039375542e57b5994d89d0e8836a6298a8241869434c8"
+    },
+    {
+      "class_relative_score": 0.9999999999999876,
+      "correct": false,
+      "distance": 192.45891494314233,
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v22.bmp",
+      "predicted_label": "බ",
+      "sha256": "5bbc70269a4f220a7f22fc90b25542c2109022db91add64d7b86707cd11fa6a3"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 62.672753204975535,
+      "folder": "v",
+      "label": "ව",
+      "path": "v/v13.bmp",
+      "predicted_label": "ව",
+      "sha256": "d4b9d89441902173707cbf78e859c0436611cce9fe18e099f857b856293c0558"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 77.63427538765157,
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w20.bmp",
+      "predicted_label": "ෙ",
+      "sha256": "9bcdba373afca660b27d15d82833538bd9bb91e908c301184661e873dca817ba"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 118.82406359020574,
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w7.bmp",
+      "predicted_label": "ෙ",
+      "sha256": "7e741f0d6e0b5e6eab8b18023fcddf13ee610b1541135822adfd26bd98c934e7"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 118.89657643519894,
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w8.bmp",
+      "predicted_label": "ෙ",
+      "sha256": "f4c99741010d8818ca3141281ac86302f0ec1d940367a28b8e33d0b45be90ddc"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 78.27484569621836,
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w5.bmp",
+      "predicted_label": "ෙ",
+      "sha256": "0a244860b26c3cb4d2687a6f0b26187229e34eceaff3b1ceb1dfc8705533a424"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 36.84797877026984,
+      "folder": "w",
+      "label": "ෙ",
+      "path": "w/w11.bmp",
+      "predicted_label": "ෙ",
+      "sha256": "c240c3258396b0340ef50df936c3e3ff446f6f9bf1064d383d51c877f5d62fd6"
+    },
+    {
+      "class_relative_score": 0.9999999999999252,
+      "correct": true,
+      "distance": 57.221979267864995,
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x13.bmp",
+      "predicted_label": "ක",
+      "sha256": "78be6bcd75c811ed77a735c49dfce71043f483a31bb63c2b30fed85c24e6438d"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 89.8447290437084,
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x23.bmp",
+      "predicted_label": "ක",
+      "sha256": "792f335447bd8d63568da326316ff69c1c09d01dcc6e0b30299614861f0407ba"
+    },
+    {
+      "class_relative_score": 0.9999992618967019,
+      "correct": false,
+      "distance": 209.63051943466274,
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x3.bmp",
+      "predicted_label": "න",
+      "sha256": "458709749ebe3a23d7b2c0faac34cf3bea1941e8a155b9f2c4768c5c5de766ec"
+    },
+    {
+      "class_relative_score": 0.9999873599484361,
+      "correct": false,
+      "distance": 100.65199691558405,
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x16.bmp",
+      "predicted_label": "න",
+      "sha256": "57133dc83d99400e8a169519b12324da1ef8379596df702b8d5fe0b5f6d9b972"
+    },
+    {
+      "class_relative_score": 0.929941308777398,
+      "correct": false,
+      "distance": 78.24036654179564,
+      "folder": "x",
+      "label": "ක",
+      "path": "x/x10.bmp",
+      "predicted_label": "න",
+      "sha256": "36734d522b2e4923b8cd33b13150facfaffe6decd74e4df7e9c0f7651d13c737"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 42.54657879484441,
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y16.bmp",
+      "predicted_label": "ය",
+      "sha256": "7193baa82af33ce27f0ee120ffb3cc7b56ceff7cd48112bffded92f6d771a857"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 30.261335250101965,
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y20.bmp",
+      "predicted_label": "ය",
+      "sha256": "3d091a5a3c1930a37544d734c3a642e5ebee9e3d084213f0058008c25d9c2967"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 149.4709391479635,
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y23.bmp",
+      "predicted_label": "ය",
+      "sha256": "04b9f8190faa646f8f57eb584a694b3c4a8984401d316fdf89e6a2c628bc9c61"
+    },
+    {
+      "class_relative_score": 0.9240111664990501,
+      "correct": false,
+      "distance": 83.89027127594947,
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y13.bmp",
+      "predicted_label": "ෆ",
+      "sha256": "cc5f7e793ff46effbc4af20d9f9e5aae59fb3f7e42fad3b87a318a1350cb25b9"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 52.797712090379086,
+      "folder": "y",
+      "label": "ය",
+      "path": "y/y10.bmp",
+      "predicted_label": "ය",
+      "sha256": "6fd99a6035bdda5511a678f16140287c3ea40d7acc0e85be6bfce3b6be3308e6"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 211.03754858571156,
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z24.bmp",
+      "predicted_label": "ණ",
+      "sha256": "b489c907490c0d6f4d5fa3ee892c13d1174c8437308a4975d8bc646fac6f8a03"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 227.14725718723713,
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z15.bmp",
+      "predicted_label": "ණ",
+      "sha256": "0e5ba44a1b48f963f21dab18a35d29776b4fcb7f9a6c9165515b152445a54229"
+    },
+    {
+      "class_relative_score": 0.99999970136199,
+      "correct": true,
+      "distance": 203.62377473931005,
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z20.bmp",
+      "predicted_label": "ණ",
+      "sha256": "f89f89f73e08644343a7e51e7fd48e11b78b896b12838ba3a751106530974d5e"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 144.18258645648538,
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z23.bmp",
+      "predicted_label": "ණ",
+      "sha256": "6f0f0406f7c55566c5a69cfac63ce929ff279dcbb612eddc82efa97cb74e8d08"
+    },
+    {
+      "class_relative_score": 1.0,
+      "correct": true,
+      "distance": 173.01660966435458,
+      "folder": "z",
+      "label": "ණ",
+      "path": "z/z18.bmp",
+      "predicted_label": "ණ",
+      "sha256": "06aa82d7447cc630682197dc6f386c5d210171d52de2bdb6c988a8e8dfe9b15d"
+    }
+  ],
+  "heldout_sample_count": 150,
+  "label_map_path": "/workspace/dataset-research/github/asithi_label_map.json",
+  "label_map_sha256": "548350a19dbb92dbb1577acf4047834b748dc949d20f738722fc4773f6175bab",
+  "labels": [
+    "අ",
+    "ඉ",
+    "උ",
+    "එ",
+    "ක",
+    "ග",
+    "ඝ",
+    "ජ",
+    "ට",
+    "ඩ",
+    "ණ",
+    "ත",
+    "ද",
+    "ධ",
+    "න",
+    "ප",
+    "බ",
+    "භ",
+    "ම",
+    "ය",
+    "ර",
+    "ල",
+    "ව",
+    "ශ",
+    "ෂ",
+    "ස",
+    "හ",
+    "ළ",
+    "ෆ",
+    "ෙ"
+  ],
+  "load_roundtrip_verified": true,
+  "manifest_path": "/workspace/OCR-test-19-/artifacts/prototypes.json",
+  "max_calibration_samples_per_class": 20,
+  "mode": "B4",
+  "per_class_calibration_count": {
+    "අ": 20,
+    "ඉ": 20,
+    "උ": 20,
+    "එ": 20,
+    "ක": 20,
+    "ග": 20,
+    "ඝ": 20,
+    "ජ": 20,
+    "ට": 20,
+    "ඩ": 20,
+    "ණ": 20,
+    "ත": 20,
+    "ද": 20,
+    "ධ": 20,
+    "න": 20,
+    "ප": 20,
+    "බ": 20,
+    "භ": 20,
+    "ම": 20,
+    "ය": 20,
+    "ර": 20,
+    "ල": 20,
+    "ව": 20,
+    "ශ": 20,
+    "ෂ": 20,
+    "ස": 20,
+    "හ": 20,
+    "ළ": 20,
+    "ෆ": 20,
+    "ෙ": 20
+  },
+  "report_version": 1,
+  "requested_holdout_per_class": 5,
+  "schema_id": "8c31fac706f1655b7b9493b48de01f2d03598ca62cba560c765887abc3b397ab",
+  "scores_are_calibrated_correctness": false,
+  "seed": 42,
+  "source_license": "No explicit dataset license found; raw images are not redistributed",
+  "source_url": "https://github.com/asithishantha/Sinhala-Handwriting-Character-Recognition-based-on-Feature-Extraction/tree/d2c87bb1eed2d6177ffda4ad07f79e38cf1d993d",
+  "strict_archive_limit_bytes": 2000000,
+  "validation_scope": "held-out isolated glyphs from this dataset; not word OCR accuracy",
+  "view": "whole_glyph"
+}

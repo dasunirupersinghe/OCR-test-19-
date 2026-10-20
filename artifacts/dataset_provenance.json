@@ -1,0 +1,59 @@
+{
+  "byte_and_decoded_pixel_duplicates": 0,
+  "class_count": 30,
+  "coverage": "partial alphabet; not a complete Sinhala recognizer",
+  "excluded_ascii_classes": {
+    "num3": "3",
+    "num4": "4",
+    "num5": "5",
+    "o": "O"
+  },
+  "folder_to_unicode": {
+    "a": "අ",
+    "aa": "ඩ",
+    "ac": "ශ",
+    "ae": "න",
+    "af": "ඝ",
+    "ag": "භ",
+    "b": "බ",
+    "c": "ධ",
+    "d": "ද",
+    "e": "එ",
+    "f": "ෆ",
+    "g": "ග",
+    "h": "හ",
+    "i": "ඉ",
+    "j": "ජ",
+    "k": "ළ",
+    "l": "ල",
+    "m": "ම",
+    "n": "ෂ",
+    "p": "ප",
+    "q": "ට",
+    "r": "ර",
+    "s": "ස",
+    "t": "ත",
+    "u": "උ",
+    "v": "ව",
+    "w": "ෙ",
+    "x": "ක",
+    "y": "ය",
+    "z": "ණ"
+  },
+  "format_version": 1,
+  "mapping_evidence": [
+    "myFeatureScript.m: active ordered letters array",
+    "test.m: indexed explicit UTF-8 Unicode hex values"
+  ],
+  "sample_count": 750,
+  "samples_per_class": 25,
+  "source_commit": "d2c87bb1eed2d6177ffda4ad07f79e38cf1d993d",
+  "source_license": "Not specified in the source repository; raw images are not redistributed",
+  "source_mapping_sha256": {
+    "myFeatureScript.m": "95b3e8eeb289f5e8f6911009095328b56a9a2798fd4f491b267a055da83117c9",
+    "test.m": "7e85ac8a154cff7793054364dbbd9d60364af05cf043c152e50ead69fc2182a6"
+  },
+  "source_split": "upstream training_set; reserve held-out files before calibration",
+  "source_url": "https://github.com/asithishantha/Sinhala-Handwriting-Character-Recognition-based-on-Feature-Extraction",
+  "writer_ids_available": false
+}

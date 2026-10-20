@@ -1,0 +1,633 @@
+{
+  "confidence_interpretation": "class-relative prototype scores; not calibrated correctness or OCR accuracy",
+  "context_statistics_supplied": false,
+  "debug_images": {},
+  "decoder": {
+    "context_decode": {
+      "anchor_indices": [
+        0
+      ],
+      "doc_type": null,
+      "gating_enabled": true,
+      "mode": "B4",
+      "pass_two_outputs_become_anchors": false,
+      "passes": 2,
+      "review_indices": []
+    },
+    "external_window_search": null,
+    "fallback_config_fields": [],
+    "mode": "B4",
+    "model_view_keys": {
+      "whole_glyph": "8c31fac706f1655b7b9493b48de01f2d03598ca62cba560c765887abc3b397ab:whole_glyph"
+    },
+    "modifier_source": "native_candidate_zones",
+    "pipeline_version": "1.2.0",
+    "recognition_mode": "whole_glyph",
+    "rejected_word_count": 0,
+    "review_word_ids": [],
+    "score_is_correctness_probability": false,
+    "word_count": 1
+  },
+  "elapsed_seconds": 0.04721039299329277,
+  "image": {
+    "path": "/workspace/dataset-research/hf/SinhalaTextRecognition/Segmentation/7.png",
+    "preprocessed_shape": [
+      238,
+      384
+    ],
+    "sha256": "d4aba500973be7ca40bbbfc34de7f628fd7e754a99e6d9ceac9636f68814a8bc"
+  },
+  "lexicon": null,
+  "mode": "B4",
+  "model": {
+    "calibration_preparation": "preprocess_then_entire_crop_aspect_ratio_height_normalize",
+    "class_count": 30,
+    "dataset_provenance": {
+      "data_directory": "/workspace/datasets/asithi-sinhala",
+      "heldout_count": 150,
+      "label_map_sha256": "548350a19dbb92dbb1577acf4047834b748dc949d20f738722fc4773f6175bab",
+      "preparation": "preprocess_then_entire_crop_aspect_ratio_height_normalize",
+      "script": "calibrate_prototypes.py",
+      "selection_seed": 42,
+      "source_license": "No explicit dataset license found; raw images are not redistributed",
+      "source_url": "https://github.com/asithishantha/Sinhala-Handwriting-Character-Recognition-based-on-Feature-Extraction/tree/d2c87bb1eed2d6177ffda4ad07f79e38cf1d993d",
+      "view": "whole_glyph"
+    },
+    "dimension": 46,
+    "labels": [
+      "අ",
+      "ඉ",
+      "උ",
+      "එ",
+      "ක",
+      "ග",
+      "ඝ",
+      "ජ",
+      "ට",
+      "ඩ",
+      "ණ",
+      "ත",
+      "ද",
+      "ධ",
+      "න",
+      "ප",
+      "බ",
+      "භ",
+      "ම",
+      "ය",
+      "ර",
+      "ල",
+      "ව",
+      "ශ",
+      "ෂ",
+      "ස",
+      "හ",
+      "ළ",
+      "ෆ",
+      "ෙ"
+    ],
+    "manifest_path": "/workspace/OCR-test-19-/artifacts/prototypes.json",
+    "path": "/workspace/OCR-test-19-/artifacts/prototypes.npz",
+    "schema_id": "8c31fac706f1655b7b9493b48de01f2d03598ca62cba560c765887abc3b397ab",
+    "sha256": "e10e4243af494b46ff8a614702eb8dff9e9dcff2d79e513817ac74681b853877",
+    "view": "whole_glyph"
+  },
+  "needs_review": false,
+  "preprocessing": {
+    "background_value": 0,
+    "clean_scan": false,
+    "clean_scan_criteria": {
+      "bright_background": true,
+      "contrast_enough": false,
+      "not_uniform": true,
+      "plausible_ink": true,
+      "sharp_enough": true,
+      "stable_bright_background": true,
+      "uniform_illumination": true
+    },
+    "config_fallback_fields": [],
+    "config_fingerprint": "b7f18070c9e0e6a1e28a86779a55a04932defd5b3a8caead46329f244fa32b1a",
+    "debug_images": {},
+    "effective_configuration": {
+      "flags": {
+        "bilateral_denoise": true,
+        "clahe": true,
+        "clean_scan_bypass": true,
+        "deskew": true,
+        "quality_metrics": true,
+        "retinex": true,
+        "ruled_line_removal": true,
+        "sauvola": true
+      },
+      "mode": "B4",
+      "options": {
+        "binarization_mode": "auto",
+        "border_band_fraction": 0.06,
+        "border_min_span_fraction": 0.6,
+        "border_shadow_suppression": null,
+        "clean_min_background_brightness": 175.0,
+        "clean_min_illumination_uniformity": 0.95,
+        "hybrid_min_text_contrast": 5.0,
+        "hybrid_variance_threshold": 225.0,
+        "inpaint_radius": 3.0,
+        "loop_repair": null,
+        "max_deskew_degrees": null,
+        "retinex_scales": null
+      },
+      "pipeline_version": "1.0.0",
+      "settings": {
+        "allowed_extensions": [
+          ".png",
+          ".jpg",
+          ".jpeg",
+          ".bmp",
+          ".tif",
+          ".tiff"
+        ],
+        "alpha_background": 255,
+        "bilateral_diameter": 5,
+        "bilateral_sigma_color": 35.0,
+        "bilateral_sigma_space": 5.0,
+        "clahe_clip_limit": 2.0,
+        "clahe_grid_size": [
+          4,
+          4
+        ],
+        "clean_max_background_std": 12.0,
+        "clean_min_contrast": 100.0,
+        "clean_min_laplacian_variance": 100.0,
+        "deskew_max_degrees": 15.0,
+        "deskew_method": "hough",
+        "deskew_min_degrees": 0.15,
+        "log_offset": 1.0,
+        "max_decoded_pixels": 40000000,
+        "max_file_bytes": 20971520,
+        "max_image_side": 20000,
+        "max_ink_fraction": 0.65,
+        "min_image_side": 3,
+        "min_ink_fraction": 0.001,
+        "rescale_percentiles": [
+          1.0,
+          99.0
+        ],
+        "retinex_sigma": 15.0,
+        "ruled_line_kernel_min_width": 15,
+        "ruled_line_max_thickness": 3,
+        "ruled_line_min_width_fraction": 0.4,
+        "sauvola_dynamic_range": 128.0,
+        "sauvola_k": 0.2,
+        "sauvola_window": 25
+      },
+      "skew_estimator": "contour_min_area_rect"
+    },
+    "effective_fingerprint": "bd217209c25d26429fbbd6ad64cac8dc22902d5e1c1d0ee80efb16333c0bd11e",
+    "elapsed_ms": 21.673409995855764,
+    "estimated_skew_degrees": -5.5529692331832905,
+    "experiment_label": "B4-custom-b7f18070",
+    "foreground_value": 1,
+    "input": {
+      "alpha_composited": false,
+      "color_order": "bgr",
+      "encoded_bytes": 3860,
+      "intensity_conversion": "uint8_unchanged",
+      "original_dtype": "uint8",
+      "original_shape": [
+        203,
+        366,
+        3
+      ],
+      "source_type": "PosixPath"
+    },
+    "mode": "B4",
+    "output_ink_fraction": 0.02187281162464986,
+    "output_shape": [
+      238,
+      384
+    ],
+    "pipeline_version": "1.0.0",
+    "quality_scores": {
+      "blur_laplacian_variance": 2262.5263129559344,
+      "brightest_quartile_std": 0.0,
+      "contrast_percentile": 0.0,
+      "contrast_rms": 42.1335600426137,
+      "estimated_background_brightness": 255.00003051757812,
+      "illumination_coefficient_of_variation": 5.983838131912754e-08,
+      "illumination_uniformity": 0.9999999401616222,
+      "otsu_ink_fraction": 0.03137365743357829,
+      "uniform_image": false
+    },
+    "restoration_bypassed": false,
+    "skew_angle_degrees": -5.5529692331832905,
+    "status": "ok",
+    "steps": [
+      {
+        "details": {
+          "alpha_composited": false,
+          "color_order": "bgr",
+          "encoded_bytes": 3860,
+          "intensity_conversion": "uint8_unchanged",
+          "original_dtype": "uint8",
+          "original_shape": [
+            203,
+            366,
+            3
+          ],
+          "source_type": "PosixPath"
+        },
+        "elapsed_ms": 0.8625100017525256,
+        "name": "grayscale",
+        "output_shape": [
+          203,
+          366
+        ],
+        "status": "completed"
+      },
+      {
+        "details": {
+          "blur_laplacian_variance": 2262.5263129559344,
+          "brightest_quartile_std": 0.0,
+          "contrast_percentile": 0.0,
+          "contrast_rms": 42.1335600426137,
+          "estimated_background_brightness": 255.00003051757812,
+          "illumination_coefficient_of_variation": 5.983838131912754e-08,
+          "illumination_uniformity": 0.9999999401616222,
+          "otsu_ink_fraction": 0.03137365743357829,
+          "uniform_image": false
+        },
+        "elapsed_ms": 2.6391459978185594,
+        "name": "quality_assessment",
+        "output_shape": [
+          203,
+          366
+        ],
+        "status": "completed"
+      },
+      {
+        "details": {
+          "affine_original_to_processed": [
+            [
+              0.9953071648064495,
+              -0.0967659427946998,
+              19.629802645087636
+            ],
+            [
+              0.0967659427946998,
+              0.9953071648064495,
+              0.3141917945158852
+            ]
+          ],
+          "affine_processed_to_original": [
+            [
+              0.9953071648064495,
+              0.0967659427946998,
+              -19.56808628160701
+            ],
+            [
+              -0.0967659427946998,
+              0.9953071648064495,
+              1.5867790156207406
+            ]
+          ],
+          "applied_rotation_degrees": -5.5529692331832905,
+          "candidate_contours": 1,
+          "effective_estimator": "contour_min_area_rect",
+          "estimated_skew_degrees": -5.5529692331832905,
+          "estimation_source": "grouped_contours",
+          "expanded_shape": [
+            238,
+            384
+          ],
+          "requested_estimator": "hough"
+        },
+        "elapsed_ms": 1.0866849916055799,
+        "name": "deskew",
+        "output_shape": [
+          238,
+          384
+        ],
+        "status": "completed"
+      },
+      {
+        "details": {
+          "algorithm": "multi_scale_retinex",
+          "response_high": 0.1522021259367465,
+          "response_low": -4.69018693447113,
+          "scales": [
+            5.0,
+            15.0,
+            45.0
+          ]
+        },
+        "elapsed_ms": 9.422318005817942,
+        "name": "retinex",
+        "output_shape": [
+          238,
+          384
+        ],
+        "status": "completed"
+      },
+      {
+        "details": {
+          "clip_limit": 2.0,
+          "grid": [
+            4,
+            4
+          ]
+        },
+        "elapsed_ms": 0.6369720067596063,
+        "name": "clahe",
+        "output_shape": [
+          238,
+          384
+        ],
+        "status": "completed"
+      },
+      {
+        "details": {
+          "diameter": 5
+        },
+        "elapsed_ms": 0.5087799945613369,
+        "name": "bilateral",
+        "output_shape": [
+          238,
+          384
+        ],
+        "status": "completed"
+      },
+      {
+        "details": {
+          "detected_lines": 0,
+          "line_pixels": 0
+        },
+        "elapsed_ms": 0.9868560009635985,
+        "name": "ruled_line_removal",
+        "output_shape": [
+          238,
+          384
+        ],
+        "status": "completed"
+      },
+      {
+        "details": {
+          "k": 0.2,
+          "mode": "sauvola",
+          "otsu_threshold": 135.0,
+          "threshold_max": 206.51842846431157,
+          "threshold_min": 177.4846181935303,
+          "window": 25
+        },
+        "elapsed_ms": 2.250309000373818,
+        "name": "binarization",
+        "output_shape": [
+          238,
+          384
+        ],
+        "status": "completed"
+      },
+      {
+        "details": {
+          "policy": "only_narrow_border_connected_components",
+          "removed_components": 0,
+          "removed_pixels": 0
+        },
+        "elapsed_ms": 0.33445000008214265,
+        "name": "border_shadow_suppression",
+        "output_shape": [
+          238,
+          384
+        ],
+        "status": "completed"
+      },
+      {
+        "details": {
+          "added_pixels": 18,
+          "original_enclosed_background_components": 1,
+          "policy": "one_component_exterior_gap_closing"
+        },
+        "elapsed_ms": 2.4004790029721335,
+        "name": "loop_repair",
+        "output_shape": [
+          238,
+          384
+        ],
+        "status": "completed"
+      }
+    ],
+    "usable_ink_fraction": true,
+    "versions": {
+      "numpy": "2.3.5",
+      "opencv": "4.13.0"
+    },
+    "warnings": []
+  },
+  "query_preparation": "preprocess_then_word_localization_and_candidate_segmentation",
+  "raw_text": "ඉ",
+  "report_version": 1,
+  "segmentation": {
+    "bounding_box_convention": "half_open_pixel_edges",
+    "config_fingerprint": "b7f18070c9e0e6a1e28a86779a55a04932defd5b3a8caead46329f244fa32b1a",
+    "effective_configuration": {
+      "flags": {
+        "aspect_normalization": true,
+        "glyph_segmentation": true,
+        "ligature_cutter": true,
+        "retain_ambiguous_segments": true,
+        "word_localization": false,
+        "zone_partition": true
+      },
+      "mode": "B4",
+      "options": {
+        "baseline_stride": null,
+        "baseline_window_width": null,
+        "calibrated_median_glyph_width": null,
+        "interpolation": "auto",
+        "lambda_curv": null,
+        "ligature_width_factor": null,
+        "marginal_cost_margin": 0.06,
+        "marginal_cost_threshold": 0.12,
+        "max_hypotheses": 16,
+        "protect_core_components": true,
+        "target_height": null
+      },
+      "pipeline_version": "1.0.0",
+      "settings": {
+        "crop_padding": 2,
+        "cut_safety_margin": 1,
+        "hpp_smoothing_sigma": 1.0,
+        "lambda_curv": 0.35,
+        "lower_valley_search": [
+          0.55,
+          0.9
+        ],
+        "max_candidates_per_word": 128,
+        "max_input_pixels": 40000000,
+        "max_normalized_width": 8192,
+        "min_component_area": 2,
+        "min_core_height": 8,
+        "min_hole_area": 2,
+        "min_segment_width": 2,
+        "target_height": 64,
+        "touching_width_factor": 1.4,
+        "upper_valley_search": [
+          0.1,
+          0.45
+        ],
+        "word_dilation_kernel": [
+          15,
+          3
+        ]
+      }
+    },
+    "effective_fingerprint": "9ed408d71d52cfc7bdf813820aee3f305cb4ad42e1ee00f36d98d17188e4a427",
+    "elapsed_ms": 2.5177740026265383,
+    "fallback_fields": [],
+    "foreground_value": 1,
+    "mode": "B4",
+    "pipeline_version": "1.0.0",
+    "status": "ok",
+    "versions": {
+      "numpy": "2.3.5",
+      "opencv": "4.13.0",
+      "scikit_image": "0.26.0"
+    },
+    "word_count": 1,
+    "word_localization": false
+  },
+  "status": "completed",
+  "text": "ඉ",
+  "timestamp_utc": "2026-10-20T03:05:09.697540+00:00",
+  "word_count": 1,
+  "words": [
+    {
+      "class_relative_confidence": 0.9999999999998888,
+      "is_context_anchor": true,
+      "metadata": {
+        "context_decision": {
+          "anchor": true,
+          "anchor_context_is_frozen": true,
+          "candidate_scores": [],
+          "confidence_policy": "raw_mean_max_class_probability",
+          "considered_paths": 0,
+          "context_probability_epsilon": 1e-06,
+          "doc_type": null,
+          "edit_distance": 0,
+          "edit_unit": "codepoint",
+          "effective_weights": {
+            "beta_doc": 0.0,
+            "beta_left": 0.0,
+            "beta_right": 0.0,
+            "eta_lex": 0.1
+          },
+          "eligible_paths": 0,
+          "left_anchor": null,
+          "lexicon_available": false,
+          "lexicon_size": 0,
+          "model_probability_epsilon": 1e-12,
+          "needs_review": false,
+          "no_generated_lexicon_neighbours": true,
+          "pass_one_anchor": true,
+          "reason": "high_confidence_oov_shield",
+          "right_anchor": null,
+          "score": null,
+          "tau_oov": 0.85
+        },
+        "external_modifier_count": 0,
+        "hypotheses_considered": 1,
+        "modifier_bindings_by_candidate_path": [
+          {
+            "bindings": [],
+            "candidate_ids": [
+              "w0-g0"
+            ]
+          }
+        ],
+        "modifier_source": "native_candidate_zones",
+        "recognition_mode": "whole_glyph",
+        "rejected_paths": [],
+        "retained_paths": 3
+      },
+      "needs_review": false,
+      "paths": [
+        {
+          "candidate_ids": [
+            "w0-g0"
+          ],
+          "class_relative_confidence": 0.9999999999998888,
+          "hypothesis_id": "w0-h0",
+          "log_probability": -1.1118287280425457e-13,
+          "metadata": {
+            "ambiguous": false,
+            "confidence_policy": "mean_max_token_class_probability",
+            "kind": "intact",
+            "log_probability_saturated": false,
+            "modifier_bindings": [],
+            "modifier_source": "native_candidate_zones",
+            "overlap_penalty": 1.0,
+            "overlap_pixels": 0,
+            "rank_policy": "mean_log_probability",
+            "rank_score": -1.1118287280425457e-13,
+            "score_is_correctness_probability": false,
+            "scored_token_count": 1,
+            "segmentation_prior_available": false,
+            "selected_label_confidence": 0.9999999999998888
+          },
+          "text": "ඉ"
+        },
+        {
+          "candidate_ids": [
+            "w0-g0"
+          ],
+          "class_relative_confidence": 0.9999999999998888,
+          "hypothesis_id": "w0-h0",
+          "log_probability": -29.827599592326333,
+          "metadata": {
+            "ambiguous": false,
+            "confidence_policy": "mean_max_token_class_probability",
+            "kind": "intact",
+            "log_probability_saturated": false,
+            "modifier_bindings": [],
+            "modifier_source": "native_candidate_zones",
+            "overlap_penalty": 1.0,
+            "overlap_pixels": 0,
+            "rank_policy": "mean_log_probability",
+            "rank_score": -29.827599592326333,
+            "score_is_correctness_probability": false,
+            "scored_token_count": 1,
+            "segmentation_prior_available": false,
+            "selected_label_confidence": 1.1118292330073397e-13
+          },
+          "text": "ල"
+        },
+        {
+          "candidate_ids": [
+            "w0-g0"
+          ],
+          "class_relative_confidence": 0.9999999999998888,
+          "hypothesis_id": "w0-h0",
+          "log_probability": -69.386498170503,
+          "metadata": {
+            "ambiguous": false,
+            "confidence_policy": "mean_max_token_class_probability",
+            "kind": "intact",
+            "log_probability_saturated": false,
+            "modifier_bindings": [],
+            "modifier_source": "native_candidate_zones",
+            "overlap_penalty": 1.0,
+            "overlap_pixels": 0,
+            "rank_policy": "mean_log_probability",
+            "rank_score": -69.386498170503,
+            "score_is_correctness_probability": false,
+            "scored_token_count": 1,
+            "segmentation_prior_available": false,
+            "selected_label_confidence": 7.342208715746331e-31
+          },
+          "text": "ම"
+        }
+      ],
+      "raw_text": "ඉ",
+      "status": "decoded",
+      "text": "ඉ",
+      "word_id": 0
+    }
+  ]
+}

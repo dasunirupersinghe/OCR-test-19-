@@ -1,0 +1,170 @@
+{
+  "prototype_sha256": "e10e4243af494b46ff8a614702eb8dff9e9dcff2d79e513817ac74681b853877",
+  "model_scope": "30-class partial-alphabet pilot",
+  "lexicon_supplied": false,
+  "context_model_supplied": false,
+  "cases": [
+    {
+      "path": "/workspace/dataset-research/hf/SinhalaTextRecognition/Segmentation/7.png",
+      "manual_reference": "ගම",
+      "source": "https://github.com/tharinda12/SinhalaTextRecognition/blob/03a5b335508211004f3be1c4a834e776aef3d149/Segmentation/7.png",
+      "reference_source": "manual_visual_reading_not_author_ground_truth",
+      "used_in_calibration": false,
+      "image_sha256": "d4aba500973be7ca40bbbfc34de7f628fd7e754a99e6d9ceac9636f68814a8bc",
+      "output": "ඉ",
+      "elapsed_ms": 57.82068400003482,
+      "word_count": 1,
+      "candidate_count": 1,
+      "words": [
+        {
+          "word_id": 0,
+          "raw_text": "ඉ",
+          "text": "ඉ",
+          "class_relative_confidence": 0.9999999999998888,
+          "needs_review": false,
+          "status": "decoded",
+          "paths": [
+            {
+              "text": "ඉ",
+              "log_probability": -1.1118287280425457e-13,
+              "candidate_ids": [
+                "w0-g0"
+              ],
+              "hypothesis_id": "w0-h0"
+            },
+            {
+              "text": "ල",
+              "log_probability": -29.827599592326333,
+              "candidate_ids": [
+                "w0-g0"
+              ],
+              "hypothesis_id": "w0-h0"
+            },
+            {
+              "text": "ම",
+              "log_probability": -69.386498170503,
+              "candidate_ids": [
+                "w0-g0"
+              ],
+              "hypothesis_id": "w0-h0"
+            }
+          ],
+          "rejected_paths": []
+        }
+      ],
+      "matches_manual_reference": false,
+      "sha256_absent_from_calibration_and_holdout": true
+    },
+    {
+      "path": "/workspace/dataset-research/hf/SinhalaTextRecognition/Segmentation/5.png",
+      "manual_reference": "රට",
+      "source": "https://github.com/tharinda12/SinhalaTextRecognition/blob/03a5b335508211004f3be1c4a834e776aef3d149/Segmentation/5.png",
+      "reference_source": "manual_visual_reading_not_author_ground_truth",
+      "used_in_calibration": false,
+      "image_sha256": "cb0b5b81f3aa3b6a26a341901fc38b90eece77031101c62898cd6ef3484f008c",
+      "output": "ළග",
+      "elapsed_ms": 72.59115900160396,
+      "word_count": 1,
+      "candidate_count": 2,
+      "words": [
+        {
+          "word_id": 0,
+          "raw_text": "ළග",
+          "text": "ළග",
+          "class_relative_confidence": 0.9999999999999887,
+          "needs_review": false,
+          "status": "decoded",
+          "paths": [
+            {
+              "text": "ළග",
+              "log_probability": -2.268638835817268e-14,
+              "candidate_ids": [
+                "w0-g0",
+                "w0-g1"
+              ],
+              "hypothesis_id": "w0-h0"
+            },
+            {
+              "text": "ළට",
+              "log_probability": -31.41702625177168,
+              "candidate_ids": [
+                "w0-g0",
+                "w0-g1"
+              ],
+              "hypothesis_id": "w0-h0"
+            },
+            {
+              "text": "ගෙ",
+              "log_probability": -42.63337562682324,
+              "candidate_ids": [
+                "w0-g0",
+                "w0-g1"
+              ],
+              "hypothesis_id": "w0-h0"
+            }
+          ],
+          "rejected_paths": []
+        }
+      ],
+      "matches_manual_reference": false,
+      "sha256_absent_from_calibration_and_holdout": true
+    },
+    {
+      "path": "/workspace/dataset-research/hf/Chanaka-OCR/results/approach_2/sample_image_2.jpeg",
+      "manual_reference": "මට කන්න ඕනේ",
+      "source": "https://github.com/Chanaka-Prasanna/handwritten-sinhala-text-extraction-and-translation/blob/5fbae67ce3a3101ffea96ef43f47d6c7453b85b3/results/approach_2/sample_image_2.jpeg",
+      "reference_source": "manual_visual_reading_not_author_ground_truth",
+      "used_in_calibration": false,
+      "image_sha256": "df2be2d9475f495086519778a53c112838f030c960aa24cd3f0bf57ebdcce9d3",
+      "output": "ණ",
+      "elapsed_ms": 300.926657000673,
+      "word_count": 1,
+      "candidate_count": 1,
+      "words": [
+        {
+          "word_id": 0,
+          "raw_text": "ණ",
+          "text": "ණ",
+          "class_relative_confidence": 1.0,
+          "needs_review": false,
+          "status": "decoded",
+          "paths": [
+            {
+              "text": "ණ",
+              "log_probability": 0.0,
+              "candidate_ids": [
+                "w0-g0"
+              ],
+              "hypothesis_id": "w0-h0"
+            },
+            {
+              "text": "ද",
+              "log_probability": -1791.884047035746,
+              "candidate_ids": [
+                "w0-g0"
+              ],
+              "hypothesis_id": "w0-h0"
+            },
+            {
+              "text": "උ",
+              "log_probability": -2067.642605911181,
+              "candidate_ids": [
+                "w0-g0"
+              ],
+              "hypothesis_id": "w0-h0"
+            }
+          ],
+          "rejected_paths": []
+        }
+      ],
+      "matches_manual_reference": false,
+      "sha256_absent_from_calibration_and_holdout": true
+    }
+  ],
+  "decoder_source_commit": "6afef5e415af4e5e95f45dccd6285d2f67e9c529",
+  "validation_scope": "Three independent public examples with manual visual references; not a population word accuracy estimate",
+  "scores_are_calibrated_correctness": false,
+  "all_cases_match_manual_reference": false,
+  "chat_uploads_tested": false,
+  "chat_uploads_note": "Chat images were visible but unavailable as local files; these cases use separate public images"
+}

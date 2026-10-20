@@ -8,11 +8,12 @@ This source archive contains Files 1–5 of the project:
 - `features.py`: micro-window slope and topology descriptors.
 - `decoder.py`: prototype calibration, classical quantum-inspired scoring, Sinhala assembly and an OOV-safe lexicon gate.
 
-These are Python library modules. A graphical interface, trained model, labelled
-dataset and lexicon are not included. Recognition needs labelled calibration
-examples prepared consistently with query glyphs. The quantum-inspired scorer
-runs on a normal CPU; its normalized class scores do not establish OCR accuracy
-or calibrated probabilities of correctness. Validate on held-out Sinhala data.
+The repository also includes CPU calibration and recognition commands and a
+**30-class pilot reference model** in `artifacts/`. This is a partial Sinhala
+inventory, and the independent word tests failed. It is not ready for reliable
+word or document recognition. A graphical interface, raw dataset and lexicon
+are not included. The quantum-inspired scorer runs on a normal CPU; its
+normalized class scores are not calibrated probabilities of correctness.
 
 ## Install
 
@@ -48,6 +49,60 @@ python -m unittest discover -s tests -v
 The included tests exercise decoder contracts using synthetic inputs. Passing
 them confirms those contracts, not recognition accuracy on real handwriting.
 
+## Calibrated pilot and actual results
+
+Cloud calibration completed using 600 real isolated handwriting images across
+30 Unicode classes. A separate random holdout of 150 images produced **119
+correct classifications (79.3%)**. Writer identities are unavailable, so this
+is not a writer-independent evaluation or a word-recognition accuracy estimate.
+
+The saved model was loaded and run on independent public word images:
+
+| Manual visual reference | Actual decoder output |
+| --- | --- |
+| ගම | ඉ |
+| රට | ළග |
+| මට කන්න ඕනේ | ණ |
+
+These references are manual readings, not author-provided ground-truth labels.
+The samples were not used for calibration or the isolated-character holdout.
+The outputs received high relative class scores despite being incorrect;
+`needs_review=false` is therefore not evidence of correctness. The tests expose
+both segmentation and classification failures. Chat-uploaded images were not
+available as local files for this run; these are separate public test images.
+
+Keep [prototypes.npz](artifacts/prototypes.npz) and its checked
+[JSON sidecar](artifacts/prototypes.json) together. The archive is 209,290 bytes,
+well below the 2,000,000-byte limit. The
+[calibration report](artifacts/calibration_report.json) records the full split,
+labels, predictions, hashes and successful save/load validation. The
+[word-test report](artifacts/sample_word_results.json) contains pinned source
+links, image hashes and actual outputs. The
+[CLI recognition report](artifacts/recognition_result.json) reproduces the first
+word failure. See [artifact notes](artifacts/README.md) for limitations.
+
+Run the saved model on an image:
+
+```bash
+python recognize_image.py --image my_word.png --model artifacts/prototypes.npz --output recognition_result.json
+```
+
+Reproduce dataset preparation and calibration in a separate output directory:
+
+```bash
+python prepare_reference_data.py --destination data/reference
+python calibrate_prototypes.py --data-dir data/reference --label-map data/reference/labels.json --output artifacts/recalibrated/prototypes.npz --mode B4 --holdout-per-class 5 --max-samples-per-class 20 --seed 42 --source-url https://github.com/asithishantha/Sinhala-Handwriting-Character-Recognition-based-on-Feature-Extraction/tree/d2c87bb1eed2d6177ffda4ad07f79e38cf1d993d --source-license "Not specified in source repository; raw images are not redistributed"
+```
+
+Preparation verifies the pinned upstream revision, the MATLAB folder-to-Unicode
+mapping and all 750 selected images. It excludes four ASCII classes rather than
+guessing Sinhala labels. Raw images stay in ignored local data directories.
+The upstream repository does not specify a dataset license; this project does
+not redistribute its images. The pilot contains whole-glyph prototypes, with
+no separately calibrated upper/lower modifier models and no language corpus.
+Improving recognition requires broader labelled coverage, consistent training
+and query crops, and a separate word-level evaluation set.
+
 ## Strict 46-dimensional calibration and decoding
 
 `DevelopmentSetCalibrationManager` implements the explicit Master Specification
@@ -71,8 +126,8 @@ ablation preset.
 
 Development folders need an explicit folder-to-Sinhala-Unicode label map.
 Numerical dataset IDs are never guessed. Keep development/calibration data and
-held-out evaluation data separate. This complete library example accepts your
-actual data and does not supply a fabricated pretrained model:
+held-out evaluation data separate. This library example accepts your own
+labelled development data:
 
 ```python
 from pathlib import Path
